@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "/OMJvBmXpGDMDP0J/BraFaSrEf0yXli0YWnlmpgZ7oWZkKWQGpDG4lvL/w3jhkcDq6BAaUszUutvUqRyUbBVlg==",
+  "dgSpecHash": "FqSjs8OXRVkdglbXxYJR0n3FoNG4AVdN1TH21n5eEU1kO4Qqr3nqIYnfc+iBFtufH6vAbraRVO0F4i/I+fORkg==",
   "success": true,
   "projectFilePath": "C:\\Users\\alexg\\source\\repos\\transfer.me\\Transfer.Me\\Client\\Transfer.Me.Client.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\alexg\\.nuget\\packages\\bouncycastle\\1.8.9\\bouncycastle.1.8.9.nupkg.sha512",
     "C:\\Users\\alexg\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.10\\microsoft.aspnetcore.authorization.5.0.10.nupkg.sha512",
     "C:\\Users\\alexg\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.10\\microsoft.aspnetcore.components.5.0.10.nupkg.sha512",
     "C:\\Users\\alexg\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\5.0.10\\microsoft.aspnetcore.components.analyzers.5.0.10.nupkg.sha512",
@@ -32,5 +33,16 @@
     "C:\\Users\\alexg\\.nuget\\packages\\system.net.http.json\\5.0.0\\system.net.http.json.5.0.0.nupkg.sha512",
     "C:\\Users\\alexg\\.nuget\\packages\\microsoft.netcore.app.runtime.browser-wasm\\5.0.10\\microsoft.netcore.app.runtime.browser-wasm.5.0.10.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'BouncyCastle 1.8.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "BouncyCastle",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }
