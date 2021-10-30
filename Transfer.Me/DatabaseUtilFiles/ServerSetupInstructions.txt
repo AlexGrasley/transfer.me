@@ -1,0 +1,10 @@
+Instructions for Installing MariaDB and getting the database up and running.
+
+1) Go to : https://mariadb.org/download/?rel=10.5.12&prod=mariadb&os=windows&cpu=x86_64&pkg=msi&mirror=accretive
+	* This should be the correct version (10.5.12) for windows and x86_64 CPU
+	
+2) Install the program and copy my.ini into the "C:\Program Files\MariaDB 10.5" directory
+	
+3) Launch Command Prompt as Administrator and run the following command: 	
+	sc create MySQL binpath= "\"C:\Program Files\MariaDB 10.5\bin\mysqld.exe\" --defaults-file=\"C:\Program Files\MariaDB 10.5\my.ini\" MySQL" start= auto
+	
