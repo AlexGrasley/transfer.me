@@ -91,7 +91,7 @@
           "build/net5.0/_._": {}
         }
       },
-      "Microsoft.AspNetCore.Components.WebAssembly.Server/5.0.10": {
+      "Microsoft.AspNetCore.Components.WebAssembly.Server/5.0.11": {
         "type": "package",
         "compile": {
           "lib/net5.0/Microsoft.AspNetCore.Components.WebAssembly.Server.dll": {}
@@ -463,10 +463,10 @@
         "microsoft.aspnetcore.components.webassembly.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components.WebAssembly.Server/5.0.10": {
-      "sha512": "wvFgKM0YwV0/E6emHOpgBito7EwUC49Qg2nGR3t0j7J1DHmoZoLJvn006Rd1HpzVf4feXVQsvHIuu32JHirdZA==",
+    "Microsoft.AspNetCore.Components.WebAssembly.Server/5.0.11": {
+      "sha512": "rwHurrTw6rcqao/jcKN506KpbhE+WZhJiABtRFdaOXJb7VE7BAEL7zhtEnU3lKnzjS625vMnyX3AgXBMu42TPg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components.webassembly.server/5.0.10",
+      "path": "microsoft.aspnetcore.components.webassembly.server/5.0.11",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -476,7 +476,7 @@
         "build/Microsoft.AspNetCore.Components.WebAssembly.Server.targets",
         "lib/net5.0/Microsoft.AspNetCore.Components.WebAssembly.Server.dll",
         "lib/net5.0/Microsoft.AspNetCore.Components.WebAssembly.Server.xml",
-        "microsoft.aspnetcore.components.webassembly.server.5.0.10.nupkg.sha512",
+        "microsoft.aspnetcore.components.webassembly.server.5.0.11.nupkg.sha512",
         "microsoft.aspnetcore.components.webassembly.server.nuspec",
         "tools/BlazorDebugProxy/BrowserDebugHost.dll",
         "tools/BlazorDebugProxy/BrowserDebugHost.runtimeconfig.json",
@@ -891,7 +891,8 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Microsoft.AspNetCore.Components.WebAssembly.Server >= 5.0.10",
+      "BouncyCastle >= 1.8.9",
+      "Microsoft.AspNetCore.Components.WebAssembly.Server >= 5.0.11",
       "Transfer.Me.Client >= 1.0.0",
       "Transfer.Me.Shared >= 1.0.0"
     ]
@@ -946,9 +947,13 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "BouncyCastle": {
+            "target": "Package",
+            "version": "[1.8.9, )"
+          },
           "Microsoft.AspNetCore.Components.WebAssembly.Server": {
             "target": "Package",
-            "version": "[5.0.10, )"
+            "version": "[5.0.11, )"
           }
         },
         "imports": [

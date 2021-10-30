@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "PezjrWJwTP60m38z7JLdtUTLq7wQSbjYKKScRUJNNCvaEAToYITiext16BAtt1hHvK+zaIMcZ4H1aAGUza7ldg==",
+  "dgSpecHash": "3IleKprpErzSq7Hz/KLCnFwGt8lZ+J8jFzrHcW1ASZLSnUW0WrZvIrt4R7U4HkOUoJQ0E1jYrV2yU6TLQlSPRQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\alexg\\source\\repos\\transfer.me\\Transfer.Me\\Server\\Transfer.Me.Server.csproj",
   "expectedPackageFiles": [
@@ -11,7 +11,7 @@
     "C:\\Users\\alexg\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\5.0.10\\microsoft.aspnetcore.components.forms.5.0.10.nupkg.sha512",
     "C:\\Users\\alexg\\.nuget\\packages\\microsoft.aspnetcore.components.web\\5.0.10\\microsoft.aspnetcore.components.web.5.0.10.nupkg.sha512",
     "C:\\Users\\alexg\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\5.0.10\\microsoft.aspnetcore.components.webassembly.5.0.10.nupkg.sha512",
-    "C:\\Users\\alexg\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.server\\5.0.10\\microsoft.aspnetcore.components.webassembly.server.5.0.10.nupkg.sha512",
+    "C:\\Users\\alexg\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.server\\5.0.11\\microsoft.aspnetcore.components.webassembly.server.5.0.11.nupkg.sha512",
     "C:\\Users\\alexg\\.nuget\\packages\\microsoft.aspnetcore.metadata\\5.0.10\\microsoft.aspnetcore.metadata.5.0.10.nupkg.sha512",
     "C:\\Users\\alexg\\.nuget\\packages\\microsoft.extensions.configuration\\5.0.0\\microsoft.extensions.configuration.5.0.0.nupkg.sha512",
     "C:\\Users\\alexg\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
