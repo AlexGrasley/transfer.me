@@ -7,4 +7,10 @@ Instructions for Installing MariaDB and getting the database up and running.
 	
 3) Launch Command Prompt as Administrator and run the following command: 	
 	sc create MySQL binpath= "\"C:\Program Files\MariaDB 10.5\bin\mysqld.exe\" --defaults-file=\"C:\Program Files\MariaDB 10.5\my.ini\" MySQL" start= auto
+
+4) Create the directory C:\mariadb\data\
+
+5) copy files from DBStarterFiles directory into the new directory created.
+
+6) create a the database called "transfer.me" using the queries in the TableCreateQueries.txt file, or use the .sql database dump file to import the database. You can use command line or a program like HeidiSQL or SQLYog to do this. I can include instructions if needed
 	
