@@ -898,23 +898,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\alexg\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Davis\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alexg\\source\\repos\\transfer.me\\Transfer.Me\\Server\\Transfer.Me.Server.csproj",
+      "projectUniqueName": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Transfer.Me\\Server\\Transfer.Me.Server.csproj",
       "projectName": "Transfer.Me.Server",
-      "projectPath": "C:\\Users\\alexg\\source\\repos\\transfer.me\\Transfer.Me\\Server\\Transfer.Me.Server.csproj",
-      "packagesPath": "C:\\Users\\alexg\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alexg\\source\\repos\\transfer.me\\Transfer.Me\\Server\\obj\\",
+      "projectPath": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Transfer.Me\\Server\\Transfer.Me.Server.csproj",
+      "packagesPath": "C:\\Users\\Davis\\.nuget\\packages\\",
+      "outputPath": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Transfer.Me\\Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\alexg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Davis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -928,11 +929,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\alexg\\source\\repos\\transfer.me\\Transfer.Me\\Client\\Transfer.Me.Client.csproj": {
-              "projectPath": "C:\\Users\\alexg\\source\\repos\\transfer.me\\Transfer.Me\\Client\\Transfer.Me.Client.csproj"
+            "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Transfer.Me\\Client\\Transfer.Me.Client.csproj": {
+              "projectPath": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Transfer.Me\\Client\\Transfer.Me.Client.csproj"
             },
-            "C:\\Users\\alexg\\source\\repos\\transfer.me\\Transfer.Me\\Shared\\Transfer.Me.Shared.csproj": {
-              "projectPath": "C:\\Users\\alexg\\source\\repos\\transfer.me\\Transfer.Me\\Shared\\Transfer.Me.Shared.csproj"
+            "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Transfer.Me\\Shared\\Transfer.Me.Shared.csproj": {
+              "projectPath": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Transfer.Me\\Shared\\Transfer.Me.Shared.csproj"
             }
           }
         }
@@ -974,7 +975,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   },
