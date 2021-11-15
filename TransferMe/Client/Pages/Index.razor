@@ -7,12 +7,13 @@
 @using BlazorInputFile
 <h3>Upload Files</h3>
 
-<InputFile OnChange="HandleFileSelected" />
+<center><InputFile OnChange="HandleFileSelected" /></center>
 
 @if (file != null)
 {
     <p>Number of lines read: @numLines</p>
     <button @onclick="CountLines">Count</button>
+    <input type="button" value="Upload File" @onclick="CountLines" />
 }
 
 @code {
