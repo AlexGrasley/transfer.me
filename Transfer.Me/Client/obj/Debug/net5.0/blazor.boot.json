@@ -201,7 +201,6 @@
     },
     "lazyAssembly": null,
     "pdb": {
-      "Transfer.Me.Shared.pdb": "sha256-6CBXqRuKT7MXBSXKw7KmKJxTTgdsg0sZwD\/mpZFEKZU=",
       "Transfer.Me.Client.pdb": "sha256-sJErnaiyUB9zvl2yM0L5uNQ89egX3L2e+lImb8HcX\/0="
     },
     "runtime": {
