@@ -1626,8 +1626,6 @@ D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\blazor.boot.json
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\staticwebassets.build.json
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\staticwebassets.development.json
-D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
-D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\scopedcss\bundle\Client.styles.css
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\scopedcss\projectbundle\Client.bundle.scp.css
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\service-worker\service-worker.js
@@ -1636,3 +1634,4 @@ D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\Client.dll
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\ref\Client.dll
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\Client.pdb
+D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\scopedcss\MainLayout.razor.rz.scp.css
