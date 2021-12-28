@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vrT8k5kbRCWTAlgaDmxYSh/P9Clmejf+n9vFonNOg1Y=",
+  "Hash": "6tNOwmrLmZs4iIe+ZrEH0B3D96a4I/8zQQaxwy39ie8=",
   "Source": "Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -32,6 +32,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Davis\\.nuget\\packages\\blazorinputfile\\0.2.0\\staticwebassets\\inputfile.js"
+    },
+    {
+      "Identity": "C:\\Users\\Davis\\.nuget\\packages\\mudblazor\\6.0.2\\staticwebassets\\MudBlazor.min.css",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\Davis\\.nuget\\packages\\mudblazor\\6.0.2\\staticwebassets\\",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Davis\\.nuget\\packages\\mudblazor\\6.0.2\\staticwebassets\\MudBlazor.min.css"
+    },
+    {
+      "Identity": "C:\\Users\\Davis\\.nuget\\packages\\mudblazor\\6.0.2\\staticwebassets\\MudBlazor.min.js",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\Davis\\.nuget\\packages\\mudblazor\\6.0.2\\staticwebassets\\",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Davis\\.nuget\\packages\\mudblazor\\6.0.2\\staticwebassets\\MudBlazor.min.js"
     },
     {
       "Identity": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\blazor.boot.json",
@@ -712,6 +746,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Davis\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.1\\runtimes\\browser-wasm\\lib\\net6.0\\mscorlib.dll"
+    },
+    {
+      "Identity": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\MudBlazor.dll",
+      "SourceId": "Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/MudBlazor.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Davis\\.nuget\\packages\\mudblazor\\6.0.2\\lib\\net6.0\\MudBlazor.dll"
     },
     {
       "Identity": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\netstandard.dll",
@@ -5863,6 +5914,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\System.Globalization.Extensions.dll"
+    },
+    {
+      "Identity": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\obj\\Debug\\net6.0\\build-gz\\pfCkLkN3.gz",
+      "SourceId": "Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/MudBlazor.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\MudBlazor.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\MudBlazor.dll"
     },
     {
       "Identity": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\obj\\Debug\\net6.0\\build-gz\\Phbfz3lN.gz",

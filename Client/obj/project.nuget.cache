@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "IYtzmAZpUpNhW1U4ZBaKrQVC11I+DYZ2dBjlWlEegCgVXlzjvPHgfVmQYHRuaSPrAspZwwFICBx3r7Tf3M+NNg==",
+  "dgSpecHash": "9kxMc0vguIwwu6GvmQ4siegBWNBy5zbcpcM5KK4BtATvwcws2MHg5snmT67J0tw6uywaaD13VlQSA9iRYSudrg==",
   "success": true,
   "projectFilePath": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\Client.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,7 @@
     "C:\\Users\\Davis\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\Davis\\.nuget\\packages\\microsoft.jsinterop\\6.0.1\\microsoft.jsinterop.6.0.1.nupkg.sha512",
     "C:\\Users\\Davis\\.nuget\\packages\\microsoft.jsinterop.webassembly\\6.0.1\\microsoft.jsinterop.webassembly.6.0.1.nupkg.sha512",
+    "C:\\Users\\Davis\\.nuget\\packages\\mudblazor\\6.0.2\\mudblazor.6.0.2.nupkg.sha512",
     "C:\\Users\\Davis\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\Davis\\.nuget\\packages\\system.io.pipelines\\6.0.1\\system.io.pipelines.6.0.1.nupkg.sha512",
     "C:\\Users\\Davis\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",

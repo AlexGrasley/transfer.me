@@ -1,11 +1,28 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
-<BlazorInputFile.InputFile OnChange="HandleFileSelected" multiple class="drag-drop-input" />
+<MudThemeProvider />
+<MudLayout>
+    <MudAppBar Color="Color.Secondary" Elevation="1">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudText Typo="Typo.h5" Class="ml-3">Transfer.Me</MudText>
+    </MudAppBar>
+    <Client.Components.Public.Shared.Navbar />
+    <h1>Transfer.Me</h1>
+    <BlazorInputFile.InputFile OnChange="HandleFileSelected" multiple class="drag-drop-input" />
+</MudLayout>
+
+
+
 
 @code {
     void HandleFileSelected(BlazorInputFile.IFileListEntry[] files)
     {
         
+    }
+    bool _drawerOpen = true;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
     }
 }

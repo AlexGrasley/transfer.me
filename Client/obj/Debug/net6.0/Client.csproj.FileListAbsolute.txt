@@ -1639,3 +1639,7 @@ D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\bin\Debug\
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\bin\Debug\net6.0\wwwroot\_framework\BlazorInputFile.dll.gz
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\bin\Debug\net6.0\BlazorInputFile.dll
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\build-gz\niAwSqT2.gz
+D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\bin\Debug\net6.0\wwwroot\_framework\MudBlazor.dll
+D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\bin\Debug\net6.0\wwwroot\_framework\MudBlazor.dll.gz
+D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\bin\Debug\net6.0\MudBlazor.dll
+D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\build-gz\pfCkLkN3.gz
