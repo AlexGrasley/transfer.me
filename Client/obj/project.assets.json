@@ -2,6 +2,25 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "BlazorInputFile/0.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.0-preview3.19555.2",
+          "Microsoft.AspNetCore.Components.Web": "3.1.0-preview3.19555.2"
+        },
+        "compile": {
+          "lib/netstandard2.1/BlazorInputFile.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/BlazorInputFile.dll": {}
+        },
+        "build": {
+          "buildTransitive/BlazorInputFile.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/BlazorInputFile.props": {}
+        }
+      },
       "Microsoft.AspNetCore.Authorization/6.0.1": {
         "type": "package",
         "dependencies": {
@@ -393,6 +412,25 @@
       }
     },
     "net6.0/browser-wasm": {
+      "BlazorInputFile/0.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.0-preview3.19555.2",
+          "Microsoft.AspNetCore.Components.Web": "3.1.0-preview3.19555.2"
+        },
+        "compile": {
+          "lib/netstandard2.1/BlazorInputFile.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/BlazorInputFile.dll": {}
+        },
+        "build": {
+          "buildTransitive/BlazorInputFile.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/BlazorInputFile.props": {}
+        }
+      },
       "Microsoft.AspNetCore.Authorization/6.0.1": {
         "type": "package",
         "dependencies": {
@@ -779,6 +817,24 @@
     }
   },
   "libraries": {
+    "BlazorInputFile/0.2.0": {
+      "sha512": "wsPTwoA9fkHOxjEh0W0brNeTaVBaMCFwfBLehbRhfW+RzlIrYtlJ5qFpT5f377Ej6ELk+xeoUrkDBx9c8JF7DQ==",
+      "type": "package",
+      "path": "blazorinputfile/0.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazorinputfile.0.2.0.nupkg.sha512",
+        "blazorinputfile.nuspec",
+        "build/BlazorInputFile.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/BlazorInputFile.props",
+        "buildTransitive/BlazorInputFile.props",
+        "lib/netstandard2.0/BlazorInputFile.dll",
+        "lib/netstandard2.1/BlazorInputFile.dll",
+        "staticwebassets/inputfile.js"
+      ]
+    },
     "Microsoft.AspNetCore.Authorization/6.0.1": {
       "sha512": "4XjeiDdQPmC5eNMFGM9LEcQUxORz6NpUsYD1AmZuk8GBA8IW8kN+o7M7m+rhhrYIWxQ9TADePaMWeomScGhbCQ==",
       "type": "package",
@@ -1541,6 +1597,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "BlazorInputFile >= 0.2.0",
       "Microsoft.AspNetCore.Components.WebAssembly >= 6.0.1",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 6.0.1"
     ]
@@ -1589,6 +1646,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "BlazorInputFile": {
+            "target": "Package",
+            "version": "[0.2.0, )"
+          },
           "Microsoft.AspNetCore.Components.WebAssembly": {
             "target": "Package",
             "version": "[6.0.1, )"

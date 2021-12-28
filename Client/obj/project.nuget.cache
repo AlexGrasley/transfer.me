@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "EW/Ey5vLj5TWLoN4L6vz0aLwiE9tS7UYjaJiDBcNaMXi1p31myL16SmdN3oQtlvOErIGH7yqaMlJ7+nXMvkPPg==",
+  "dgSpecHash": "IYtzmAZpUpNhW1U4ZBaKrQVC11I+DYZ2dBjlWlEegCgVXlzjvPHgfVmQYHRuaSPrAspZwwFICBx3r7Tf3M+NNg==",
   "success": true,
   "projectFilePath": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\Client.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Davis\\.nuget\\packages\\blazorinputfile\\0.2.0\\blazorinputfile.0.2.0.nupkg.sha512",
     "C:\\Users\\Davis\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.1\\microsoft.aspnetcore.authorization.6.0.1.nupkg.sha512",
     "C:\\Users\\Davis\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.1\\microsoft.aspnetcore.components.6.0.1.nupkg.sha512",
     "C:\\Users\\Davis\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\6.0.1\\microsoft.aspnetcore.components.analyzers.6.0.1.nupkg.sha512",

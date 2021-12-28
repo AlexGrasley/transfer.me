@@ -1,6 +1,20 @@
 ﻿@page "/"
+@using System
+@using System.IO
+@using Microsoft.AspNetCore
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.Extensions.Logging
+@using System.Linq
+@using System.Net.Http.Headers
+@using System.Text.Json
+@using BlazorInputFile
 
 <h1>Hello, world!</h1>
+<BlazorInputFile.InputFile OnChange="HandleFileSelected" multiple class="drag-drop-input" />
 
-Welcome to your new app.
-
+@code {
+    void HandleFileSelected(IFileListEntry[] files)
+    {
+        
+    }
+}

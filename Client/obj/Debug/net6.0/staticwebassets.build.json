@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kcmWkoE3AMdyuJs6pKSsIWvJjxExLS1oohC6FfvhvoU=",
+  "Hash": "vrT8k5kbRCWTAlgaDmxYSh/P9Clmejf+n9vFonNOg1Y=",
   "Source": "Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -16,6 +16,23 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\Davis\\.nuget\\packages\\blazorinputfile\\0.2.0\\staticwebassets\\inputfile.js",
+      "SourceId": "BlazorInputFile",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\Davis\\.nuget\\packages\\blazorinputfile\\0.2.0\\staticwebassets\\",
+      "BasePath": "_content/BlazorInputFile",
+      "RelativePath": "inputfile.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Davis\\.nuget\\packages\\blazorinputfile\\0.2.0\\staticwebassets\\inputfile.js"
+    },
     {
       "Identity": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\blazor.boot.json",
       "SourceId": "Client",
@@ -49,6 +66,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Davis\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\6.0.1\\build\\net6.0\\blazor.webassembly.js"
+    },
+    {
+      "Identity": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\BlazorInputFile.dll",
+      "SourceId": "Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/BlazorInputFile.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Davis\\.nuget\\packages\\blazorinputfile\\0.2.0\\lib\\netstandard2.1\\BlazorInputFile.dll"
     },
     {
       "Identity": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Client.dll",
@@ -5574,6 +5608,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\System.Formats.Asn1.dll"
+    },
+    {
+      "Identity": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\obj\\Debug\\net6.0\\build-gz\\niAwSqT2.gz",
+      "SourceId": "Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/BlazorInputFile.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\BlazorInputFile.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\bin\\Debug\\net6.0\\wwwroot\\_framework\\BlazorInputFile.dll"
     },
     {
       "Identity": "D:\\Users\\Davis\\Computer Science\\OSU\\Senior Project\\transfer.me\\Client\\obj\\Debug\\net6.0\\build-gz\\NIQbqvBz.gz",

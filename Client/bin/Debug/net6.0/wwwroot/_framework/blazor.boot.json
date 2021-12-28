@@ -7,6 +7,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
+      "BlazorInputFile.dll": "sha256-C0KrMmLQQE68cd1+FNwIOW89nNGbOH48hRxQAoSBaaA=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-hGbT4jDhpi63093bjGt+4XVJ3Z9t1FVbmgNmYYmpiNY=",
       "Microsoft.AspNetCore.Components.dll": "sha256-NJ2GmZOAzlolS7ZPvt5guh86ICBupqwCNK0ygg7fkhE=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-YEcUfJbV\/+SrxppUEKn5jqOg8WptBrdAGaDG+psN8Yg=",
@@ -196,13 +197,13 @@
       "mscorlib.dll": "sha256-+5VU+MYaTQMTlRe9QKobEjWZWv6I9teAGdNndWSBqWE=",
       "netstandard.dll": "sha256-E5RFhGIaDH5QM6BEbFUuHU8U9wP6N6jbo5MCttzLOCM=",
       "System.Private.CoreLib.dll": "sha256-9NtEbYixyog7vUmeYXyyqzfBXUYl8wxoVQ26Ji7sNRg=",
-      "Client.dll": "sha256-uw0huJJvfwGqExr88jXO2RaNpFiY6FB\/dOzvEMl1Ras="
+      "Client.dll": "sha256-Yp9mHXCOUrVCG8wABX8x4VcGxg7BE9ZAhLx6JT3TR0I="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "Client.pdb": "sha256-LZ5WyJGKnG4ImM2kPT7o0Mbq4kCFCcKhz1N2tjcz7Bk="
+      "Client.pdb": "sha256-oxjyXUATh4RfRH4gKAyJFuNdafBuML4UHCcShmXgN+E="
     },
     "runtime": {
       "dotnet.6.0.1.o78gwm861j.js": "sha256-awQsJ\/WxYhouHPuE+i3eJqjA4XClQlr2rD6nKvW80ww=",

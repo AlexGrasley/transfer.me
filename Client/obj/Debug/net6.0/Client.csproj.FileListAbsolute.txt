@@ -1635,3 +1635,7 @@ D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\ref\Client.dll
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\Client.pdb
 D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\scopedcss\MainLayout.razor.rz.scp.css
+D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\bin\Debug\net6.0\wwwroot\_framework\BlazorInputFile.dll
+D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\bin\Debug\net6.0\wwwroot\_framework\BlazorInputFile.dll.gz
+D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\bin\Debug\net6.0\BlazorInputFile.dll
+D:\Users\Davis\Computer Science\OSU\Senior Project\transfer.me\Client\obj\Debug\net6.0\build-gz\niAwSqT2.gz
