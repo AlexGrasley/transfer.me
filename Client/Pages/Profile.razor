@@ -1,7 +1,6 @@
 ﻿@page "/profile"
 @inject ISnackbar Snackbar
 
-<MudThemeProvider />
 <MudLayout>
     <Client.Components.Public.Shared.MainLayout />
     <MudMainContent>
@@ -9,12 +8,3 @@
     </MudMainContent>
 </MudLayout>
 
-
-@code {
-    bool _drawerOpen = true;
-
-    void DrawerToggle()
-    {
-        _drawerOpen = !_drawerOpen;
-    }
-}
