@@ -2,17 +2,9 @@
 @inject ISnackbar Snackbar
 
 <MudThemeProvider />
-<MudDialogProvider/>
-<MudSnackbarProvider/>
 
 <MudLayout>
-    <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudText Typo="Typo.h5" Class="ml-3">Transfer.Me</MudText>
-    </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
-        <Client.Components.Public.Shared.Navbar />
-    </MudDrawer>
+    <Client.Components.Public.Shared.MainLayout />
     <MudMainContent>
         <MudPaper 
                 @ondragenter="@(()=>_dragEnterStyle="drag-enter")"
@@ -36,18 +28,18 @@
                         </MudList>
                     }
                 </MudPaper>
-
-                    
+                <MudGrid Justify="Justify.Center" Spacing="4">
+                    <MudItem>
+                        <MudButton OnClick="Upload" Disabled="@(!fileNames.Any())" Color="Color.Primary" Variant="Variant.Filled">Upload</MudButton>
+                    </MudItem>
+                    <MudItem>
+                        <MudButton OnClick="@fileNames.Clear" Disabled="@(!fileNames.Any())" Color="Color.Error" Variant="Variant.Filled">Clear</MudButton>
+                    </MudItem>
+                </MudGrid>
     </MudMainContent>
 </MudLayout>
 
 @code {
-    bool _drawerOpen = true;
-
-    void DrawerToggle()
-    {
-        _drawerOpen = !_drawerOpen;
-    }
 
 @*
     private void UploadFiles(InputFileChangeEventArgs e)

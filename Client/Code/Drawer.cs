@@ -12,5 +12,5 @@
             this._drawerOpen = !this._drawerOpen;
         }
     }
-
 }
+
