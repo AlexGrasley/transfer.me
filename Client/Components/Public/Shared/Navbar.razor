@@ -8,12 +8,13 @@
 </MudPaper>
 
 @code {
-    private bool collapseNavMenu = true;
+    private bool collapseMenu = true;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : String.Empty;
+    private string NavMenuCssClass => collapseMenu ? "collapse" : String.Empty;
 
     private void ToggleNavMenu()
     {
-        collapseNavMenu = !collapseNavMenu;
+        collapseMenu = !collapseMenu;
     }
+
 }
