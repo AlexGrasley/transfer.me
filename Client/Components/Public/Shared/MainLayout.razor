@@ -2,7 +2,12 @@
 <MudThemeProvider Theme="currentTheme" />
 <MudAppBar Elevation="1">
     <MudIconButton Icon="@Icons.Material.Filled.Menu" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-    <MudIconButton Icon="@Icons.Material.Filled.DarkMode" Edge="Edge.End" OnClick="@((e) => DarkMode())">Toggle Dark Mode</MudIconButton>
+    @if (currentTheme == darkTheme) {
+       <MudIconButton Icon="@Icons.Material.Filled.LightMode" Edge="Edge.End" OnClick="@((e) => DarkMode())">Toggle Dark Mode</MudIconButton>
+    }
+    else {
+        <MudIconButton Icon="@Icons.Material.Filled.DarkMode" Edge="Edge.End" OnClick="@((e) => DarkMode())">Toggle Dark Mode</MudIconButton>
+    }
     <MudText Typo="Typo.h5" Class="ml-3">Transfer.Me</MudText>
 </MudAppBar>
 <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
