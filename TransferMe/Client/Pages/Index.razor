@@ -1,0 +1,38 @@
+﻿@page "/"
+@using System
+@using System.IO
+@using Microsoft.AspNetCore
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.Extensions.Logging
+@using BlazorInputFile
+<h3>Upload</h3>
+
+<InputFile OnChange="HandleFileSelected" />
+
+@if (file != null)
+{
+    <p>Number of lines read: @numLines</p>
+    <button @onclick="CountLines">Count</button>
+}
+
+@code {
+    int numLines;
+    IFileListEntry file;
+
+    void HandleFileSelected(IFileListEntry[] files)
+    {
+        file = files.FirstOrDefault();
+    }
+
+    async Task CountLines()
+    {
+        numLines = 0;
+        using (var reader = new System.IO.StreamReader(file.Data))
+        {
+            while (await reader.ReadLineAsync() != null)
+            {
+                numLines++;
+            }
+        }
+    }
+}
