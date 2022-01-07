@@ -1,39 +1,56 @@
 ﻿@page "/"
 @inject ISnackbar Snackbar
+<style>
+    .drag-drop-zone {
+        display: flex;align-items: center;justify-content: center;transition: all .4s;min-height: 400px;
+    }
+    .drag-drop-input {
+        position: absolute;width: 100%;height: 90%;opacity: 0;cursor:pointer;
+        z-index:2;
+    }
+    .drag-enter {
+        box-shadow: var(--mud-elevation-10);
+    }
+    .list{
+        padding:2em;min-width:100%;
+    }
+</style>
 
 <MudLayout>
     <Client.Components.Public.Shared.PageLayout />
     <MudMainContent>
-        <MudPaper 
-                @ondragenter="@(()=>_dragEnterStyle="drag-enter")"
-                @ondragleave="@(()=>_dragEnterStyle=String.Empty)"
-                @ondragend="@(()=>_dragEnterStyle=String.Empty)"
-                Class=@("drag-drop-zone "+ _dragEnterStyle)>
-                <BlazorInputFile.InputFile OnChange="HandleFileSelected" multiple class="drag-drop-input" />
-                @if (fileNames.Count() == 0)
-                {
-                        <MudText Typo="Typo.h3">Drag and drop files here or click</MudText>
-                }
-                else
-                {
-                    <MudList Style="padding:2em;width:100%;" Dense="true">
-                    @foreach (var file in fileNames)
-                    {
-                        <MudListItem @key="@file">
-                            <MudChip Color="Color.Dark" Style="width:60px; overflow:hidden;" Text="@(file.Split(".").Last())" />
-                            @file
-                        </MudListItem>}
-                        </MudList>
-                    }
-                </MudPaper>
-                <MudGrid Justify="Justify.Center" Spacing="4">
-                    <MudItem>
-                        <MudButton OnClick="Upload" Disabled="@(!fileNames.Any())" Color="Color.Primary" Variant="Variant.Filled">Upload</MudButton>
-                    </MudItem>
-                    <MudItem>
-                        <MudButton OnClick="@fileNames.Clear" Disabled="@(!fileNames.Any())" Color="Color.Error" Variant="Variant.Filled">Clear</MudButton>
-                    </MudItem>
-                </MudGrid>
+       <MudPaper @ondragenter="@(()=>_dragEnterStyle="drag-enter")"
+          @ondragleave="@(()=>_dragEnterStyle=null)"
+          @ondragend="@(()=>_dragEnterStyle=null)"
+          Class=@("drag-drop-zone "+ _dragEnterStyle)>
+
+    <InputFile id="fileInput" OnChange="OnInputFileChanged" class="drag-drop-input"/>
+    @if (fileNames.Count() == 0)
+    {
+        <MudText Style="padding:2em;width:75%;align-self:center;align-content:center" Typo="Typo.h4">Drag and drop files here or click</MudText> 
+    }else
+    {
+        <MudList Style="padding:2em;width:75%;" Dense="true" >
+            @foreach (var file in fileNames)
+            {
+                <MudListItem @key="@file" >
+                   <MudChip Color="Color.Dark" 
+                            Style="width:60px; overflow:hidden;" 
+                            Text="@(file.Split(".").Last())" />
+                   @file
+                </MudListItem>}
+        </MudList>
+    }
+</MudPaper>
+
+<MudGrid Justify="Justify.Center" Spacing="4">
+    <MudItem>
+        <MudButton OnClick="Upload" Disabled="@(!fileNames.Any())" Color="Color.Primary" Variant="Variant.Filled">Upload</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton OnClick="@fileNames.Clear" Disabled="@(!fileNames.Any())" Color="Color.Error" Variant="Variant.Filled">Clear</MudButton>
+    </MudItem>
+</MudGrid>
     </MudMainContent>
 </MudLayout>
 
@@ -47,23 +64,23 @@
  
         //TODO upload the files to the server
     }
-*@
+    *@
 
     Drawer drawer;
     string _dragEnterStyle;
     IList<string> fileNames = new List<string>();
     int numLines;
-    IFileListEntry file;
 
-    void HandleFileSelected(IFileListEntry[] files)
+    void OnInputFileChanged(InputFileChangeEventArgs e)
     {
+        var files = e.GetMultipleFiles();
         fileNames = files.Select(f => f.Name).ToList();
     }
 
-    //Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
-    //Snackbar.Add($"Files with {entries.FirstOrDefault().Size} bytes size are not allowed", Severity.Error);
-    //Snackbar.Add($"Files starting with letter {entries.FirstOrDefault().Name.Substring(0, 1)} are not recommended", Severity.Warning);
-    //Snackbar.Add($"This file has the extension {entries.FirstOrDefault().Name.Split(".").Last()}", Severity.Info);
+    //Snackbar.configuration.positionclass = defaults.classes.position.topcenter;
+    //Snackbar.add($"files with {entries.firstordefault().size} bytes size are not allowed", severity.error);
+    //Snackbar.add($"files starting with letter {entries.firstordefault().name.substring(0, 1)} are not recommended", severity.warning);
+    //Snackbar.add($"this file has the extension {entries.firstordefault().name.split(".").last()}", severity.info);
 
 
     void Upload()
