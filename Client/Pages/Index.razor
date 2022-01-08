@@ -16,9 +16,8 @@
     }
 </style>
 
-<MudLayout>
-    <Client.Components.Public.Shared.PageLayout />
-    <MudMainContent>
+<MainLayout>
+    <Body>
        <MudPaper @ondragenter="@(()=>_dragEnterStyle="drag-enter")"
           @ondragleave="@(()=>_dragEnterStyle=null)"
           @ondragend="@(()=>_dragEnterStyle=null)"
@@ -27,7 +26,7 @@
     <InputFile id="fileInput" OnChange="OnInputFileChanged" class="drag-drop-input"/>
     @if (fileNames.Count() == 0)
     {
-        <MudText Style="padding:2em;width:75%;align-self:center;align-content:center" Typo="Typo.h4">Drag and drop files here or click</MudText> 
+        <MudText Style="padding:2em;width:75%" Typo="Typo.h4">Drag and drop files here or click</MudText> 
     }else
     {
         <MudList Style="padding:2em;width:75%;" Dense="true" >
@@ -51,8 +50,8 @@
         <MudButton OnClick="@fileNames.Clear" Disabled="@(!fileNames.Any())" Color="Color.Error" Variant="Variant.Filled">Clear</MudButton>
     </MudItem>
 </MudGrid>
-    </MudMainContent>
-</MudLayout>
+    </Body>
+</MainLayout>
 
 @code {
 
