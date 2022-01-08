@@ -3,7 +3,7 @@
 @* This is a base layout that includes the Appbar, and the navigation menu *@
 <MudThemeProvider Theme="currentTheme" />
 <MudAppBar Elevation="1">
-    <MudIconButton Icon="@Icons.Material.Filled.Menu" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+    <MudIconButton Icon="@Icons.Material.Filled.Menu" Edge="Edge.Start" OnClick="@((e) => layoutDrawer.DrawerToggle())" />
     @if (currentTheme == darkTheme) {
        <MudIconButton Icon="@Icons.Material.Filled.LightMode" Edge="Edge.End" OnClick="@((e) => DarkMode())">Toggle Dark Mode</MudIconButton>
     }
@@ -12,7 +12,7 @@
     }
     <MudText Typo="Typo.h5" Class="ml-3">Transfer.Me</MudText>
 </MudAppBar>
-<MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+<MudDrawer @bind-Open="layoutDrawer._drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
     <Client.Components.Public.Shared.Navbar />
 </MudDrawer>
 <MudMainContent>
@@ -24,17 +24,7 @@
 </MudLayout>
 
 @code {
-    bool _drawerOpen = true;
-
-    void DrawerToggle()
-    {
-        _drawerOpen = !_drawerOpen;
-    }
-        protected override void OnInitialized()
-    {
-        currentTheme = defaultTheme;
-    }
-
+    Drawer layoutDrawer = new Drawer();
     void DarkMode()
     {
         if (currentTheme == defaultTheme)

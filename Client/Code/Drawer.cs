@@ -9,7 +9,7 @@
 
         public void DrawerToggle()
         {
-            this._drawerOpen = !this._drawerOpen;
+            _drawerOpen = !_drawerOpen;
         }
     }
 }
