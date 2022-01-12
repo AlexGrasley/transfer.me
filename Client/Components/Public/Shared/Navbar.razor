@@ -1,15 +1,21 @@
-﻿<MudPaper Width="250px" Class="py-3" Square="true">
-    <MudNavMenu >
+﻿<MudPaper Width="100%" Class="py-3" Square="true">
+    <MudNavMenu>
         <MudText Typo="Typo.h6" Class="px-4">Menu</MudText>
         <MudList>
             <MudListItem>
-                <MudButton FullWidth Href="/">Home</MudButton>
+                <MudNavLink Match="NavLinkMatch.Prefix" Href="/">
+                    Home
+                </MudNavLink>
             </MudListItem>
             <MudListItem>
-                <MudButton FullWidth Href="/profile">Profile</MudButton>
+                <MudNavLink id="linkProfile" Href="/profile">
+                    Profile
+                </MudNavLink>
             </MudListItem>
             <MudListItem>
-                <MudButton FullWidth Href="/history">History</MudButton>
+                <MudNavLink id="linkHistory" Href="/history">
+                    History
+                </MudNavLink>
             </MudListItem>
         </MudList>
     </MudNavMenu>
