@@ -2,14 +2,22 @@
 {
     public class Drawer
     {
+        private bool _drawerOpen;
 
-        public Drawer() { }
+        public bool DrawerOpen
+        {
+            get => _drawerOpen;
+            set => _drawerOpen = value;
+        }
 
-        public bool _drawerOpen = true;
+        public Drawer() {
+            _drawerOpen = true;
+        }
+        
 
         public void DrawerToggle()
         {
-            this._drawerOpen = !this._drawerOpen;
+            DrawerOpen = !DrawerOpen;
         }
     }
 }

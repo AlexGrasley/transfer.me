@@ -1,3 +1,33 @@
 ﻿@inherits LayoutComponentBase
+<MudThemeProvider Theme="currentTheme" @bind-IsDarkMode="_isDarkMode"/>
+<MudLayout> 
+    @* This is a base layout that includes the Appbar, and the navigation menu *@
+    <MudAppBar Elevation="1">
+        @if (!_isDarkMode) {
+           <MudIconButton Icon="@Icons.Material.Filled.LightMode" Edge="Edge.End" OnClick="@((e) => DarkMode())">Toggle Dark Mode</MudIconButton>
+        }
+        else {
+            <MudIconButton Icon="@Icons.Material.Filled.DarkMode" Edge="Edge.End" OnClick="@((e) => DarkMode())">Toggle Light Mode</MudIconButton>
+        }
+        <MudText Typo="Typo.h5" Class="ml-3">Transfer.Me</MudText>
+    </MudAppBar>
+    <MudDrawer Open ClipMode="DrawerClipMode.Always" Elevation="2">
+        <Client.Components.Public.Shared.Navbar/>
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Large">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
 
-@Body
+
+@code {
+    MudTheme currentTheme = new();
+    bool _isDarkMode = false;
+    void DarkMode()
+    {
+        _isDarkMode = !_isDarkMode;
+    }
+
+}
