@@ -1,0 +1,11 @@
+﻿.myFooter {
+    border-top: solid; 
+    border-color:black;
+    border-width: 1.5px;
+    position: fixed;
+    bottom: 0;
+    z-index: 99;
+    background-color: inherit;
+    height:75px;
+    width:100%
+}
