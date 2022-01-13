@@ -19,8 +19,8 @@
 <MainLayout>
     <Body>
        <MudPaper @ondragenter="@(()=>_dragEnterStyle="drag-enter")"
-          @ondragleave="@(()=>_dragEnterStyle=null)"
-          @ondragend="@(()=>_dragEnterStyle=null)"
+          @ondragleave="@(()=>_dragEnterStyle=String.Empty)"
+          @ondragend="@(()=>_dragEnterStyle=String.Empty)"
           Class=@("drag-drop-zone "+ _dragEnterStyle)>
 
     <InputFile id="fileInput" OnChange="OnInputFileChanged" class="drag-drop-input"/>
