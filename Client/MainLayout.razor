@@ -3,14 +3,15 @@
 <MudLayout> 
     @* This is a base layout that includes the Appbar, and the navigation menu *@
     <MudAppBar Elevation="1">
+        <MudText Typo="Typo.h5" Class="ml-3">Transfer.Me</MudText>
+        @*IF I remove this, the icons are on the left for some reason. Don't understand. TODO*@
+        <MudContainer />
         @if (!_isDarkMode) {
-           <MudIconButton Icon="@Icons.Material.Filled.LightMode" Edge="Edge.End" OnClick="@((e) => DarkMode())">Toggle Dark Mode</MudIconButton>
+           <MudIconButton Color="Color.Secondary" Size="Size.Large" Icon="@Icons.Material.Filled.LightMode" Edge="Edge.Start" OnClick="@((e) => DarkMode())">Toggle Dark Mode</MudIconButton>
         }
         else {
-            <MudIconButton Icon="@Icons.Material.Filled.DarkMode" Edge="Edge.End" OnClick="@((e) => DarkMode())">Toggle Light Mode</MudIconButton>
+            <MudIconButton Color="Color.Secondary" Size="Size.Large" Icon="@Icons.Material.Filled.DarkMode" Edge="Edge.Start" OnClick="@((e) => DarkMode())">Toggle Light Mode</MudIconButton>
         }
-        <MudText Typo="Typo.h5" Class="ml-3">Transfer.Me</MudText>
-        <MudContainer Style="padding.left: 90%" />
         <MudIconButton Color="Color.Secondary" Size="Size.Large" Icon="@Icons.Material.Filled.Person" Edge="Edge.Start" Link="/profile" />
     </MudAppBar>
     <MudDrawer Height="30%" Open ClipMode="DrawerClipMode.Always" Elevation="0">
