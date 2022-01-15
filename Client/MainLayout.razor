@@ -10,6 +10,8 @@
             <MudIconButton Icon="@Icons.Material.Filled.DarkMode" Edge="Edge.End" OnClick="@((e) => DarkMode())">Toggle Light Mode</MudIconButton>
         }
         <MudText Typo="Typo.h5" Class="ml-3">Transfer.Me</MudText>
+        <MudContainer Style="padding.left: 90%" />
+        <MudIconButton Color="Color.Secondary" Size="Size.Large" Icon="@Icons.Material.Filled.Person" Edge="Edge.Start" Link="/profile" />
     </MudAppBar>
     <MudDrawer Height="30%" Open ClipMode="DrawerClipMode.Always" Elevation="0">
         <Client.Components.Public.Shared.Navbar/>
