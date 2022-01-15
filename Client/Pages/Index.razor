@@ -19,14 +19,14 @@
 <MainLayout>
     <Body>
        <MudPaper @ondragenter="@(()=>_dragEnterStyle="drag-enter")"
-          @ondragleave="@(()=>_dragEnterStyle=null)"
-          @ondragend="@(()=>_dragEnterStyle=null)"
+          @ondragleave="@(()=>_dragEnterStyle=String.Empty)"
+          @ondragend="@(()=>_dragEnterStyle=String.Empty)"
           Class=@("drag-drop-zone "+ _dragEnterStyle)>
 
     <InputFile id="fileInput" OnChange="OnInputFileChanged" class="drag-drop-input"/>
     @if (fileNames.Count() == 0)
     {
-        <MudText Style="padding:2em;width:75%" Typo="Typo.h4">Drag and drop files here or click</MudText> 
+        <center><MudText Style="padding:2em;width:75% " Typo="Typo.h4">Browse or drop file</MudText></center>
     }else
     {
         <MudList Style="padding:2em;width:75%;" Dense="true" >
@@ -52,6 +52,7 @@
 </MudGrid>
     </Body>
 </MainLayout>
+
 
 @code {
 
