@@ -6,6 +6,8 @@ Debug/
 bin/
 obj/
 
+.vs/
+
 # User-specific files
 *.rsuser
 *.suo
@@ -364,3 +366,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Client/Properties/ServiceDependencies/TransferMe - Web Deploy

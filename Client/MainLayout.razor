@@ -3,26 +3,42 @@
 <MudLayout> 
     @* This is a base layout that includes the Appbar, and the navigation menu *@
     <MudAppBar Elevation="1">
+        <MudText Typo="Typo.h5" Class="ml-3">Transfer.Me</MudText>
+        @*IF I remove this, the icons are on the left for some reason. Don't understand. TODO*@
+        <MudContainer />
         @if (!_isDarkMode) {
-           <MudIconButton Icon="@Icons.Material.Filled.LightMode" Edge="Edge.End" OnClick="@((e) => DarkMode())">Toggle Dark Mode</MudIconButton>
+           <MudIconButton Color="Color.Secondary" Size="Size.Large" Icon="@Icons.Material.Filled.LightMode" Edge="Edge.Start" OnClick="@((e) => DarkMode())">Toggle Dark Mode</MudIconButton>
         }
         else {
-            <MudIconButton Icon="@Icons.Material.Filled.DarkMode" Edge="Edge.End" OnClick="@((e) => DarkMode())">Toggle Light Mode</MudIconButton>
+            <MudIconButton Color="Color.Secondary" Size="Size.Large" Icon="@Icons.Material.Filled.DarkMode" Edge="Edge.Start" OnClick="@((e) => DarkMode())">Toggle Light Mode</MudIconButton>
         }
-        <MudText Typo="Typo.h5" Class="ml-3">Transfer.Me</MudText>
+        @if (userSignedIn) //Some logic to check if a user is signed in.Make profile icon direct to sign in if not signed in
+        {
+            <MudIconButton Color="Color.Secondary" Size="Size.Large" Icon="@Icons.Material.Filled.Person" Edge="Edge.Start" Link="/profile" />    
+        }
+        else
+        {
+            <MudIconButton Color="Color.Secondary" Size="Size.Large" Icon="@Icons.Material.Filled.Person" Edge="Edge.Start" Link="/signin" />
+        }
+        
     </MudAppBar>
-    <MudDrawer Open ClipMode="DrawerClipMode.Always" Elevation="2">
+    <MudDrawer Height="30%" Open ClipMode="DrawerClipMode.Always" Elevation="0">
         <Client.Components.Public.Shared.Navbar/>
     </MudDrawer>
     <MudMainContent>
         <MudContainer MaxWidth="MaxWidth.Large">
             @Body
         </MudContainer>
-    </MudMainContent>
+    </MudMainContent>  
+    <Client.Components.Public.Shared.Footer />
 </MudLayout>
 
 
+
+
 @code {
+    bool userSignedIn = false;
+
     MudTheme currentTheme = new();
     bool _isDarkMode = false;
     void DarkMode()
