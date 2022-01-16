@@ -12,7 +12,15 @@
         else {
             <MudIconButton Color="Color.Secondary" Size="Size.Large" Icon="@Icons.Material.Filled.DarkMode" Edge="Edge.Start" OnClick="@((e) => DarkMode())">Toggle Light Mode</MudIconButton>
         }
-        <MudIconButton Color="Color.Secondary" Size="Size.Large" Icon="@Icons.Material.Filled.Person" Edge="Edge.Start" Link="/profile" />
+        @if (userSignedIn) //Some logic to check if a user is signed in.Make profile icon direct to sign in if not signed in
+        {
+            <MudIconButton Color="Color.Secondary" Size="Size.Large" Icon="@Icons.Material.Filled.Person" Edge="Edge.Start" Link="/profile" />    
+        }
+        else
+        {
+            <MudIconButton Color="Color.Secondary" Size="Size.Large" Icon="@Icons.Material.Filled.Person" Edge="Edge.Start" Link="/signin" />
+        }
+        
     </MudAppBar>
     <MudDrawer Height="30%" Open ClipMode="DrawerClipMode.Always" Elevation="0">
         <Client.Components.Public.Shared.Navbar/>
@@ -29,6 +37,8 @@
 
 
 @code {
+    bool userSignedIn = false;
+
     MudTheme currentTheme = new();
     bool _isDarkMode = false;
     void DarkMode()
