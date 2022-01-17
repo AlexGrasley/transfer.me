@@ -1,7 +1,34 @@
-﻿@page "/signin"
+﻿@page "/"
 @inject ISnackbar Snackbar
+@using System.ComponentModel.DataAnnotations
 
-<ceneter>
-    <MudText>Some content</MudText>
-</ceneter>
+<MudMainContent>
+<MudPaper>
+    <MudText Typo="Typo.h5" Style="margin:15px;">Sign In</MudText>
+    <MudContainer Style="background:">
+            <MudGrid>
+                <MudItem xs="12" sm="7">
+                    <MudPaper Class="pa-4">
+                        <MudForm @ref="SignInForm.form" @bind-IsValid="@SignInForm.success" @bind-Errors="@SignInForm.errors">
+                                <MudTextField T="string" Label="Username" Required="true" RequiredError="User name is required!"/>
+                                <MudTextField T="string" Label="Password" @ref="SignInForm.pwField1"
+                                              InputType="InputType.Password"
+                                              Validation="@(new Func<string, IEnumerable<string>>(SignInForm.PasswordStrength))" Required="true"
+                                              RequiredError="Password is required!"/>
+                        </MudForm>   
+                    </MudPaper>
+                    <MudPaper Class="pa-4 mt-4">
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" OnClick="@(()=>SignInForm.form.Validate())" Link="/home">Login</MudButton>
+                        <MudButton Variant="Variant.Filled" Color="Color.Info" DisableElevation="true" OnClick="@(()=>SignInForm.form.Reset())" Class="mx-2" Link="/SignUp">SignUp</MudButton>
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="12" sm="4">
+                    <MudPaper Class="pa-4">
+                        <MudText>Sign in or create an account in order to send secured end-to-end encrypted files to anyone with ease!</MudText>
+                    </MudPaper>
+                </MudItem>
+            </MudGrid>
+    </MudContainer>
+</MudPaper>
+</MudMainContent>
 
