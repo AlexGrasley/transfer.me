@@ -18,19 +18,19 @@
 
 <MainLayout>
     <Body>
-       <MudPaper @ondragenter="@(()=>_dragEnterStyle="drag-enter")"
-          @ondragleave="@(()=>_dragEnterStyle=String.Empty)"
-          @ondragend="@(()=>_dragEnterStyle=String.Empty)"
-          Class=@("drag-drop-zone "+ _dragEnterStyle)>
+       <MudPaper @ondragenter="@(()=>FileUtil._dragEnterStyle="drag-enter")"
+          @ondragleave="@(()=>FileUtil._dragEnterStyle=String.Empty)"
+          @ondragend="@(()=>FileUtil._dragEnterStyle=String.Empty)"
+          Class=@("drag-drop-zone "+ FileUtil._dragEnterStyle)>
 
-    <InputFile id="fileInput" OnChange="OnInputFileChanged" class="drag-drop-input"/>
-    @if (fileNames.Count() == 0)
+    <InputFile id="fileInput" OnChange="FileUtil.OnInputFileChanged" class="drag-drop-input"/>
+    @if (FileUtil.fileNames.Count() == 0)
     {
         <center><MudText Style="padding:2em;width:75% " Typo="Typo.h4">Browse or drop file</MudText></center>
     }else
     {
         <MudList Style="padding:2em;width:75%;" Dense="true" >
-            @foreach (var file in fileNames)
+            @foreach (var file in FileUtil.fileNames)
             {
                 <MudListItem @key="@file" >
                    <MudChip Color="Color.Dark" 
@@ -44,47 +44,11 @@
 
 <MudGrid Justify="Justify.Center" Spacing="4">
     <MudItem>
-        <MudButton OnClick="Upload" Disabled="@(!fileNames.Any())" Color="Color.Primary" Variant="Variant.Filled">Upload</MudButton>
+        <MudButton OnClick="FileUtil.Upload" Disabled="@(!FileUtil.fileNames.Any())" Color="Color.Primary" Variant="Variant.Filled">Upload</MudButton>
     </MudItem>
     <MudItem>
-        <MudButton OnClick="@fileNames.Clear" Disabled="@(!fileNames.Any())" Color="Color.Error" Variant="Variant.Filled">Clear</MudButton>
+        <MudButton OnClick="@FileUtil.fileNames.Clear" Disabled="@(!FileUtil.fileNames.Any())" Color="Color.Error" Variant="Variant.Filled">Clear</MudButton>
     </MudItem>
 </MudGrid>
     </Body>
 </MainLayout>
-
-
-@code {
-
-@*
-    private void UploadFiles(InputFileChangeEventArgs e)
-    {
-        var entries = e.GetMultipleFiles();
-        //Do your validations here
- 
-        //TODO upload the files to the server
-    }
-    *@
-    string _dragEnterStyle;
-    IList<string> fileNames = new List<string>();
-    int numLines;
-
-    void OnInputFileChanged(InputFileChangeEventArgs e)
-    {
-        var files = e.GetMultipleFiles();
-        fileNames = files.Select(f => f.Name).ToList();
-    }
-
-    //Snackbar.configuration.positionclass = defaults.classes.position.topcenter;
-    //Snackbar.add($"files with {entries.firstordefault().size} bytes size are not allowed", severity.error);
-    //Snackbar.add($"files starting with letter {entries.firstordefault().name.substring(0, 1)} are not recommended", severity.warning);
-    //Snackbar.add($"this file has the extension {entries.firstordefault().name.split(".").last()}", severity.info);
-
-
-    void Upload()
-    {
-        //Upload the files here
-        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
-        Snackbar.Add("TODO: Upload your files!", Severity.Normal);
-    }
-}
