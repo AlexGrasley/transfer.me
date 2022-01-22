@@ -10,6 +10,7 @@ namespace Client.Code
         public static MudTextField<string> pwField1;
         public static MudForm form;
 
+
         public static IEnumerable<string> PasswordStrength(string pw)
         {
             if (string.IsNullOrWhiteSpace(pw))
@@ -31,7 +32,7 @@ namespace Client.Code
         {
             if (pwField1.Value != arg)
                 return "Passwords don't match";
-            return null;
+            return String.Empty;
         }
 
     }
