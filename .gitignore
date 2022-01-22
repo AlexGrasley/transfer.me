@@ -8,6 +8,9 @@ obj/
 
 .vs/
 
+#ignore client secret file
+serviceDependencies.local.json.user
+
 # User-specific files
 *.rsuser
 *.suo
