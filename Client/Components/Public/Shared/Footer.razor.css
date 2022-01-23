@@ -1,0 +1,33 @@
+﻿footer {
+    position: fixed;
+    bottom: 0;
+    height: 9%;
+    width: 100%;
+    background-color: #B0B3B8;
+}
+
+.footerContent {
+    width: 30%;
+}
+
+.column {
+    float: left;
+}
+
+.left {
+    width: 33.33%;
+}
+
+.middle {
+    width: 33.33%;
+}
+
+.right {
+    width: 33.33%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

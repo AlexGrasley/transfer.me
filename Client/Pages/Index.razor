@@ -1,0 +1,58 @@
+﻿@page "/"
+@inject ISnackbar Snackbar
+
+<PageTitle>Home</PageTitle>
+
+<style>
+    .drag-drop-zone {
+        display: flex;align-items: center;justify-content: center;transition: all .4s;min-height: 370px;
+        background-color: #B0B3B8;
+    }
+    .drag-drop-input {
+        position: absolute;width: 77%;height: 62%;opacity: 0;cursor:pointer;
+        z-index:2
+    }
+    .drag-enter {
+        box-shadow: var(--mud-elevation-10);
+    }
+    .list{
+        padding:2em;min-width:100%;min-height:30px;
+    }
+</style>
+
+<MainLayout>
+    <Body>
+       <MudPaper @ondragenter="@(()=>FileUtil._dragEnterStyle="drag-enter")"
+          @ondragleave="@(()=>FileUtil._dragEnterStyle=String.Empty)"
+          @ondragend="@(()=>FileUtil._dragEnterStyle=String.Empty)"
+          Class=@("drag-drop-zone "+ FileUtil._dragEnterStyle)>
+
+    <InputFile id="fileInput" OnChange="FileUtil.OnInputFileChanged" class="drag-drop-input"/>
+    @if (FileUtil.fileNames.Count() == 0)
+    {
+        <center><MudText Color="Color.Primary" Style="padding:2em;width:75% " Typo="Typo.h4">Browse or drop file</MudText></center>
+    }else
+    {
+        <MudList Style="padding:2em;width:75%;" Dense="true" >
+            @foreach (var file in FileUtil.fileNames)
+            {
+                <MudListItem @key="@file" >
+                   <MudChip Color="Color.Dark" 
+                            Style="width:60px; overflow:hidden;" 
+                            Text="@(file.Split(".").Last())" />
+                   @file
+                </MudListItem>}
+        </MudList>
+    }
+</MudPaper>
+
+<MudGrid Justify="Justify.Center" Spacing="4">
+    <MudItem>
+        <MudButton OnClick="FileUtil.Upload" Disabled="@(!FileUtil.fileNames.Any())" Color="Color.Primary" Variant="Variant.Filled"><MudText Style="color:#000000">Upload</MudText></MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton OnClick="@FileUtil.fileNames.Clear" Disabled="@(!FileUtil.fileNames.Any())" Color="Color.Error" Variant="Variant.Filled"><MudText Style="color:#000000">Clear</MudText></MudButton>
+    </MudItem>
+</MudGrid>
+    </Body>
+</MainLayout>

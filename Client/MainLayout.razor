@@ -1,0 +1,70 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="_currentTheme" />
+<MudLayout Style="padding-bottom:10%"> 
+    @* This is a base layout that includes the Appbar, and the navigation menu *@
+    <MudAppBar Elevation="1">
+        <MudText Typo="Typo.h5" Class="ml-3">Transfer.Me</MudText>
+        @*IF I remove this, the icons are on the left for some reason. Don't understand. TODO*@
+        <MudContainer />
+        @if (!_lightMode) {
+           <MudIconButton Style="color: #B0B3B8" Size="Size.Large" Icon="@Icons.Material.Filled.DarkMode" Edge="Edge.Start" OnClick="@((e) => @ToggleTheme())">Toggle Light Mode</MudIconButton>
+        }
+        else {
+            <MudIconButton Style="color: #B0B3B8" Size="Size.Large" Icon="@Icons.Material.Filled.LightMode" Edge="Edge.Start" OnClick="@((e) => @ToggleTheme())">Toggle Dark Mode</MudIconButton>   
+        }
+        @if (userSignedIn) //Some logic to check if a user is signed in.Make profile icon direct to sign in if not signed in
+        {
+            <MudIconButton Style="color: #B0B3B8" Size="Size.Large" Icon="@Icons.Material.Filled.Person" Edge="Edge.Start" Link="/profile" />    
+        }
+        else
+        {
+            <MudIconButton Style="color: #B0B3B8" Size="Size.Large" Icon="@Icons.Material.Filled.Person" Edge="Edge.Start" Link="/signin" />
+        }
+        
+    </MudAppBar>
+    <MudDrawer Height="30%" Open ClipMode="DrawerClipMode.Always" Elevation="0">
+        <Client.Components.Public.Shared.Navbar/>
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Large">
+            @Body
+        </MudContainer>
+    </MudMainContent>  
+    <Client.Components.Public.Shared.Footer />
+</MudLayout>
+
+
+
+
+@code {
+    bool userSignedIn = false; //eventually change this into some actual logic
+
+    private bool _lightMode = true;
+    private MudTheme _currentTheme = new MudTheme();
+    private void ToggleTheme()
+    {
+        _lightMode = !_lightMode ;
+        if(!_lightMode )
+        {
+            _currentTheme = GenerateDarkTheme();
+        }
+        else
+        {
+            _currentTheme = new MudTheme();
+        }
+    }
+    private MudTheme GenerateDarkTheme() => 
+        new MudTheme
+        {
+            Palette = new Palette()
+            {
+                Black = "#27282f",
+                Background = "#32343d",
+                BackgroundGrey = "#27282f",
+                Surface = "#373840",
+                TextPrimary = "#ffffffb2",
+                TextSecondary = "rgba(255,255,255, 0.50)"
+            }
+        };
+}
