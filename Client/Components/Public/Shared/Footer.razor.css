@@ -1,12 +1,9 @@
 ﻿footer {
-    border-top: solid;
-    border-color: black;
-    border-width: 1px;
     position: fixed;
     bottom: 0;
     height: 9%;
     width: 100%;
-    background-color: #A8adad;
+    background-color: #B0B3B8;
 }
 
 .footerContent {

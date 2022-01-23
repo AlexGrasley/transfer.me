@@ -2,6 +2,8 @@
 @inject ISnackbar Snackbar
 @using System.ComponentModel.DataAnnotations
 
+<PageTitle>Sign In</PageTitle>
+
 <MudMainContent>
 <MudPaper>
     <MudText Typo="Typo.h5" Style="margin:15px;">Sign In</MudText>
@@ -19,7 +21,7 @@
                     </MudPaper>
                     <MudPaper Class="pa-4 mt-4">
                         <MudButton Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" OnClick="@(()=>SignInForm.form.Validate())" Link="/home">Login</MudButton>
-                        <MudButton Variant="Variant.Filled" Color="Color.Info" DisableElevation="true" OnClick="@(()=>SignInForm.form.Reset())" Class="mx-2" Link="/SignUp">SignUp</MudButton>
+                        <MudButton Variant="Variant.Filled" Color="Color.Info" DisableElevation="true" OnClick="@(()=>SignInForm.form.Reset())" Class="mx-2" Link="/signup">SignUp</MudButton>
                     </MudPaper>
                 </MudItem>
                 <MudItem xs="12" sm="4">
