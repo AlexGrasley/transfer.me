@@ -19,7 +19,7 @@ namespace Server
         // POST api/FileInterface
         // takes in a post request and looks for files. If there are files, stores them in database.
         [HttpPost]
-        public async void Post()
+        public async Task Post()
         {
             List<IFormFile> files = new List<IFormFile>();
             files = HttpContext.Request.Form.Files.ToList();
