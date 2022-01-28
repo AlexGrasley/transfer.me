@@ -8,36 +8,35 @@ namespace Server
     [ApiController]
     public class FileInterface : ControllerBase
     {
-        // GET: api/<ValuesController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+
+        private readonly IWebHostEnvironment env;
+
+        public FileInterface(IWebHostEnvironment env)
         {
-            return new string[] { "value1", "value2" };
+            this.env = env;
         }
 
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<ValuesController>
+        // POST api/FileInterface
+        // takes in a post request and looks for files. If there are files, stores them in database.
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async void Post()
         {
+            List<IFormFile> files = new List<IFormFile>();
+            files = HttpContext.Request.Form.Files.ToList();
+            if (files.Count > 0)
+            {
+                foreach(IFormFile file in files)
+                {
+                    string path = Path.Combine(env.ContentRootPath, "uploads", file.FileName);
+                    using (FileStream stream = new FileStream(path, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream); // this just puts the file into memory
+                        //TODO: upload file to database. 
+                    }
+                }
+            }
         }
 
-        // PUT api/<ValuesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
 
-        // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
