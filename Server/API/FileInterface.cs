@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shared.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,10 +11,12 @@ namespace Server
     {
 
         private readonly IWebHostEnvironment env;
+        private readonly ICosmosDbService _cosmosDbService;
 
-        public FileInterface(IWebHostEnvironment env)
+        public FileInterface(IWebHostEnvironment env, ICosmosDbService cosmosDbService)
         {
             this.env = env;
+            _cosmosDbService = cosmosDbService;
         }
 
         // POST api/FileInterface
@@ -21,18 +24,13 @@ namespace Server
         [HttpPost]
         public async Task Post()
         {
-            List<IFormFile> files = new List<IFormFile>();
-            files = HttpContext.Request.Form.Files.ToList();
+            List<EncFile> files = new List<EncFile>();
+            files = await HttpContext.Request.ReadFromJsonAsync<List<EncFile>>() ?? new List<EncFile>();
             if (files.Count > 0)
             {
-                foreach(IFormFile file in files)
+                foreach(EncFile file in files)
                 {
-                    string path = Path.Combine(env.ContentRootPath, "uploads", file.FileName);
-                    using (FileStream stream = new FileStream(path, FileMode.Create))
-                    {
-                        await file.CopyToAsync(stream); // this just puts the file into memory
-                        //TODO: upload file to database. 
-                    }
+                    await _cosmosDbService.AddItemAsync(file);
                 }
             }
         }
