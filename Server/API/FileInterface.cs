@@ -22,19 +22,18 @@ namespace Server
         // POST api/FileInterface
         // takes in a post request and looks for files. If there are files, stores them in database.
         [HttpPost]
+        [Route("Upload")]
         public async Task Post()
         {
             List<EncFile> files = new List<EncFile>();
             files = await HttpContext.Request.ReadFromJsonAsync<List<EncFile>>() ?? new List<EncFile>();
             if (files.Count > 0)
             {
-                foreach(EncFile file in files)
+                foreach (EncFile file in files)
                 {
                     await _cosmosDbService.AddItemAsync(file);
                 }
             }
         }
-
-
     }
 }
