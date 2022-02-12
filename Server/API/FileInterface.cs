@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Cosmos;
 using Shared.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -9,32 +10,46 @@ namespace Server
     [ApiController]
     public class FileInterface : ControllerBase
     {
-
-        private readonly IWebHostEnvironment env;
-        private readonly ICosmosDbService _cosmosDbService;
-
-        public FileInterface(IWebHostEnvironment env, ICosmosDbService cosmosDbService)
+        public CosmosClient _client;
+        //private readonly IWebHostEnvironment env;
+        private readonly ILogger _logger;
+       // public ICosmosDbService _cosmosDbService;
+    
+        public FileInterface(ILogger<FileInterface> logger, CosmosClient client)//, ICosmosDbService cosmosDbService)
         {
-            this.env = env;
-            _cosmosDbService = cosmosDbService;
+            _logger = logger;
+            _client = client;
+            //_cosmosDbService = new CosmosDbService();
         }
+
 
         // POST api/FileInterface
         // takes in a post request and looks for files. If there are files, stores them in database.
         [HttpPost]
+        [Route("Upload")]
         public async Task Post()
         {
-            List<EncFile> files = new List<EncFile>();
-            files = await HttpContext.Request.ReadFromJsonAsync<List<EncFile>>() ?? new List<EncFile>();
-            if (files.Count > 0)
+            try
             {
-                foreach(EncFile file in files)
+                List<EncFile> files = new List<EncFile>();
+                files = await HttpContext.Request.ReadFromJsonAsync<List<EncFile>>() ?? new List<EncFile>();
+                Database db = await _client.CreateDatabaseIfNotExistsAsync("TransferMe");
+                Container container = db.GetContainer("EncFile");
+
+                if (files.Count > 0)
                 {
-                    await _cosmosDbService.AddItemAsync(file);
+                    foreach (EncFile file in files)
+                    {
+                        await container.CreateItemAsync<EncFile>(file, new PartitionKey(file.FileID));
+                    }
                 }
             }
+            catch(Exception e)
+            {
+                throw e;
+                Console.WriteLine(e.Message);
+            }
+            
         }
-
-
     }
 }

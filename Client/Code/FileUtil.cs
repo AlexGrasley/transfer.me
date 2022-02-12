@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
+using System.Net.Http.Json;
 
 namespace Client.Code
 {
@@ -8,6 +9,7 @@ namespace Client.Code
 
         public static string _dragEnterStyle;
         public static IList<string> fileNames = new List<string>();
+        public static IList<EncFile> fileList = new List<EncFile>();
         public static int numLines;
         private List<IBrowserFile> loadedFiles = new();
         private long maxFileSize = 1024 * 15;
@@ -15,9 +17,20 @@ namespace Client.Code
         private bool isLoading;
 
         public static void OnInputFileChanged(InputFileChangeEventArgs e)
-        {
+        { 
             var files = e.GetMultipleFiles();
             fileNames = files.Select(f => f.Name).ToList();
+            foreach (var file in files)
+            {
+                var buffers = new byte[file.Size];
+                var content = file.OpenReadStream().ReadAsync(buffers);
+                var saveFile = new EncFile
+                {
+                    Description = file.Name,
+                    RawBytes = buffers
+                };
+                fileList.Add(saveFile);
+            }
         }
 
         //Snackbar.configuration.positionclass = defaults.classes.position.topcenter;
@@ -30,22 +43,11 @@ namespace Client.Code
         //https://docs.microsoft.com/en-us/aspnet/core/blazor/file-uploads?view=aspnetcore-6.0&pivots=webassembly
         public void Upload(InputFileChangeEventArgs e)
         {
-            isLoading = true;
-            loadedFiles.Clear();
-
-            foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
-            {
-                try
-                {
-                    loadedFiles.Add(file);
-                }
-                catch (Exception ex)
-                {
-                    Snackbar.Equals("Upload Failed", ex);
-                }
-            }
-
-            isLoading = false;
+            HttpClient client = new HttpClient();
+            client.PostAsJsonAsync("/api/FileInterface/UploadFile", fileList);
+        ////Upload the files here
+        //Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
+        //    Snackbar.Add("TODO: Upload your files!", Severity.Normal);
         }
     }
 }
