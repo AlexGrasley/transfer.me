@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Shared.Models
+namespace Client.Code
 {
     public class EncFile
     {
@@ -14,7 +14,6 @@ namespace Shared.Models
         /// <summary>
         /// Unique ID for file. This gets set when creating EncFile constructor. 
         /// </summary>
-        /// [JsonProperty(PropertyName = "FileID")]
         [JsonProperty(PropertyName = "FileID")]
         public string FileID { get; set; }
 
@@ -50,7 +49,6 @@ namespace Shared.Models
         public EncFile()
         {
             FileID = new Guid().ToString();
-            ID = new Guid().ToString();
             Description = "";
             RawBytes = new byte[DEFAULT_DATA_SIZE];
         }

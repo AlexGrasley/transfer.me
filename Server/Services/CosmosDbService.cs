@@ -12,31 +12,30 @@ namespace Server
 
     public class CosmosDbService : ICosmosDbService
     {
-        private Container _container;
-
-        public CosmosDbService(
-            CosmosClient dbClient,
-            string databaseName,
-            string containerName)
+        //private Container _container;
+        //private Database _database;
+        public CosmosDbService()//CosmosClient dbClient,string databaseName,string containerName)
         {
-            this._container = dbClient.GetContainer(databaseName, containerName);
+           // this._database = dbClient.GetDatabase(databaseName);
+           // this._container = dbClient.GetContainer(databaseName, containerName);
+            
         }
 
-        public async Task AddItemAsync(EncFile file)
+        public async Task AddItemAsync(EncFile file, Container container)
         {
-            await this._container.CreateItemAsync<EncFile>(file, new PartitionKey(file.FileID));
+            await container.CreateItemAsync<EncFile>(file, new PartitionKey(file.FileID));
         }
 
-        public async Task DeleteItemAsync(string id)
+        public async Task DeleteItemAsync(string id, Container container)
         {
-            await this._container.DeleteItemAsync<EncFile>(id, new PartitionKey(id));
+            await container.DeleteItemAsync<EncFile>(id, new PartitionKey(id));
         }
 
-        public async Task<EncFile> GetItemAsync(string id)
+        public async Task<EncFile> GetItemAsync(string id, Container container)
         {
             try
             {
-                ItemResponse<EncFile> response = await this._container.ReadItemAsync<EncFile>(id, new PartitionKey(id));
+                ItemResponse<EncFile> response = await container.ReadItemAsync<EncFile>(id, new PartitionKey(id));
                 return response.Resource;
             }
             catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
@@ -46,9 +45,9 @@ namespace Server
 
         }
 
-        public async Task<IEnumerable<EncFile>> GetItemsAsync(string queryString)
+        public async Task<IEnumerable<EncFile>> GetItemsAsync(string queryString, Container container)
         {
-            var query = this._container.GetItemQueryIterator<EncFile>(new QueryDefinition(queryString));
+            var query = container.GetItemQueryIterator<EncFile>(new QueryDefinition(queryString));
             List<EncFile> results = new List<EncFile>();
             while (query.HasMoreResults)
             {
@@ -60,9 +59,9 @@ namespace Server
             return results;
         }
 
-        public async Task UpdateItemAsync(string id, EncFile file)
+        public async Task UpdateItemAsync(string id, EncFile file, Container container)
         {
-            await this._container.UpsertItemAsync<EncFile>(file, new PartitionKey(id));
+            await container.UpsertItemAsync<EncFile>(file, new PartitionKey(id));
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject ISnackbar Snackbar
+@inject HttpClient Http
 
 <PageTitle>Home</PageTitle>
 
@@ -27,7 +28,7 @@
           @ondragend="@(()=>FileUtil._dragEnterStyle=String.Empty)"
           Class=@("drag-drop-zone "+ FileUtil._dragEnterStyle)>
 
-    <InputFile id="fileInput" OnChange="FileUtil.OnInputFileChanged" class="drag-drop-input"/>
+    <InputFile id="fileInput" OnChange="UploadFiles" class="drag-drop-input"/>
     @if (FileUtil.fileNames.Count() == 0)
     {
         <center><MudText Color="Color.Primary" Style="padding:2em;width:75% " Typo="Typo.h4">Browse or drop file</MudText></center>
@@ -48,7 +49,7 @@
 
 <MudGrid Justify="Justify.Center" Spacing="4">
     <MudItem>
-        <MudButton OnClick="FileUtil.Upload" Disabled="@(!FileUtil.fileNames.Any())" Color="Color.Primary" Variant="Variant.Filled"><MudText Style="color:#000000">Upload</MudText></MudButton>
+        <MudButton OnClick="SaveToServer" Disabled="@(!FileUtil.fileNames.Any())" Color="Color.Primary" Variant="Variant.Filled"><MudText Style="color:#000000">Upload</MudText></MudButton>
     </MudItem>
     <MudItem>
         <MudButton OnClick="@FileUtil.fileNames.Clear" Disabled="@(!FileUtil.fileNames.Any())" Color="Color.Error" Variant="Variant.Filled"><MudText Style="color:#000000">Clear</MudText></MudButton>
@@ -56,3 +57,32 @@
 </MudGrid>
     </Body>
 </MainLayout>
+
+@code {
+    List<EncFile> saveFile = new List<EncFile>();
+
+    private async Task UploadFiles(InputFileChangeEventArgs e)
+    {
+        var files = e.GetMultipleFiles();
+        FileUtil.OnInputFileChanged(e);
+        foreach (var file in files)
+        {
+            var buffers = new byte[file.Size];
+            await file.OpenReadStream().ReadAsync(buffers);
+            var _file = new EncFile
+                {
+                    FileID = new Guid().ToString(),
+                    ID = new Guid().ToString(),
+                    Description = file.Name,
+                    RawBytes = buffers
+                };
+            saveFile.Add(_file);
+        }
+    }
+    private async Task SaveToServer()
+    {
+        string url = "https://localhost:44346/";
+        HttpClient client = new HttpClient();
+        await Http.PostAsJsonAsync($"{url}api/FileInterface/Upload", saveFile);
+    }
+}
