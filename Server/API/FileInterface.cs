@@ -29,29 +29,27 @@ namespace Server
         [Route("Upload")]
         public async Task Post()
         {
-            List<EncFile> files = new List<EncFile>();
-            //files = await HttpContext.Request.ReadFromJsonAsync<List<EncFile>>() ?? new List<EncFile>();
-            var File1 = new EncFile {
-                Description = "TestFile1"
-                
-            };
-            var File2 = new EncFile
+            try
             {
-                Description = "TestFile2"
+                List<EncFile> files = new List<EncFile>();
+                files = await HttpContext.Request.ReadFromJsonAsync<List<EncFile>>() ?? new List<EncFile>();
+                Database db = await _client.CreateDatabaseIfNotExistsAsync("TransferMe");
+                Container container = db.GetContainer("EncFile");
 
-            };
-            files.Add(File1);
-            files.Add(File2);
-            Database db = await _client.CreateDatabaseIfNotExistsAsync("TransferMe");
-            Container container = db.GetContainer("EncFile");
-
-            if (files.Count > 0)
-            {
-                foreach (EncFile file in files)
+                if (files.Count > 0)
                 {
-                    await container.CreateItemAsync<EncFile>(file, new PartitionKey(file.FileID));
+                    foreach (EncFile file in files)
+                    {
+                        await container.CreateItemAsync<EncFile>(file, new PartitionKey(file.FileID));
+                    }
                 }
             }
+            catch(Exception e)
+            {
+                throw e;
+                Console.WriteLine(e.Message);
+            }
+            
         }
     }
 }

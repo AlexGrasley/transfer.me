@@ -23,7 +23,7 @@ namespace Client.Code
         
 
         public static void OnInputFileChanged(InputFileChangeEventArgs e)
-        {
+        { 
             var files = e.GetMultipleFiles();
             fileNames = files.Select(f => f.Name).ToList();
             foreach (var file in files)
