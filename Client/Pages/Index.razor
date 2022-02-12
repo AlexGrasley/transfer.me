@@ -60,6 +60,7 @@
 
 @code {
     List<EncFile> saveFile = new List<EncFile>();
+
     private async Task UploadFiles(InputFileChangeEventArgs e)
     {
         var files = e.GetMultipleFiles();
@@ -67,7 +68,7 @@
         foreach (var file in files)
         {
             var buffers = new byte[file.Size];
-            var content = file.OpenReadStream().ReadAsync(buffers);
+            await file.OpenReadStream().ReadAsync(buffers);
             var _file = new EncFile
                 {
                     Description = file.Name,
@@ -78,6 +79,6 @@
     }
     private async Task SaveToServer()
     {
-        await Http.PostAsJsonAsync("/api/FileInterface/Upload", saveFile);
+        await Http.PostAsJsonAsync($"/api/FileInterface/Upload", saveFile);
     }
 }

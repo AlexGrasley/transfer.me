@@ -48,7 +48,7 @@ namespace Client.Code
         public static void Upload()
         {
             HttpClient client = new HttpClient();
-            client.PostAsJsonAsync("/api/FileInterface/Upload", fileList);
+            client.PostAsJsonAsync("/api/FileInterface/UploadFile", fileList);
         ////Upload the files here
         //Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
         //    Snackbar.Add("TODO: Upload your files!", Severity.Normal);
