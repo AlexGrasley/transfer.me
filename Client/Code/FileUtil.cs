@@ -4,23 +4,17 @@ using System.Net.Http.Json;
 
 namespace Client.Code
 {
-    public static class FileUtil
+    public class FileUtil
     {
 
         public static string _dragEnterStyle;
         public static IList<string> fileNames = new List<string>();
         public static IList<EncFile> fileList = new List<EncFile>();
         public static int numLines;
-
-        public static void UploadFiles(InputFileChangeEventArgs e)
-        {
-            var entries = e.GetMultipleFiles();
-            //Do your validations here
-
-            //TODO upload the files to the server
-        }
-
-        
+        private List<IBrowserFile> loadedFiles = new();
+        private long maxFileSize = 1024 * 15;
+        private int maxAllowedFiles = 3;
+        private bool isLoading;
 
         public static void OnInputFileChanged(InputFileChangeEventArgs e)
         { 
@@ -45,7 +39,9 @@ namespace Client.Code
         //Snackbar.add($"this file has the extension {entries.firstordefault().name.split(".").last()}", severity.info);
 
 
-        public static void Upload()
+
+        //https://docs.microsoft.com/en-us/aspnet/core/blazor/file-uploads?view=aspnetcore-6.0&pivots=webassembly
+        public void Upload(InputFileChangeEventArgs e)
         {
             HttpClient client = new HttpClient();
             client.PostAsJsonAsync("/api/FileInterface/UploadFile", fileList);
