@@ -48,7 +48,8 @@ namespace Client.Code
         /// </summary>
         public EncFile()
         {
-            FileID = new Guid().ToString();
+            FileID = Guid.NewGuid().ToString();
+            ID = FileID;
             Description = "";
             RawBytes = new byte[DEFAULT_DATA_SIZE];
         }
