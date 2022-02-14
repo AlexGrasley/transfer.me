@@ -32,7 +32,6 @@ namespace Server
                     await _cosmosDbService.AddItemAsync(file);
                 }
             }
-            
         }
     }
 }

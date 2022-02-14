@@ -47,11 +47,17 @@ namespace Client.Code
 
         public static void Upload()
         {
+            string url = "https://localhost:44346/";
             HttpClient client = new HttpClient();
-            client.PostAsJsonAsync("/api/FileInterface/UploadFile", fileList);
+            client.PostAsJsonAsync($"{url}api/FileInterface/Upload", fileList);
         ////Upload the files here
         //Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
         //    Snackbar.Add("TODO: Upload your files!", Severity.Normal);
+        }
+        public static void Clear()
+        {
+            fileList.Clear();
+            fileNames.Clear();
         }
     }
 }
