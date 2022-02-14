@@ -17,5 +17,15 @@ namespace Server
             _logger = logger;
             _client = client;
         }
+
+        [HttpPost]
+        [Route("createuser")]
+        public async Task CreateUser()
+        {
+            List<String> UserAccountData = await HttpContext.Request.ReadFromJsonAsync<List<String>>();
+            Database db = await _client.CreateDatabaseIfNotExistsAsync("TransferMe");
+            Container container = db.GetContainer("Users");
+        }
+
     }
 }
