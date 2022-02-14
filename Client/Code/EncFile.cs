@@ -9,6 +9,8 @@ namespace Client.Code
 {
     public class EncFile
     {
+        [JsonProperty(PropertyName = "id")]
+        public string ID { get; set; }
         /// <summary>
         /// Unique ID for file. This gets set when creating EncFile constructor. 
         /// </summary>

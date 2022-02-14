@@ -71,6 +71,8 @@
             await file.OpenReadStream().ReadAsync(buffers);
             var _file = new EncFile
                 {
+                    FileID = new Guid().ToString(),
+                    ID = new Guid().ToString(),
                     Description = file.Name,
                     RawBytes = buffers
                 };
@@ -79,6 +81,8 @@
     }
     private async Task SaveToServer()
     {
-        await Http.PostAsJsonAsync($"/api/FileInterface/Upload", saveFile);
+        string url = "https://localhost:44346/";
+        HttpClient client = new HttpClient();
+        await Http.PostAsJsonAsync($"{url}api/FileInterface/Upload", saveFile);
     }
 }
