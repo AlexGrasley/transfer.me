@@ -1,4 +1,5 @@
 using Microsoft.Azure.Cosmos;
+using Server;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddSingleton<CosmosClient>(ServiceProvider =>
 {
     return new CosmosClient("AccountEndpoint=https://transfermecosmosdb.documents.azure.com:443/;AccountKey=FC2gRrrJWZyQBRphDknknQAaN1tBo1LjGp4cDTDaN0Kz1FEhIhCoCpAEN0DAOzyot1T78YvssvGRZorxfvyf2w==");
 });
+//Adding this service fixed the error of Dependency Injection error
+builder.Services.AddTransient<ICosmosDbService, CosmosDbService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

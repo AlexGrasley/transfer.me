@@ -10,19 +10,13 @@ namespace Server
     [ApiController]
     public class FileInterface : ControllerBase
     {
-        public CosmosClient _client;
-        //private readonly IWebHostEnvironment env;
-        private readonly ILogger _logger;
-       // public ICosmosDbService _cosmosDbService;
-    
-        public FileInterface(ILogger<FileInterface> logger, CosmosClient client)//, ICosmosDbService cosmosDbService)
+        private readonly IWebHostEnvironment env;
+        private readonly ICosmosDbService _cosmosDbService;
+        public FileInterface(IWebHostEnvironment env, ICosmosDbService cosmosDbService)
         {
-            _logger = logger;
-            _client = client;
-            //_cosmosDbService = new CosmosDbService();
+            this.env = env;
+            _cosmosDbService = cosmosDbService;
         }
-
-
         // POST api/FileInterface
         // takes in a post request and looks for files. If there are files, stores them in database.
         [HttpPost]
@@ -30,26 +24,12 @@ namespace Server
         public async Task Post()
         {
             List<EncFile> files = new List<EncFile>();
-            //files = await HttpContext.Request.ReadFromJsonAsync<List<EncFile>>() ?? new List<EncFile>();
-            var File1 = new EncFile {
-                Description = "TestFile1"
-                
-            };
-            var File2 = new EncFile
-            {
-                Description = "TestFile2"
-
-            };
-            files.Add(File1);
-            files.Add(File2);
-            Database db = await _client.CreateDatabaseIfNotExistsAsync("TransferMe");
-            Container container = db.GetContainer("EncFile");
-
+            files = await HttpContext.Request.ReadFromJsonAsync<List<EncFile>>() ?? new List<EncFile>();
             if (files.Count > 0)
             {
                 foreach (EncFile file in files)
                 {
-                    await container.CreateItemAsync<EncFile>(file, new PartitionKey(file.FileID));
+                    await _cosmosDbService.AddItemAsync(file);
                 }
             }
         }
