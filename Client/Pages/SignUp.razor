@@ -1,47 +1,29 @@
 ﻿@page "/signup"
-@inject ISnackbar Snackbar
 @using System.ComponentModel.DataAnnotations
+@inject ISnackbar Snackbar
 
-<PageTitle>Sign Up</PageTitle>
+<PageTitle>TransferMe - Sign Up</PageTitle>
 
-<MudMainContent>
-<MudPaper>
-    <MudText Typo="Typo.h5" Style="margin:15px;">Sign Up</MudText>
-    <MudContainer Style="background:">
-            <MudGrid>
-                <MudItem xs="12" sm="7">
-                    <MudPaper Class="pa-4">
-                        <MudForm @ref="SignUpForm.Form" @bind-IsValid="@SignUpForm.Success" @bind-Errors="@SignUpForm.Errors">
-                                <MudTextField T="string" Label="Username" @ref="SignUpForm.Username"
-                                              InputType="InputType.Text"
-                                              Validation="@(new Func<string, IEnumerable<string>>(SignUpForm.UsernameValid))" Required="true"
-                                              RequiredError="Username is required"/>
-                                <MudTextField T="string" Label="EmailAddress" @ref="SignUpForm.EmailAddress"
-                                              InputType="InputType.Email"
-                                              Validation="@(new Func<string, IEnumerable<string>>(SignUpForm.EmailValid))" Required="true"
-                                              RequiredError="Email is required"/>
-                                <MudTextField T="string" Label="Password" @ref="SignUpForm.FirstPasswordField"
-                                              InputType="InputType.Password"
-                                              Validation="@(new Func<string, IEnumerable<string>>(SignUpForm.PasswordStrength))" Required="true"
-                                              RequiredError="Must enter a password."/>
-                                <MudTextField T="string" Label="Confirm Password" @ref="SignUpForm.ConfirmationPasswordField"
-                                              InputType="InputType.Password"
-                                              Validation="@(new Func<string, IEnumerable<string>>(SignUpForm.PasswordsMatch))" Required="true"
-                                              RequiredError="Must confirm password."/>
-                        </MudForm>   
-                    </MudPaper>
-                    <MudPaper Class="pa-4 mt-4">
-                        <MudButton Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" Class="mx-2" Link="/signin">Back to Sign in</MudButton>
-                        @* Maybe generate an email to confirm after clicking next. Will want to implement this later.*@
-                        <MudButton Variant="Variant.Filled" Color="Color.Info" DisableElevation="true" OnClick="@(()=>SignUpForm.Form.Validate())" Link="/">Next</MudButton> 
-                    </MudPaper>
-                </MudItem>
-                <MudItem xs="12" sm="4">
-                    <MudPaper Class="pa-4">
-                        <MudText>Create an account to send secured end-to-end encrypted files to anyone with ease!</MudText>
-                    </MudPaper>
-                </MudItem>
-            </MudGrid>
-    </MudContainer>
-</MudPaper>
-</MudMainContent>
+<EditForm Model="@MySignUpVM" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <MudGrid>
+        <MudItem xs="12" sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <MudTextField Label="Username" HelperText="Max. 12 characters"
+                                    @bind-Value="MySignUpVM.Username" For="@(() => MySignUpVM.Username)"/>
+                    <MudTextField Label="Email" Class="mt-3"
+                                    @bind-Value="MySignUpVM.EmailAddress" For="@(() => MySignUpVM.EmailAddress)"/>
+                    <MudTextField Label="Password" HelperText="Choose a password with at least 12 characters." Class="mt-3"
+                                    @bind-Value="MySignUpVM.Password" For="@(() => MySignUpVM.Password)" InputType="InputType.Password"/>
+                    <MudTextField Label="Confirm Password" HelperText="Repeat the password" Class="mt-3"
+                                    @bind-Value="MySignUpVM.ConfPassword" For="@(() => MySignUpVM.ConfPassword)" InputType="InputType.Password"/>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" Class="mx-2" Link="/signin">Back</MudButton>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto">Register</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
