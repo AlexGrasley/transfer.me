@@ -41,7 +41,7 @@ namespace Client.Code
 
 
         //https://docs.microsoft.com/en-us/aspnet/core/blazor/file-uploads?view=aspnetcore-6.0&pivots=webassembly
-        public void Upload(InputFileChangeEventArgs e)
+        public void Upload()
         {
             string url = "https://localhost:44346/";
             HttpClient client = new HttpClient();
