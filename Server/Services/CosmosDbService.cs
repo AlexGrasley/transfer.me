@@ -67,5 +67,17 @@ namespace Server
         {
             await _container.CreateItemAsync<User>(UserObject, new PartitionKey(UserObject.Id));
         }
+
+        public async Task ValidateUserSignInAttemptAsync(SignInRequest SignInReq)
+        {
+            object Data = await _container.ReadContainerAsync();
+            //todo
+        }
+
+        public async Task UpdateUserPasswordAsync(SignInRequest SignInReq)
+        {
+            //todo https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.container.patchitemasync?view=azure-dotnet
+            //object p = await _container.PatchItemAsync()
+        }
     }
 }

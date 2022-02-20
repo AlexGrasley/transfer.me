@@ -15,6 +15,8 @@ namespace Server
         Task UpdateItemAsync(string id, EncFile file);
         Task DeleteItemAsync(string id);
         Task AddUserAccountAsync(User UserObj);
+        Task ValidateUserSignInAttemptAsync(SignInRequest SignInReq);
+        Task UpdateUserPasswordAsync(SignInRequest UserObj);
     }
 
 }
