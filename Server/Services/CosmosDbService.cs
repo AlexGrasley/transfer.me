@@ -62,5 +62,10 @@ namespace Server
         {
             await _container.UpsertItemAsync<EncFile>(file, new PartitionKey(id));
         }
+
+        public async Task AddUserAccountAsync(User UserObject)
+        {
+            await _container.CreateItemAsync<User>(UserObject, new PartitionKey(UserObject.Id));
+        }
     }
 }

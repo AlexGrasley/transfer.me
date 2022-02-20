@@ -8,23 +8,26 @@ namespace Server
     [ApiController]
     public class UserAuth : ControllerBase
     {
-        public CosmosClient _client;
         private readonly ILogger _logger;
+        private readonly ICosmosDbService _cosmosDbService;
 
         //Constructor
-        public UserAuth(ILogger<UserAuth> logger, CosmosClient client)
+        public UserAuth(ILogger<UserAuth> logger, ICosmosDbService client)
         {
+            _cosmosDbService = client;
             _logger = logger;
-            _client = client;
         }
 
         [HttpPost]
         [Route("createuser")]
         public async Task CreateUser()
         {
-            List<String> UserAccountData = await HttpContext.Request.ReadFromJsonAsync<List<String>>();
-            Database db = await _client.CreateDatabaseIfNotExistsAsync("TransferMe");
-            Container container = db.GetContainer("Users");
+            User? UserObj = await HttpContext.Request.ReadFromJsonAsync<User>() ?? null;
+            if (UserObj != null)
+            {
+                await _cosmosDbService.AddUserAccountAsync(UserObj);
+            }
+            return;
         }
 
     }

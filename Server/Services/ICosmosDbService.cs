@@ -14,6 +14,7 @@ namespace Server
         Task AddItemAsync(EncFile file);
         Task UpdateItemAsync(string id, EncFile file);
         Task DeleteItemAsync(string id);
+        Task AddUserAccountAsync(User UserObj);
     }
 
 }
