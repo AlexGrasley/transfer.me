@@ -66,9 +66,7 @@ namespace Server
         public async Task AddUserAccountAsync(TransferMeUser UserObject)
         {
             var container = _database.GetContainer("Users");
-            PartitionKey PartKey = new PartitionKey("Users");
-            //getting 400 bad response PartitionKey error
-            var tmp = await container.CreateItemAsync<TransferMeUser>(UserObject, PartKey);
+            var tmp = await container.CreateItemAsync<TransferMeUser>(UserObject, new PartitionKey (UserObject.UserID));
         }
 
         public async Task ValidateUserSignInAttemptAsync(SignInRequest SignInReq)

@@ -7,6 +7,9 @@ namespace Client.Code
         [JsonProperty(PropertyName = "id")]
         public string? ID { get; set; }
 
+        [JsonProperty(PropertyName = "UserID")]
+        public string? UserID { get; set; }
+
         [JsonProperty(PropertyName = "Username")]
         public string? Username { get; set; }
 
@@ -21,7 +24,8 @@ namespace Client.Code
             this.Username = Username;
             this.Password = Password.GetHashCode().ToString();
             this.EmailAddress = EmailAddress;
-            this.ID = Guid.NewGuid().ToString();
+            ID = Guid.NewGuid().ToString();
+            UserID = ID;
         }
     }
 }
