@@ -15,17 +15,16 @@ namespace Client.Pages
         {
             string UserObject = JsonConvert.SerializeObject(context.Model);
             JObject? jo = JObject.Parse(UserObject);
-            jo.Property("ConfPassword").Remove();
-            UserObject = jo.ToString();
-            await PushUserDataToServer(UserObject);
+            User UserModel = new User(jo["Username"].ToString(), jo["Emmail Address"].ToString(), jo["Password"].ToString());
+            await PushUserDataToServer(UserModel);
             StateHasChanged();
         }
-        private async Task PushUserDataToServer(string JSONData)
+        private async Task PushUserDataToServer(User UserModel)
         {
             string url = "https://localhost7154/api/createuser";
             HttpClient client = new HttpClient();
-            var UserData = new StringContent(JSONData, Encoding.UTF8, "application/json");
-            var result = await client.PostAsync(url, UserData);
+            //var UserData = new StringContent(UserModel, Encoding.UTF8, "application/json");
+            var result = await client.PostAsJsonAsync(url, UserModel);
         }
     }
 }
