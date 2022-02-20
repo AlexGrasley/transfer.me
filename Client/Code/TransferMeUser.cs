@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace Client.ViewModels
+namespace Client.Code
 {
-    public class User
+    public class TransferMeUser
     {
         [JsonProperty(PropertyName = "id")]
         public string? ID { get; set; }
@@ -16,7 +16,7 @@ namespace Client.ViewModels
         [JsonProperty(PropertyName = "Email Address")]
         public string? EmailAddress { get; set; }
 
-        public User(string Username, string Password, string EmailAddress)
+        public TransferMeUser(string Username, string EmailAddress, string Password)
         {
             this.Username = Username;
             this.Password = Password.GetHashCode().ToString();
