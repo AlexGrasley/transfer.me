@@ -63,9 +63,12 @@ namespace Server
             await _container.UpsertItemAsync<EncFile>(file, new PartitionKey(id));
         }
 
-        public async Task AddUserAccountAsync(User UserObject)
+        public async Task AddUserAccountAsync(TransferMeUser UserObject)
         {
-            await _container.CreateItemAsync<User>(UserObject, new PartitionKey(UserObject.Id));
+            var container = _database.GetContainer("Users");
+            PartitionKey PartKey = new PartitionKey("Users");
+            //getting 400 bad response PartitionKey error
+            var tmp = await container.CreateItemAsync<TransferMeUser>(UserObject, PartKey);
         }
 
         public async Task ValidateUserSignInAttemptAsync(SignInRequest SignInReq)

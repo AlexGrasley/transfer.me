@@ -2,6 +2,7 @@
 using Microsoft.Azure.Cosmos;
 using Shared.Models;
 
+
 namespace Server
 {
     [Route("api/[controller]")]
@@ -20,9 +21,9 @@ namespace Server
 
         [HttpPost]
         [Route("createuser")]
-        public async Task CreateUser()
+        public async Task Post()
         {
-            User? UserObj = await HttpContext.Request.ReadFromJsonAsync<User>() ?? null;
+            TransferMeUser UserObj = await HttpContext.Request.ReadFromJsonAsync<TransferMeUser>() ?? new TransferMeUser("","","");
             if (UserObj != null)
             {
                 await _cosmosDbService.AddUserAccountAsync(UserObj);
