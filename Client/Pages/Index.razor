@@ -28,18 +28,18 @@
           Class=@("drag-drop-zone "+ FileUtil._dragEnterStyle)>
 
     <InputFile id="fileInput" OnChange="FileUtil.OnInputFileChanged" class="drag-drop-input"/>
-    @if (FileUtil.fileNames.Count() == 0)
+    @if (FileUtil.fileList.Count() == 0)
     {
         <center><MudText Color="Color.Primary" Style="padding:2em;width:75% " Typo="Typo.h4">Browse or drop file</MudText></center>
     }else
     {
         <MudList Style="padding:2em;width:75%;" Dense="true" >
-            @foreach (var file in FileUtil.fileNames)
+            @foreach (var file in FileUtil.fileList)
             {
                 <MudListItem @key="@file" >
                    <MudChip Color="Color.Dark" 
                             Style="width:60px; overflow:hidden;" 
-                            Text="@(file.Split(".").Last())" />
+                            Text="@(file.Description.Split(".").Last())" />
                    @file
                 </MudListItem>}
         </MudList>
@@ -48,10 +48,10 @@
 
 <MudGrid Justify="Justify.Center" Spacing="4">
     <MudItem>
-        <MudButton OnClick="FileUtil.Upload" Disabled="@(!FileUtil.fileNames.Any())" Color="Color.Primary" Variant="Variant.Filled"><MudText Style="color:#000000">Upload</MudText></MudButton>
+        <MudButton OnClick="FileUtil.Upload" Disabled="@(!FileUtil.fileList.Any())" Color="Color.Primary" Variant="Variant.Filled"><MudText Style="color:#000000">Upload</MudText></MudButton>
     </MudItem>
     <MudItem>
-        <MudButton OnClick="FileUtil.Clear" Disabled="@(!FileUtil.fileNames.Any())" Color="Color.Error" Variant="Variant.Filled"><MudText Style="color:#000000">Clear</MudText></MudButton>
+        <MudButton OnClick="FileUtil.Clear" Disabled="@(!FileUtil.fileList.Any())" Color="Color.Error" Variant="Variant.Filled"><MudText Style="color:#000000">Clear</MudText></MudButton>
     </MudItem>
 </MudGrid>
     </Body>

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Fluent;
 using Microsoft.Extensions.Configuration;
-using Shared.Models;
+using Client.Code;
 
 namespace Server
 {

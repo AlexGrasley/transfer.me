@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
-using Shared.Models;
+using Client.Code;
 
 namespace Server
 {
