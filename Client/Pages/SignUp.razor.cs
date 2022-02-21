@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Net.Http.Json;
 using Newtonsoft.Json.Linq;
 using System.Text;
+using Client.Code;
 
 namespace Client.Pages
 {
@@ -15,17 +16,15 @@ namespace Client.Pages
         {
             string UserObject = JsonConvert.SerializeObject(context.Model);
             JObject? jo = JObject.Parse(UserObject);
-            jo.Property("ConfPassword").Remove();
-            UserObject = jo.ToString();
-            await PushUserDataToServer(UserObject);
+            TransferMeUser UserModel = new Client.Code.TransferMeUser(jo["Username"].ToString(), jo["EmailAddress"].ToString(), jo["Password"].ToString());
+            await PushUserDataToServer(UserModel);
             StateHasChanged();
         }
-        private async Task PushUserDataToServer(string JSONData)
+        public async Task PushUserDataToServer(TransferMeUser UserModel)
         {
-            string url = "https://localhost7154/api/createuser";
             HttpClient client = new HttpClient();
-            var UserData = new StringContent(JSONData, Encoding.UTF8, "application/json");
-            var result = await client.PostAsync(url, UserData);
+            string URL = "https://transfermeserver.azurewebsites.net/";
+            await client.PostAsJsonAsync($"{URL}api/UserAuth/createuser", UserModel);
         }
     }
 }

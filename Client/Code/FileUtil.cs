@@ -42,7 +42,7 @@ namespace Client.Code
 
         public static void Upload()
         {
-            string URL = "https://localhost:44346/";
+            string URL = "https://transfermeserver.azurewebsites.net/";
             HttpClient client = new HttpClient();
             client.PostAsJsonAsync($"{URL}api/FileInterface/Upload", fileList);
         ////Upload the files here
