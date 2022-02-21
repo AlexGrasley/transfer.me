@@ -23,7 +23,7 @@ namespace Client.Pages
         public async Task PushUserDataToServer(TransferMeUser UserModel)
         {
             HttpClient client = new HttpClient();
-            string URL = "https://localhost:44346/";
+            string URL = "https://transfermeserver.azurewebsites.net/";
             await client.PostAsJsonAsync($"{URL}api/UserAuth/createuser", UserModel);
         }
     }
