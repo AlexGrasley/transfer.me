@@ -14,17 +14,10 @@ namespace Client.Pages
         public SignUpVM MySignUpVM { get; set; } = new SignUpVM();
         public async void OnValidSubmit(EditContext context)
         {
-            string UserObject = JsonConvert.SerializeObject(context.Model);
-            JObject? jo = JObject.Parse(UserObject);
-            TransferMeUser UserModel = new Client.Code.TransferMeUser(jo["Username"].ToString(), jo["EmailAddress"].ToString(), jo["Password"].ToString());
-            await PushUserDataToServer(UserModel);
+            JObject? jo = JObject.Parse((JsonConvert.SerializeObject(context.Model)));
+            TransferMeUser UserModel = TransferMeUser(jo["Username"].ToString(), jo["EmailAddress"].ToString(), jo["Password"].ToString());
+            await WebClient.PostAsync("api/createuser", UserModel);
             StateHasChanged();
-        }
-        public async Task PushUserDataToServer(TransferMeUser UserModel)
-        {
-            HttpClient client = new HttpClient();
-            string URL = "https://transfermeserver.azurewebsites.net/";
-            await client.PostAsJsonAsync($"{URL}api/UserAuth/createuser", UserModel);
         }
     }
 }
