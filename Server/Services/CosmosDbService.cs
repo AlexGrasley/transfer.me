@@ -62,5 +62,23 @@ namespace Server
         {
             await _container.UpsertItemAsync<EncFile>(file, new PartitionKey(id));
         }
+
+        public async Task AddUserAccountAsync(TransferMeUser UserObject)
+        {
+            var container = _database.GetContainer("Users");
+            var tmp = await container.CreateItemAsync<TransferMeUser>(UserObject, new PartitionKey (UserObject.UserID));
+        }
+
+        public async Task ValidateUserSignInAttemptAsync(SignInRequest SignInReq)
+        {
+            object Data = await _container.ReadContainerAsync();
+            //todo
+        }
+
+        public async Task UpdateUserPasswordAsync(SignInRequest SignInReq)
+        {
+            //todo https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.container.patchitemasync?view=azure-dotnet
+            //object p = await _container.PatchItemAsync()
+        }
     }
 }

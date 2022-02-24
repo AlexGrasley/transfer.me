@@ -32,8 +32,6 @@ namespace Client.Code
         //Snackbar.add($"files starting with letter {entries.firstordefault().name.substring(0, 1)} are not recommended", severity.warning);
         //Snackbar.add($"this file has the extension {entries.firstordefault().name.split(".").last()}", severity.info);
 
-
-
         //https://docs.microsoft.com/en-us/aspnet/core/blazor/file-uploads?view=aspnetcore-6.0&pivots=webassembly
         public static async Task<HttpResponseMessage> Upload()        {
             try
@@ -47,6 +45,7 @@ namespace Client.Code
                 return await new Task<HttpResponseMessage>(null);
             }
         }
+      
         public static void Clear()
         {
             fileList.Clear();
