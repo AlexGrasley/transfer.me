@@ -23,7 +23,7 @@ namespace Server
         [Route("createuser")]
         public async Task Post()
         {
-            TransferMeUser UserObj = await HttpContext.Request.ReadFromJsonAsync<TransferMeUser>() ?? new TransferMeUser("","","");
+            TransferMeUser UserObj = await HttpContext.Request.ReadFromJsonAsync<TransferMeUser>() ?? new TransferMeUser();
             if (UserObj != null)
             {
                 await _cosmosDbService.AddUserAccountAsync(UserObj);

@@ -1,7 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Org.BouncyCastle.Security;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Client.Code
 {
@@ -17,12 +14,15 @@ namespace Client.Code
         public string Username { get; set; }
 
         [JsonProperty(PropertyName = "Password")]
-        public byte[] Password { get; set; }
+        public string Password { get; set; }
 
         [JsonProperty(PropertyName = "Email Address")]
         public string EmailAddress { get; set; }
 
-        public TransferMeUser(string Username, string EmailAddress, byte[] Password)
+        [JsonProperty(PropertyName = "Salt")]
+        public string? Salt { get; set; }
+
+        public TransferMeUser(string Username, string EmailAddress, string Password)
         {
             this.Username = Username;
             this.Password = Password;
@@ -34,8 +34,22 @@ namespace Client.Code
 
         public void HashPassword()
         {
-            string HashedBytes = BCrypt.Net.BCrypt.HashPassword(Encoding.UTF8.GetString(Password, 0, Password.Length));
-            Password = Encoding.UTF8.GetBytes(HashedBytes);
+            int iterations = 4000; //time to enc the password
+            int saltByteSize = 128;
+            int hashByteSize = 256;
+
+            BouncyCastleHashing hasher = new BouncyCastleHashing();
+
+            byte[] saltBytes = hasher.CreateSalt(saltByteSize);
+            string saltString = Convert.ToBase64String(saltBytes);
+            Salt = saltString; 
+            string pwdHash = hasher.PBKDF2_SHA256_GetHash(Password, saltString, iterations, hashByteSize);
+            bool isValid = hasher.ValidatePassword(Password, saltBytes, iterations, hashByteSize, Convert.FromBase64String(pwdHash));
+            Password = pwdHash; 
+            if (!isValid)
+            {
+                throw new Exception("Error -- User was not created successfully. Password could not be verified.");
+            }
         }
     }
 }

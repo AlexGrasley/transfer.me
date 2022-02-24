@@ -16,7 +16,7 @@ namespace Client.Pages
         {
             string UserObject = JsonConvert.SerializeObject(context.Model);
             JObject? jo = JObject.Parse(UserObject);
-            TransferMeUser UserModel = new TransferMeUser(jo["Username"].ToString(), jo["EmailAddress"].ToString(), Encoding.UTF8.GetBytes(jo["Password"].ToString()));
+            TransferMeUser UserModel = new TransferMeUser(jo["Username"].ToString(), jo["EmailAddress"].ToString(), jo["Password"].ToString());
             await PushUserDataToServer(UserModel);
             StateHasChanged();
         }
