@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
 using Client.Code;
+using Shared.Models;
 
 namespace Server
 {
