@@ -13,10 +13,11 @@ namespace Client.Pages
     {
         public SignUpVM MySignUpVM { get; set; } = new SignUpVM();
         public async void OnValidSubmit(EditContext context)
-        {
+        { 
             JObject? jo = JObject.Parse((JsonConvert.SerializeObject(context.Model)));
-            TransferMeUser UserModel = TransferMeUser(jo["Username"].ToString(), jo["EmailAddress"].ToString(), jo["Password"].ToString());
-            await WebClient.PostAsync("api/createuser", UserModel);
+            TransferMeUser UserModel = new TransferMeUser(jo["Username"].ToString(), jo["EmailAddress"].ToString(), jo["Password"].ToString());
+            WebClient wc = new WebClient();
+            await WebClient.PostAsync("api/UserAuth/createuser", UserModel);
             StateHasChanged();
         }
     }
