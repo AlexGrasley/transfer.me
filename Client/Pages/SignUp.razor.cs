@@ -16,7 +16,7 @@ namespace Client.Pages
         {
             JObject? jo = JObject.Parse((JsonConvert.SerializeObject(context.Model)));
             TransferMeUser UserModel = TransferMeUser(jo["Username"].ToString(), jo["EmailAddress"].ToString(), jo["Password"].ToString());
-            await WebClient.PostAsync("api/createuser", context.Model);
+            await WebClient.PostAsync("api/createuser", UserModel);
             StateHasChanged();
         }
     }
