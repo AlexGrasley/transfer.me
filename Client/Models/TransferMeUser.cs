@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
+using Client.Services;
 
-namespace Client.Code
+namespace Client.Models
 {
     public class TransferMeUser
     {
@@ -34,11 +35,11 @@ namespace Client.Code
 
         public void HashPassword()
         {
-            int iterations = 4000; //time to enc the password
-            int saltByteSize = 128;
+            int iterations = 4000; //times to enc the password
+            int saltByteSize = 128; 
             int hashByteSize = 256;
 
-            BouncyCastleHashing hasher = new BouncyCastleHashing();
+            HashingService hasher = new HashingService();
 
             byte[] saltBytes = hasher.CreateSalt(saltByteSize);
             string saltString = Convert.ToBase64String(saltBytes);

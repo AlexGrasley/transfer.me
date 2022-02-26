@@ -1,12 +1,12 @@
 ﻿using System.Net.Http.Json;
-namespace Client.Code
+namespace Client.Services
 {
-    public class WebClient : HttpClient
+    public class HttpService : HttpClient
     {
         static Uri _baseAddress = new Uri("https://localhost:44346/"); // this is a local address for debugging, needs to be set to the correct URI for production
         static HttpClient _client;
 
-        static WebClient()
+        static HttpService()
         {
             _client = new HttpClient();
             _client.BaseAddress = _baseAddress;

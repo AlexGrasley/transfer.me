@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.Azure.Cosmos;
-using Client.Code;
-using Shared.Models;
+﻿using Client.Models;
 
 namespace Server
 {

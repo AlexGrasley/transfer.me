@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
+using Client.Services;
 
-namespace Client.Code
+namespace Client.Models
 {
-    public class FileUtil
+    public class FileUtilService
     {
 
         public static string _dragEnterStyle;
@@ -36,7 +37,7 @@ namespace Client.Code
         public static async Task<HttpResponseMessage> Upload()        {
             try
             {
-                return await WebClient.PostAsync("/api/FileInterface/Upload", fileList);
+                return await HttpService.PostAsync("/api/FileInterface/Upload", fileList);
                 
             }
             catch(Exception e)

@@ -23,19 +23,19 @@
 <MainLayout>
     <Body>
         <div style="padding-top: 8%">
-           <MudPaper @ondragenter="@(()=>FileUtil._dragEnterStyle="drag-enter")"
-              @ondragleave="@(()=>FileUtil._dragEnterStyle=String.Empty)"
-              @ondragend="@(()=>FileUtil._dragEnterStyle=String.Empty)"
-              Class=@("drag-drop-zone "+ FileUtil._dragEnterStyle)>
+           <MudPaper @ondragenter="@(()=>FileUtilService._dragEnterStyle="drag-enter")"
+              @ondragleave="@(()=>FileUtilService._dragEnterStyle=String.Empty)"
+              @ondragend="@(()=>FileUtilService._dragEnterStyle=String.Empty)"
+              Class=@("drag-drop-zone "+ FileUtilService._dragEnterStyle)>
 
-                <InputFile id="fileInput" OnChange="FileUtil.OnInputFileChanged" class="drag-drop-input"/>
-                @if (FileUtil.fileList.Count() == 0)
+                <InputFile id="fileInput" OnChange="FileUtilService.OnInputFileChanged" class="drag-drop-input"/>
+                @if (FileUtilService.fileList.Count() == 0)
                 {
                     <center><MudText Color="Color.Primary" Style="padding:2em;width:75% " Typo="Typo.h4">Browse or drop file</MudText></center>
                 }else
                 {
                     <MudList Style="padding:2em;width:75%;" Dense="true" >
-                        @foreach (var file in FileUtil.fileList)
+                        @foreach (var file in FileUtilService.fileList)
                         {
                             <MudListItem @key="@file" >
                                <MudChip Color="Color.Dark" 
@@ -49,10 +49,10 @@
 
             <MudGrid Justify="Justify.Center" Spacing="4">
                 <MudItem>
-                    <MudButton OnClick="FileUtil.Upload" Disabled="@(!FileUtil.fileList.Any())" Color="Color.Primary" Variant="Variant.Filled"><MudText Style="color:#000000">Upload</MudText></MudButton>
+                    <MudButton OnClick="FileUtilService.Upload" Disabled="@(!FileUtilService.fileList.Any())" Color="Color.Primary" Variant="Variant.Filled"><MudText Style="color:#000000">Upload</MudText></MudButton>
                 </MudItem>
                 <MudItem>
-                    <MudButton OnClick="FileUtil.Clear" Disabled="@(!FileUtil.fileList.Any())" Color="Color.Error" Variant="Variant.Filled"><MudText Style="color:#000000">Clear</MudText></MudButton>
+                    <MudButton OnClick="FileUtilService.Clear" Disabled="@(!FileUtilService.fileList.Any())" Color="Color.Error" Variant="Variant.Filled"><MudText Style="color:#000000">Clear</MudText></MudButton>
                 </MudItem>
             </MudGrid>
         </div>

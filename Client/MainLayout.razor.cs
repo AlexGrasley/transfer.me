@@ -1,4 +1,4 @@
-﻿namespace Client.Code
+﻿namespace Client
 {
     public class Drawer
     {
@@ -10,10 +10,11 @@
             set => _drawerOpen = value;
         }
 
-        public Drawer() {
+        public Drawer()
+        {
             _drawerOpen = true;
         }
-        
+
 
         public void DrawerToggle()
         {
@@ -21,4 +22,3 @@
         }
     }
 }
-

@@ -5,7 +5,8 @@ using Newtonsoft.Json;
 using System.Net.Http.Json;
 using Newtonsoft.Json.Linq;
 using System.Text;
-using Client.Code;
+using Client.Services;
+using Client.Models;
 
 namespace Client.Pages
 {
@@ -16,8 +17,8 @@ namespace Client.Pages
         { 
             JObject? jo = JObject.Parse((JsonConvert.SerializeObject(context.Model)));
             TransferMeUser UserModel = new TransferMeUser(jo["Username"].ToString(), jo["EmailAddress"].ToString(), jo["Password"].ToString());
-            WebClient wc = new WebClient();
-            await WebClient.PostAsync("api/UserAuth/createuser", UserModel);
+            HttpService wc = new HttpService();
+            await HttpService.PostAsync("api/UserAuth/createuser", UserModel);
             StateHasChanged();
         }
     }
