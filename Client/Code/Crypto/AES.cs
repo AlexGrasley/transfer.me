@@ -20,7 +20,7 @@ namespace Client.Code.Crypto
             ParametersWithIV keyParameters = new ParametersWithIV(keyParameter, iv);
 
             //Cipher chosen based on desired algorithm
-            IBufferedCipher cipher = CipherUtilities.GetCipher("AES/CTR/PKCS7Padding");
+            IBufferedCipher cipher = CipherUtilities.GetCipher("AES/CBC/PKCS7Padding");
             cipher.Init(true, keyParameters);
 
             //plainText encrypted
@@ -61,7 +61,7 @@ namespace Client.Code.Crypto
             SecureRandom random = new SecureRandom();
             byte[] iv = random.GenerateSeed(16);
             ParametersWithIV keyParameters = new ParametersWithIV(key, iv);
-            IBufferedCipher cipher = CipherUtilities.GetCipher("AES/CTR/PKCS7Padding");
+            IBufferedCipher cipher = CipherUtilities.GetCipher("AES/CBC/PKCS7Padding");
             cipher.Init(true, keyParameters);
             byte[] bitText = Encoding.UTF8.GetBytes(plaintText);
             byte[] cipherText = cipher.DoFinal(bitText);
