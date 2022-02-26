@@ -1,0 +1,21 @@
+﻿@if (IsLoaded)
+{
+    @ChildContent
+}
+else
+{
+    <div>Loading screen...</div>
+}
+
+@code {
+    bool IsLoaded;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; } //only display childcontent when web page is actually created.
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(4000); // TODO actual initialization job
+        IsLoaded = true;
+    }
+}
