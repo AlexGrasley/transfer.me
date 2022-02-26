@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "Server\Server.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{F7E1C498-1D00-455E-B733-A8B9B6DC3F50}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{7D1B171D-0A74-4762-9C02-08AC7609D243}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{576A0024-53CE-4418-AF7B-FDE15738D746}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
@@ -28,10 +26,6 @@ Global
 		{F7E1C498-1D00-455E-B733-A8B9B6DC3F50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7E1C498-1D00-455E-B733-A8B9B6DC3F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7E1C498-1D00-455E-B733-A8B9B6DC3F50}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D1B171D-0A74-4762-9C02-08AC7609D243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D1B171D-0A74-4762-9C02-08AC7609D243}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D1B171D-0A74-4762-9C02-08AC7609D243}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D1B171D-0A74-4762-9C02-08AC7609D243}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
