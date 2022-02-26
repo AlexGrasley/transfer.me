@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
 using Shared.Models;
+using Client.Code;
 
 
 namespace Server
