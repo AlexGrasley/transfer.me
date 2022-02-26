@@ -3,27 +3,31 @@
 @inject ISnackbar Snackbar
 
 <PageTitle>TransferMe - Sign Up</PageTitle>
+<div style="padding-left:15%; padding-top: 10%">
+    <EditForm Model="@MySignUpVM" OnValidSubmit="OnValidSubmit">
+        <DataAnnotationsValidator />
+            <MudItem xs="12" sm="7">
+                <MudCard Style="background-color:#FAF9F6">
+                    <MudCardContent>
+                        <MudTextField Label="Username" HelperText="Max. 12 characters"
+                                        @bind-Value="MySignUpVM.Username" For="@(() => MySignUpVM.Username)"/>
+                        <MudTextField Label="Email" Class="mt-3"
+                                        @bind-Value="MySignUpVM.EmailAddress" For="@(() => MySignUpVM.EmailAddress)"/>
+                        <MudTextField Label="Password" HelperText="Choose a password with at least 12 characters." Class="mt-3"
+                                        @bind-Value="MySignUpVM.Password" For="@(() => MySignUpVM.Password)" InputType="InputType.Password"/>
+                        <MudTextField Label="Confirm Password" HelperText="Repeat the password" Class="mt-3"
+                                        @bind-Value="MySignUpVM.ConfPassword" For="@(() => MySignUpVM.ConfPassword)" InputType="InputType.Password"/>
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" Class="mx-2" Link="/signin">Back</MudButton>
+                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto">Register</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+    </EditForm>
+</div>
 
-<EditForm Model="@MySignUpVM" OnValidSubmit="OnValidSubmit">
-    <DataAnnotationsValidator />
-    <MudGrid>
-        <MudItem xs="12" sm="7">
-            <MudCard>
-                <MudCardContent>
-                    <MudTextField Label="Username" HelperText="Max. 12 characters"
-                                    @bind-Value="MySignUpVM.Username" For="@(() => MySignUpVM.Username)"/>
-                    <MudTextField Label="Email" Class="mt-3"
-                                    @bind-Value="MySignUpVM.EmailAddress" For="@(() => MySignUpVM.EmailAddress)"/>
-                    <MudTextField Label="Password" HelperText="Choose a password with at least 12 characters." Class="mt-3"
-                                    @bind-Value="MySignUpVM.Password" For="@(() => MySignUpVM.Password)" InputType="InputType.Password"/>
-                    <MudTextField Label="Confirm Password" HelperText="Repeat the password" Class="mt-3"
-                                    @bind-Value="MySignUpVM.ConfPassword" For="@(() => MySignUpVM.ConfPassword)" InputType="InputType.Password"/>
-                </MudCardContent>
-                <MudCardActions>
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" Class="mx-2" Link="/signin">Back</MudButton>
-                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto">Register</MudButton>
-                </MudCardActions>
-            </MudCard>
-        </MudItem>
-    </MudGrid>
-</EditForm>
+
+@code {
+    
+}
