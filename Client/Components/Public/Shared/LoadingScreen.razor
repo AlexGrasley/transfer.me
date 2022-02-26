@@ -1,10 +1,17 @@
-﻿@if (IsLoaded)
+﻿@using MudBlazor.Components
+
+@if (IsLoaded)
 {
     @ChildContent
 }
 else
 {
-    <div>Loading screen...</div>
+    <div style="position:absolute; top:30vh; width:100%; text-align:center">
+        <MudText Color="Color.Primary" Style="font-size:25px; padding-bottom:2%">Please Wait...</MudText>
+        <div style="display:flex; gap:10px; justify-content:center; align-items:center">
+            <MudProgressCircular Style="height:70px;width:70px;" Color="Color.Primary" Indeterminate="true"/>
+        </div>
+    </div>
 }
 
 @code {
