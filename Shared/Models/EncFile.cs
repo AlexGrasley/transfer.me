@@ -49,8 +49,8 @@ namespace Shared.Models
         /// </summary>
         public EncFile()
         {
-            FileID = new Guid().ToString();
-            ID = new Guid().ToString();
+            FileID = Guid.NewGuid().ToString(); //New Guid() was calling the default constructor 
+            ID = FileID;
             Description = "";
             RawBytes = new byte[DEFAULT_DATA_SIZE];
         }
