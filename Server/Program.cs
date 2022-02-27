@@ -1,7 +1,11 @@
 using Microsoft.Azure.Cosmos;
 using Server;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args); //this file enumerates the secrets.json file stored in appdata
+
+var CosmosDBAPIKey = builder.Configuration["CosmosDb:Key"];
+var CosmosConnectionString = builder.Configuration["CosmosDb:AccountEndpoint"];
+
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -12,7 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<ICosmosDbService, CosmosDbService>();
 builder.Services.AddSingleton<CosmosClient>(ServiceProvider =>
 {
-    return new CosmosClient("AccountEndpoint=https://transfermecosmosdb.documents.azure.com:443/;AccountKey=FC2gRrrJWZyQBRphDknknQAaN1tBo1LjGp4cDTDaN0Kz1FEhIhCoCpAEN0DAOzyot1T78YvssvGRZorxfvyf2w==");
+    return new CosmosClient($"AccountEndpoint={CosmosConnectionString};AccountKey={CosmosDBAPIKey}");
 });
 
 builder.Services.AddCors(options =>
