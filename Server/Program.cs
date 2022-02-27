@@ -4,7 +4,7 @@ using Server;
 var builder = WebApplication.CreateBuilder(args); //this file enumerates the secrets.json file stored in appdata
 
 var CosmosDBAPIKey = builder.Configuration["CosmosDb:Key"];
-var CosmosConnectionString = builder.Configuration["CosmosDb:Account"];
+var CosmosConnectionString = builder.Configuration["CosmosDb:AccountEndpoint"];
 
 
 // Add services to the container.
@@ -16,10 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<ICosmosDbService, CosmosDbService>();
 builder.Services.AddSingleton<CosmosClient>(ServiceProvider =>
 {
-    return new CosmosClient(
-        CosmosConnectionString,
-        CosmosDBAPIKey
-    );
+    return new CosmosClient($"AccountEndpoint={CosmosConnectionString};AccountKey={CosmosDBAPIKey}");
 });
 
 builder.Services.AddCors(options =>
