@@ -1,9 +1,9 @@
 using Microsoft.Azure.Cosmos;
 using Server;
 
-var builder = WebApplication.CreateBuilder(args); //this file enumerates the secrets.json file stored in appdata
+var builder = WebApplication.CreateBuilder(args); //this line enumerates the secrets.json file stored in appdata
 
-var CosmosDBAPIKey = builder.Configuration["CosmosDb:Key"];
+var CosmosDBAPIKey = builder.Configuration["CosmosDb:Key"]; 
 var CosmosConnectionString = builder.Configuration["CosmosDb:AccountEndpoint"];
 
 
