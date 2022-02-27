@@ -28,11 +28,6 @@ namespace Client.Models
                 .ToList();
         }
 
-        //Snackbar.configuration.positionclass = defaults.classes.position.topcenter;
-        //Snackbar.add($"files with {entries.firstordefault().size} bytes size are not allowed", severity.error);
-        //Snackbar.add($"files starting with letter {entries.firstordefault().name.substring(0, 1)} are not recommended", severity.warning);
-        //Snackbar.add($"this file has the extension {entries.firstordefault().name.split(".").last()}", severity.info);
-
         //https://docs.microsoft.com/en-us/aspnet/core/blazor/file-uploads?view=aspnetcore-6.0&pivots=webassembly
         public static async Task<HttpResponseMessage> Upload()        {
             try

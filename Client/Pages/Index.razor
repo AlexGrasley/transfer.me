@@ -31,18 +31,19 @@
                 <InputFile id="fileInput" OnChange="FileUtilService.OnInputFileChanged" class="drag-drop-input"/>
                 @if (FileUtilService.fileList.Count() == 0)
                 {
-                    <center><MudText Color="Color.Primary" Style="padding:2em;width:75% " Typo="Typo.h4">Browse or drop file</MudText></center>
+                    <center><MudText Color="Color.Primary" Style="padding:2em;width:75% " Typo="Typo.h4">Click to browse or drag and drop file here</MudText></center>
                 }else
                 {
                     <MudList Style="padding:2em;width:75%;" Dense="true" >
-                        @foreach (var file in FileUtilService.fileList)
+                        @foreach (EncFile file in FileUtilService.fileList)
                         {
-                            <MudListItem @key="@file" >
+                            <MudListItem @key="@file.Description" >
                                <MudChip Color="Color.Dark" 
-                                        Style="width:60px; overflow:hidden;" 
-                                        Text="@(file.Description.Split(".").Last())" />
-                               @file
-                            </MudListItem>}
+                                        Style="width:auto; overflow:auto;" 
+                                        Text="@(file.Description)"
+                                />
+                            </MudListItem>
+                        }
                     </MudList>
                 }
             </MudPaper>
