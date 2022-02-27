@@ -1,9 +1,10 @@
-﻿using MudBlazor;
+﻿using Microsoft.AspNetCore.Components;
+using MudBlazor;
 using System.Text.RegularExpressions;
 
-namespace Client.Code
+namespace Client.Pages
 {
-    public static class SignInForm
+    public partial class SignIn : ComponentBase
     {
         public static bool success;
         public static string[] errors = { };

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Azure.Cosmos;
-using Client.Code;
-using Shared.Models;
+using Client.Models;
 
 namespace Server
 {

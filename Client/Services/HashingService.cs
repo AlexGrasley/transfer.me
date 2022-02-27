@@ -5,13 +5,13 @@ using Org.BouncyCastle.Security;
 
 
 //https://stackoverflow.com/questions/34950611/how-to-create-a-pbkdf2-sha256-password-hash-in-c-sharp-bouncy-castle
-namespace Client.Code
+namespace Client.Services
 {
-    public class BouncyCastleHashing
+    public class HashingService
     {
         private SecureRandom _cryptoRandom;
 
-        public BouncyCastleHashing()
+        public HashingService()
         {
             _cryptoRandom = new SecureRandom();
         }

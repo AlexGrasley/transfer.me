@@ -3,7 +3,7 @@ using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Security;
 using System.Text;
 
-namespace Client.Code.Crypto
+namespace Client.Crypto
 {
     public class AES
     {

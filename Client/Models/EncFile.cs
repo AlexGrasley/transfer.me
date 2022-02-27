@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Client.Code
+namespace Client.Models
 {
     public class EncFile
     {

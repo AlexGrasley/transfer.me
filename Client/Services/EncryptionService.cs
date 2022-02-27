@@ -1,10 +1,10 @@
 ﻿using Org.BouncyCastle.Security;
-using Client.Code.Crypto;
+using Client.Crypto;
 using Org.BouncyCastle.Crypto.Parameters;
 
-namespace Client.Code
+namespace Client.Services
 {
-    public static class Cryptography
+    public static class EncryptionService
     {
         //Just for testing out crypto functions
         public static void Test()
