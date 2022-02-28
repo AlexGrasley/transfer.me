@@ -36,7 +36,20 @@ namespace Server
             {
                 return null;
             }
+        }
 
+        public async Task GetEncFileAsync(string id)
+        {
+            //string SQLQuery = $"SELECT * FROM c WHERE c.FileID = '{id}'";
+            string SQLQuery = $"SELECT * FROM c";
+            _container = _database.GetContainer("EncFile");
+            QueryDefinition queryDefinition = new QueryDefinition(SQLQuery);
+            List<EncFile> Files = new List<EncFile>();
+            await foreach (EncFile File in _container.GetItemQueryIterator<EncFile>(queryDefinition))
+            {
+                Files.Add(File);
+                Console.WriteLine("\tRead {0}\n", File);
+            }
         }
 
         public async Task<IEnumerable<EncFile>> GetItemsAsync(string queryString)

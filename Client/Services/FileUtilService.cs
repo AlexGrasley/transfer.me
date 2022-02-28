@@ -49,6 +49,7 @@ namespace Client.Models
 
         public static async Task<HttpResponseMessage> Download()
         {
+            var x = 5;
             try
             {
                 return await HttpService.PostAsync("/api/FileInterface/Download", x);
