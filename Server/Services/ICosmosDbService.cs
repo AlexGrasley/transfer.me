@@ -14,6 +14,7 @@ namespace Server
         Task AddUserAccountAsync(TransferMeUser UserObj);
         Task ValidateUserSignInAttemptAsync(SignInRequest SignInReq);
         Task UpdateUserPasswordAsync(SignInRequest UserObj);
+        Task GetEncFileAsync(string id);
     }
 
 }
