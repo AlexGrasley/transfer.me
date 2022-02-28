@@ -5,7 +5,21 @@
 
 <MudLayout>
     <MudMainContent>
-        Content will go here eventually
+        @if(SignedIn)
+        {
+            //display profile data
+        }
+        else
+        {
+            <h2>You must be signed in to see profile data.</h2>
+            <p>Sign in will be implemented by June 2022</p>
+            <div style="padding-top: 20%; padding-left: 10%"></div>
+            <center><MudButton Variant="Variant.Filled" Size="Size.Large" Color="Color.Primary" Link="/signin">Sign In</MudButton></center>
+        }
     </MudMainContent>
 </MudLayout>
+
+@code {
+    bool SignedIn = false; //this will be replaced with the actual logic at some point.
+}
 
