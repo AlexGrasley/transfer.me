@@ -7,26 +7,16 @@ namespace Client.Crypto
 {
     public class AES
     {
+        const string ENCRYPTION_MODE = "AES/CBC/PKCS7Padding";
 
-        public static (byte[], ParametersWithIV) Encrypt(byte[] plaintText, byte[] key)
+        public static byte[] Encrypt(byte[] plaintText, ParametersWithIV keyParams)
         {
-            //Random IV generated using securerandom
-            SecureRandom random = new SecureRandom();
-            byte[] iv = random.GenerateSeed(16);
-
-            //ICipherParameters key parameters created
-            //These parameters are used to initialize cipher
-            KeyParameter keyParameter = GenerateKey();
-            ParametersWithIV keyParameters = new ParametersWithIV(keyParameter, iv);
-
             //Cipher chosen based on desired algorithm
-            IBufferedCipher cipher = CipherUtilities.GetCipher("AES/CBC/PKCS7Padding");
-            cipher.Init(true, keyParameters);
-
+            IBufferedCipher cipher = CipherUtilities.GetCipher(ENCRYPTION_MODE);
+            cipher.Init(true, keyParams);
             //plainText encrypted
             byte[] cipherText = cipher.DoFinal(plaintText);
-
-            return (cipherText, keyParameters);
+            return cipherText;
         }
 
         //Decrypt method accepts cipher text and key
@@ -35,7 +25,7 @@ namespace Client.Crypto
         public static byte[] Decrypt(byte[] cipherText, ParametersWithIV keyParameters)
         {
             //Initialize cipher in decryption mode by entering false in the mode field
-            IBufferedCipher cipher = CipherUtilities.GetCipher("AES/CBC/PKCS7Padding");
+            IBufferedCipher cipher = CipherUtilities.GetCipher(ENCRYPTION_MODE);
             cipher.Init(false, keyParameters);
 
             byte[] decrypted = cipher.DoFinal(cipherText);
@@ -46,34 +36,16 @@ namespace Client.Crypto
         //CipherUtilities in Security. Check out IBufferedCipher
         //create  cipher
 
-        public static KeyParameter GenerateKey()
+        public static ParametersWithIV GenerateKeyWithIV()
         {
+            SecureRandom random = new SecureRandom();
+            byte[] iv = random.GenerateSeed(16);
             //Creates KeyGenerator for AES with 128 bit key size
             CipherKeyGenerator generator = GeneratorUtilities.GetKeyGenerator("AES128");
             //secret symmetricKey generated
             byte[] symmetricKey = generator.GenerateKey();
-            return new KeyParameter(symmetricKey);
-        }
-
-        //Functions for testing out encryption on strings
-        public static (byte[], ParametersWithIV) EncryptString(string plaintText, KeyParameter key)
-        {
-            SecureRandom random = new SecureRandom();
-            byte[] iv = random.GenerateSeed(16);
-            ParametersWithIV keyParameters = new ParametersWithIV(key, iv);
-            IBufferedCipher cipher = CipherUtilities.GetCipher("AES/CBC/PKCS7Padding");
-            cipher.Init(true, keyParameters);
-            byte[] bitText = Encoding.UTF8.GetBytes(plaintText);
-            byte[] cipherText = cipher.DoFinal(bitText);
-            return (cipherText, keyParameters);
-        }
-        public static string DecryptString(byte[] cipherText, ParametersWithIV keyParameters)
-        {
-            IBufferedCipher cipher = CipherUtilities.GetCipher("AES/CBC/PKCS7Padding");
-            cipher.Init(false, keyParameters);
-            byte[] decrypted = cipher.DoFinal(cipherText);
-            string plainText = Encoding.UTF8.GetString(decrypted);
-            return plainText;
+            KeyParameter keyParam = new KeyParameter(symmetricKey);
+            return new ParametersWithIV(keyParam, iv);
         }
     }
 }

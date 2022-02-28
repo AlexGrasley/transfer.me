@@ -11,7 +11,7 @@ namespace Client.Services
         {
             string testStr = "This is a test string";
             SecureRandom random = new SecureRandom();
-            KeyParameter key = AES.GenerateKey();
+            KeyParameter key = AES.GenerateKeyWithIV();
             (byte[] cipherText, ParametersWithIV keyParameters) = AES.EncryptString(testStr, key);
             string testStrDecrypted = AES.DecryptString(cipherText, keyParameters);
             bool verify = testStr.Equals(testStrDecrypted);

@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 using Client.Services;
+using Client.Crypto;
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Parameters;
+using Org.BouncyCastle.Security;
 
 namespace Client.Models
 {
@@ -11,18 +15,21 @@ namespace Client.Models
         public static int numLines;
         private long maxFileSize = 1024 * 15;
         private int maxAllowedFiles = 3;
-        private bool isLoading;
+        public static bool isLoading = false;
 
         public static void OnInputFileChanged(InputFileChangeEventArgs e)
-        { 
+        {
+            isLoading = true;
+            StateHasChanged();
             fileList = e.GetMultipleFiles()
                 .Select(rawFile =>
                 {
                     var buffer = new byte[rawFile.Size];
                     EncFile file = new EncFile();
+                    ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV();             
                     rawFile.OpenReadStream().ReadAsync(buffer);
                     file.Description = rawFile.Name;
-                    file.RawBytes = buffer;
+                    file.RawBytes = AES.Encrypt(buffer, keyParamsWithIV);
                     return file;
                  })
                 .ToList();
