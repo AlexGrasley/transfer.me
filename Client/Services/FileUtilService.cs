@@ -46,6 +46,21 @@ namespace Client.Models
                 return await new Task<HttpResponseMessage>(null);
             }
         }
+
+        public static async Task<HttpResponseMessage> Download()
+        {
+            var x = 5;
+            try
+            {
+                return await HttpService.PostAsync("/api/FileInterface/Download", x);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return await new Task<HttpResponseMessage>(null);
+            }
+        }
       
         public static void Clear()
         {
