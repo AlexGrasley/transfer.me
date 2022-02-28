@@ -11,7 +11,7 @@ namespace Client.Pages
         public async void OnValidSubmit(EditContext Context)
         {
             HttpService wc = new HttpService();
-            await HttpService.PostAsync("api/FileUtil/download", FileObj.FileGUID);
+            await HttpService.PostAsync("api/FileInterface/Download", FileObj.FileGUID);
             StateHasChanged();
         }
     }

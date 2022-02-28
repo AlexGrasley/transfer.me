@@ -1,10 +1,6 @@
 ﻿using Client.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Newtonsoft.Json;
-using System.Net.Http.Json;
-using Newtonsoft.Json.Linq;
-using System.Text;
 using Client.Services;
 using Client.Models;
 
