@@ -1,27 +1,26 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components;
 using Client.Services;
 using Client.Crypto;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Security;
+using Client.Pages;
+using System.Net;
 
 namespace Client.Models
 {
     public class FileUtilService
     {
-
-        public static string _dragEnterStyle;
-        public static IList<EncFile> fileList = new List<EncFile>();
+        private static string? dragEnterStyle;
         public static int numLines;
-        private long maxFileSize = 1024 * 15;
-        private int maxAllowedFiles = 3;
-        public static bool isLoading = false;
+        public static long maxFileSize = 1024 * 15;
 
-        public static void OnInputFileChanged(InputFileChangeEventArgs e)
+        public static string DragEnterStyle { get => dragEnterStyle?? "drag-enter"; set => dragEnterStyle = value; }
+
+        public static void GetFiles(InputFileChangeEventArgs e)
         {
-            isLoading = true;
-            StateHasChanged();
-            fileList = e.GetMultipleFiles()
+            Pages.Index.fileList = e.GetMultipleFiles()
                 .Select(rawFile =>
                 {
                     var buffer = new byte[rawFile.Size];
@@ -35,17 +34,27 @@ namespace Client.Models
                 .ToList();
         }
 
+        public static bool FileSizeIsOK()
+        {
+            if(Pages.Index.fileList.Count > 0)
+            {
+                return Pages.Index.fileList[0].RawBytes.Length <= maxFileSize;
+            }
+            return false;
+        }
+
         //https://docs.microsoft.com/en-us/aspnet/core/blazor/file-uploads?view=aspnetcore-6.0&pivots=webassembly
         public static async Task<HttpResponseMessage> Upload()        {
             try
             {
-                return await HttpService.PostAsync("/api/FileInterface/Upload", fileList);
+                return await HttpService.PostAsync("/api/FileInterface/Upload", Pages.Index.fileList);
                 
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
-                return await new Task<HttpResponseMessage>(null);
+                HttpResponseMessage error = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
+                return await new Task<HttpResponseMessage>( () => error);
             }
         }
 
@@ -60,13 +69,14 @@ namespace Client.Models
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return await new Task<HttpResponseMessage>(null);
+                HttpResponseMessage error = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
+                return await new Task<HttpResponseMessage>( () => error);
             }
         }
       
         public static void Clear()
         {
-            fileList.Clear();
+            Pages.Index.fileList.Clear();
         }
     }
 }
