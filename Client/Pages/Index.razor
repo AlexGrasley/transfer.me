@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using Client.Components
 @inject ISnackbar Snackbar
 
 <PageTitle>TransferMe - Home</PageTitle>
@@ -22,39 +23,54 @@
 
 <MainLayout>
     <Body>
+        @if (fileTooLarge)
+        {
+            <MudAlert 
+                Severity="Severity.Warning"
+                Elevation="2">
+                File too large. Please upload a smaller file or try compressing the file before upload.
+            </MudAlert>
+        }
+        @if (isLoading)
+        {
+            <LoadingScreen>
+            </LoadingScreen>
+        }else{
         <div style="padding-top: 8%">
-           <MudPaper @ondragenter="@(()=>FileUtilService._dragEnterStyle="drag-enter")"
-              @ondragleave="@(()=>FileUtilService._dragEnterStyle=String.Empty)"
-              @ondragend="@(()=>FileUtilService._dragEnterStyle=String.Empty)"
-              Class=@("drag-drop-zone "+ FileUtilService._dragEnterStyle)>
+           <MudPaper @ondragenter="@(()=>FileUtilService.DragEnterStyle="drag-enter")"
+              @ondragleave="@(()=>FileUtilService.DragEnterStyle=String.Empty)"
+              @ondragend="@(()=>FileUtilService.DragEnterStyle=String.Empty)"
+              Class=@("drag-drop-zone "+ FileUtilService.DragEnterStyle)>
 
-                <InputFile id="fileInput" OnChange="FileUtilService.OnInputFileChanged" class="drag-drop-input"/>
-                @if (FileUtilService.fileList.Count() == 0)
+                <InputFile id="fileInput" OnChange="OnInputFileChanged" class="drag-drop-input"/>
+                @if (fileList.Count() == 0)
                 {
-                    <center><MudText Color="Color.Primary" Style="padding:2em;width:75% " Typo="Typo.h4">Browse or drop file</MudText></center>
+                    <center><MudText Color="Color.Primary" Style="padding:2em;width:75% " Typo="Typo.h4">Click to browse or drag and drop file here</MudText></center>
                 }else
                 {
                     <MudList Style="padding:2em;width:75%;" Dense="true" >
-                        @foreach (var file in FileUtilService.fileList)
+                        @foreach (EncFile file in fileList)
                         {
-                            <MudListItem @key="@file" >
+                            <MudListItem @key="@file.Description" >
                                <MudChip Color="Color.Dark" 
-                                        Style="width:60px; overflow:hidden;" 
-                                        Text="@(file.Description.Split(".").Last())" />
-                               @file
-                            </MudListItem>}
+                                        Style="width:auto; overflow:auto;" 
+                                        Text="@(file.Description)"
+                                />
+                            </MudListItem>
+                        }
                     </MudList>
                 }
             </MudPaper>
 
             <MudGrid Justify="Justify.Center" Spacing="4">
                 <MudItem>
-                    <MudButton OnClick="FileUtilService.Upload" Disabled="@(!FileUtilService.fileList.Any())" Color="Color.Primary" Variant="Variant.Filled"><MudText Style="color:#000000">Upload</MudText></MudButton>
+                    <MudButton OnClick="FileUtilService.Upload" Disabled="@(!fileList.Any())" Color="Color.Primary" Variant="Variant.Filled"><MudText Style="color:#000000">Upload</MudText></MudButton>
                 </MudItem>
                 <MudItem>
-                    <MudButton OnClick="FileUtilService.Clear" Disabled="@(!FileUtilService.fileList.Any())" Color="Color.Error" Variant="Variant.Filled"><MudText Style="color:#000000">Clear</MudText></MudButton>
+                    <MudButton OnClick="Clear" Disabled="@(!fileList.Any())" Color="Color.Error" Variant="Variant.Filled"><MudText Style="color:#000000">Clear</MudText></MudButton>
                 </MudItem>
             </MudGrid>
         </div>
+        }
     </Body>
 </MainLayout>
