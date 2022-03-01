@@ -9,18 +9,16 @@
             <MudItem xs="12" sm="7">
                 <MudCard Style="background-color:#FAF9F6">
                     <MudCardContent>
-                        <MudTextField Label="FileID" HelperText="Enter the File ID to query"
+                        <MudTextField Label="File ID" HelperText="Enter the File ID to download"
                                         @bind-Value="FileObj.FileGUID" For="@(() => FileObj.FileGUID)"/>
+                        <MudTextField Label="Decryption Key" HelperText="Enter the key needed to decrypt the file"
+                                        @bind-Value="FileObj.Key" For="@(() => FileObj.Key)"/>
                     </MudCardContent>
                     <MudCardActions>
                         <MudButton Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" Class="mx-2" Link="/">Back</MudButton>
-                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto">Issue Query</MudButton>
+                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto">Download</MudButton>
                     </MudCardActions>
                 </MudCard>
             </MudItem>
     </EditForm>
 </div>
-
-
-@code {
-}
