@@ -1,55 +1,82 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components;
 using Client.Services;
+using Client.Crypto;
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Parameters;
+using Org.BouncyCastle.Security;
+using Client.Pages;
+using System.Net;
 
 namespace Client.Models
 {
     public class FileUtilService
     {
-
-        public static string _dragEnterStyle;
-        public static IList<EncFile> fileList = new List<EncFile>();
+        private static string? dragEnterStyle;
         public static int numLines;
-        private long maxFileSize = 1024 * 15;
-        private int maxAllowedFiles = 3;
-        private bool isLoading;
+        public static long maxFileSize = 1024 * 15;
 
-        public static void OnInputFileChanged(InputFileChangeEventArgs e)
-        { 
-            fileList = e.GetMultipleFiles()
+        public static string DragEnterStyle { get => dragEnterStyle?? "drag-enter"; set => dragEnterStyle = value; }
+
+        public static void GetFiles(InputFileChangeEventArgs e)
+        {
+            Pages.Index.fileList = e.GetMultipleFiles()
                 .Select(rawFile =>
                 {
                     var buffer = new byte[rawFile.Size];
                     EncFile file = new EncFile();
+                    ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV();             
                     rawFile.OpenReadStream().ReadAsync(buffer);
                     file.Description = rawFile.Name;
-                    file.RawBytes = buffer;
+                    file.RawBytes = AES.Encrypt(buffer, keyParamsWithIV);
                     return file;
                  })
                 .ToList();
         }
 
-        //Snackbar.configuration.positionclass = defaults.classes.position.topcenter;
-        //Snackbar.add($"files with {entries.firstordefault().size} bytes size are not allowed", severity.error);
-        //Snackbar.add($"files starting with letter {entries.firstordefault().name.substring(0, 1)} are not recommended", severity.warning);
-        //Snackbar.add($"this file has the extension {entries.firstordefault().name.split(".").last()}", severity.info);
+        public static bool FileSizeIsOK()
+        {
+            if(Pages.Index.fileList.Count > 0)
+            {
+                return Pages.Index.fileList[0].RawBytes.Length <= maxFileSize;
+            }
+            return false;
+        }
 
         //https://docs.microsoft.com/en-us/aspnet/core/blazor/file-uploads?view=aspnetcore-6.0&pivots=webassembly
         public static async Task<HttpResponseMessage> Upload()        {
             try
             {
-                return await HttpService.PostAsync("/api/FileInterface/Upload", fileList);
+                return await HttpService.PostAsync("/api/FileInterface/Upload", Pages.Index.fileList);
                 
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
-                return await new Task<HttpResponseMessage>(null);
+                HttpResponseMessage error = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
+                return await new Task<HttpResponseMessage>( () => error);
+            }
+        }
+
+        public static async Task<HttpResponseMessage> Download()
+        {
+            var x = 5;
+            try
+            {
+                return await HttpService.PostAsync("/api/FileInterface/Download", x);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                HttpResponseMessage error = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
+                return await new Task<HttpResponseMessage>( () => error);
             }
         }
       
         public static void Clear()
         {
-            fileList.Clear();
+            Pages.Index.fileList.Clear();
         }
     }
 }
