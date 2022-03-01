@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using Client.Models;
+using System.Net.Http.Json;
 namespace Client.Services
 {
     public class HttpService : HttpClient
@@ -15,6 +16,10 @@ namespace Client.Services
         internal static Task<HttpResponseMessage> PostAsync(string route, object content)
         {
             return _client.PostAsJsonAsync(route, content);
+        }
+        internal static Task<EncFile?> GetFileAsync(string route)
+        {
+            return _client.GetFromJsonAsync<EncFile>(route);
         }
     }
 }
