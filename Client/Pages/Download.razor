@@ -28,8 +28,7 @@
     private async Task DownloadFile()
     {
         // Retrieve a file
-        //the routing is hardcoded for now
-        EncFile file = await HttpService.GetFileAsync("api/FileDownload/FileID");
+        EncFile file = await HttpService.GetFileAsync(FileObj.FileGUID);
 
         byte[] data = file.RawBytes;
         string filename = file.Description;

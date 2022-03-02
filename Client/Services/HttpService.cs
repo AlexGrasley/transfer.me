@@ -17,10 +17,10 @@ namespace Client.Services
         {
             return _client.PostAsJsonAsync(route, content);
         }
-        internal static Task<EncFile?> GetFileAsync(string route)
+        internal static Task<EncFile?> GetFileAsync(string id)
         {
-            //File ID routing currently hardcoded
-            return _client.GetFromJsonAsync<EncFile>("api/FileDownload/id?id=72075ce6-ad59-46f4-9147-c30fc5af9ae4");
+            string ApiRoute = "api/FileDownload/" + id;
+            return _client.GetFromJsonAsync<EncFile>(ApiRoute);
         }
     }
 }
