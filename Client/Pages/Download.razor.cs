@@ -11,7 +11,10 @@ namespace Client.Pages
         public static FileDownloadInputVM FileObj { get; set; } = new FileDownloadInputVM();
         public async void OnValidSubmit(EditContext Context)
         {
-            await HttpService.GetFileAsync("FileUpload");
+            EncFile file = await HttpService.GetFileAsync("FileUpload");
+            byte[] data = file.RawBytes;
+            string filename = file.Description;
+            MemoryStream stream = new MemoryStream(data);
             StateHasChanged();
         }
     }
