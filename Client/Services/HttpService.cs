@@ -19,7 +19,7 @@ namespace Client.Services
         }
         internal static Task<EncFile?> GetFileAsync(string route)
         {
-            return _client.GetFromJsonAsync<EncFile>(route);
+            return _client.GetFromJsonAsync<EncFile>("api/FileDownload/id?id=1");
         }
     }
 }
