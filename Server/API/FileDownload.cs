@@ -21,9 +21,7 @@ namespace Server
         [HttpGet("{id}")]
         public async Task<EncFile> Get(string id)
         {
-            //string id = await HttpContext.Request.ReadFromJsonAsync<string>() ?? new string("");
-            EncFile file = await _DownloadService.GetEncFileAsync(id);
-            return file;
+            return await _DownloadService.GetEncFileAsync(id);
         }
     }
 }
