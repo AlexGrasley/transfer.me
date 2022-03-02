@@ -1,6 +1,6 @@
 ﻿async function SaveFile(fileName, content) {
     //const arrayBuffer = await contentStreamReference.arrayBuffer();
-    const blob = new SerialBlob(content);
+    const blob = new Blob(content);
     const url = URL.createObjectURL(blob);
 
     triggerFileDownload(fileName, url);
