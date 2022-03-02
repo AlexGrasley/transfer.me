@@ -1,6 +1,7 @@
 ﻿@page "/download"
 @using System.ComponentModel.DataAnnotations
 @inject ISnackbar Snackbar
+@inject IJSRuntime JS
 
 <PageTitle>TransferMe - Download File</PageTitle>
 <div style="padding-left:32%; padding-top: 10%">
@@ -22,3 +23,22 @@
             </MudItem>
     </EditForm>
 </div>
+
+@code{
+    private async Task DownloadFile()
+    {
+        // Retrieve a file
+        //the routing is hardcoded for now
+        EncFile file = await HttpService.GetFileAsync("api/FileDownload/FileID");
+
+        byte[] data = file.RawBytes;
+        string filename = file.Description;
+
+        //converting bytes into stream for JS blob
+        var fileStream = new MemoryStream(file.RawBytes);
+        using var streamRef = new DotNetStreamReference(stream: fileStream);
+
+        // Send the data to JS to actually download the file
+        await JS.InvokeVoidAsync("SaveFile", filename, streamRef);
+    }
+}
