@@ -19,7 +19,8 @@ namespace Client.Services
         }
         internal static Task<EncFile?> GetFileAsync(string route)
         {
-            return _client.GetFromJsonAsync<EncFile>("api/FileDownload/id?id=42030a2a-11d1-4b8a-9b7f-84fc821db3e4");
+            //File ID routing currently hardcoded
+            return _client.GetFromJsonAsync<EncFile>("api/FileDownload/id?id=72075ce6-ad59-46f4-9147-c30fc5af9ae4");
         }
     }
 }
