@@ -42,7 +42,6 @@ namespace Server
                 foreach (EncFile file in currentResultSet)
                 {
                     Files.Add(file);
-                    Console.WriteLine("\tRead {0}\n", file);
                 }
             }
             return Files[0];
