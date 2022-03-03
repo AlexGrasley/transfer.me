@@ -2,16 +2,17 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Client.Services;
+using Client.Models;
 
 namespace Client.Pages
 {
-    public partial class GetFileTest : ComponentBase
+    public partial class Download : ComponentBase
     {
-        public static FileIDInputVM FileObj { get; set; } = new FileIDInputVM();
+        public static FileDownloadInputVM FileObj { get; set; } = new FileDownloadInputVM();
         public async void OnValidSubmit(EditContext Context)
         {
-            HttpService wc = new HttpService();
-            await HttpService.PostAsync("api/FileInterface/Download", FileObj.FileGUID);
+            await HttpService.PostAsync("api/FileInterface/Download", FileObj);
+            await DownloadFile();
             StateHasChanged();
         }
     }
