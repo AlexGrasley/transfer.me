@@ -4,40 +4,29 @@
 @inject IJSRuntime JS
 
 <PageTitle>TransferMe - Download File</PageTitle>
-<div style="padding-left:32%; padding-top: 10%">
-    <EditForm Model="@FileObj" OnValidSubmit="OnValidSubmit">
-        <DataAnnotationsValidator />
-            <MudItem xs="12" sm="7">
-                <MudCard Style="background-color:#FAF9F6">
-                    <MudCardContent>
-                        <MudTextField Label="File ID" HelperText="Enter the File ID to download"
-                                        @bind-Value="FileObj.FileGUID" For="@(() => FileObj.FileGUID)"/>
-                        <MudTextField Label="Decryption Key" HelperText="Enter the key needed to decrypt the file"
-                                        @bind-Value="FileObj.Key" For="@(() => FileObj.Key)"/>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" Class="mx-2" Link="/">Back</MudButton>
-                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto">Download</MudButton>
-                    </MudCardActions>
-                </MudCard>
-            </MudItem>
-    </EditForm>
-</div>
-
-@code{
-    private async Task DownloadFile()
-    {
-        // Retrieve a file
-        EncFile file = await HttpService.GetFileAsync(FileObj.FileGUID);
-
-        byte[] data = file.RawBytes;
-        string filename = file.Description;
-
-        //converting bytes into stream for JS blob
-        var fileStream = new MemoryStream(file.RawBytes);
-        using var streamRef = new DotNetStreamReference(stream: fileStream);
-
-        // Send the data to JS to actually download the file
-        await JS.InvokeVoidAsync("SaveFile", filename, streamRef);
-    }
+@if(isLoading)
+{
+    <Client.Components.LoadingScreen customWidth="67"/>
+}
+else
+{
+    <div style="padding-left:32%; padding-top: 10%">
+        <EditForm Model="@FileObj" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator />
+                <MudItem xs="12" sm="7">
+                    <MudCard Style="background-color:#FAF9F6">
+                        <MudCardContent>
+                            <MudTextField Label="File ID" HelperText="Enter the File ID to download"
+                                            @bind-Value="FileObj.FileGUID" For="@(() => FileObj.FileGUID)"/>
+                            <MudTextField Label="Decryption Key" HelperText="Enter the key needed to decrypt the file"
+                                            @bind-Value="FileObj.Key" For="@(() => FileObj.Key)"/>
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudButton Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" Class="mx-2" Link="/">Back</MudButton>
+                            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto">Download</MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+        </EditForm>
+    </div>
 }
