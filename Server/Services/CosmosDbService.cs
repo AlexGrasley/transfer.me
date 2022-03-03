@@ -38,25 +38,6 @@ namespace Server
             }
         }
 
-        public async Task GetEncFileAsync(string id)
-        {
-            string SQLQuery = $"SELECT * FROM c WHERE c.FileID = '{id}'"; //gets by file id
-            //string SQLQuery = $"SELECT * FROM c WHERE c.Description = '{id}'"; //gets by file name
-            //string SQLQuery = $"SELECT * FROM c"; //gets all items in the container
-            _container = _database.GetContainer("EncFile");
-            QueryDefinition queryDefinition = new QueryDefinition(SQLQuery);
-            FeedIterator<EncFile> queryResultSetIterator = _container.GetItemQueryIterator<EncFile>(queryDefinition);
-            List<EncFile> Files = new List<EncFile>();
-            while (queryResultSetIterator.HasMoreResults)
-            {
-                FeedResponse<EncFile> currentResultSet = await queryResultSetIterator.ReadNextAsync();
-                foreach (EncFile file in currentResultSet)
-                {
-                    Files.Add(file);
-                }
-            }
-        }
-
         public async Task<IEnumerable<EncFile>> GetItemsAsync(string queryString)
         {
             var query = _container.GetItemQueryIterator<EncFile>(new QueryDefinition(queryString));
