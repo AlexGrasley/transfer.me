@@ -6,12 +6,14 @@
 }
 else
 {
-    <div style="position:absolute; top:30vh; width:100%; text-align:center">
-        <MudText Color="Color.Primary" Style="font-size:25px; padding-bottom:2%">Please Wait...</MudText>
-        <div style="display:flex; gap:10px; justify-content:center; align-items:center">
-            <MudProgressCircular Style="height:70px;width:70px;" Color="Color.Primary" Indeterminate="true"/>
+    <center>
+        <div style="position:absolute; top:30vh; width:@customWidth%; text-align:center">
+            <MudText Color="Color.Primary" Style="font-size:25px; padding-bottom:2%">Please Wait...</MudText>
+            <div style="display:flex; gap:10px; justify-content:center; align-items:center">
+                <MudProgressCircular Style="height:70px;width:70px;" Color="Color.Primary" Indeterminate="true"/>
+            </div>
         </div>
-    </div>
+    </center>
 }
 
 @code {
@@ -20,9 +22,12 @@ else
     [Parameter]
     public RenderFragment? ChildContent { get; set; } //only display childcontent when web page is actually created.
 
+    [Parameter]
+    public int customWidth { get; set; } = 100;
+
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(4000); // TODO actual initialization job
+        await Task.Delay(6000); // TODO actual initialization job
         IsLoaded = true;
     }
 }
