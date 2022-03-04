@@ -33,7 +33,7 @@ namespace Client.Models
                 file.RawBytes = AES.Encrypt(buffer, keyParamsWithIV);
                 Pages.Index.fileList.Add(file);
             }
-            FileDescriptor fileDescriptor = new FileDescriptor() { FileID = file.FileID, Key = keystring };
+            FileDescriptor fileDescriptor = new FileDescriptor() { FileID = file.FileID, KeyString = keystring };
             return fileDescriptor;
         }
 
