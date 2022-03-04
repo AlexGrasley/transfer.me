@@ -7,6 +7,7 @@ using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Security;
 using Client.Pages;
 using System.Net;
+using System.Text;
 
 namespace Client.Models
 {
@@ -23,22 +24,19 @@ namespace Client.Models
             Pages.Index.fileList = e.GetMultipleFiles()
                 .Select(rawFile =>
                 {
+                    TestCrypto("Testing the crypto");
                     var buffer = new byte[rawFile.Size];
                     EncFile file = new EncFile();
-
+                    
                     byte[] key = AES.KeyGen();
                     string keystring = Convert.ToBase64String(key);
+
+                    //Copy the key from the console for download
                     Console.WriteLine(keystring);
-                    ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV(key);             
+                    ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV(key);
                     rawFile.OpenReadStream().ReadAsync(buffer);
-                    byte[] ogbytes = buffer;
                     file.Description = rawFile.Name;
                     file.RawBytes = AES.Encrypt(buffer, keyParamsWithIV);
-
-                    
-                    /*byte[] decrypted = AES.Decrypt(file.RawBytes, keystring);
-                    string a = Convert.ToBase64String(ogbytes);
-                    string b = Convert.ToBase64String(decrypted);*/
                     return file;
                  })
                 .ToList();
@@ -87,6 +85,26 @@ namespace Client.Models
         public static void Clear()
         {
             Pages.Index.fileList.Clear();
+        }
+
+        //Test function because file upload has a bug
+        public static void TestCrypto(string test)
+        {
+            byte[] testbytes = Encoding.Default.GetBytes(test);
+            EncFile file = new EncFile
+            {
+                Description = "file.test",
+                RawBytes = testbytes
+            };
+            byte[] key = AES.KeyGen();
+            string keystring = Convert.ToBase64String(key);
+            Console.WriteLine(keystring);
+            ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV(key);
+            byte[] cipherText = AES.Encrypt(testbytes, keyParamsWithIV);
+            byte[] plainText = AES.Decrypt(cipherText, keystring);
+            string decrypted = Encoding.Default.GetString(plainText);
+            bool result = test.Equals(decrypted);
+            Console.WriteLine($"String comparison: <{test}> and <{decrypted}> are {(result ? "equal." : "not equal.")}");
         }
     }
 }

@@ -60,10 +60,5 @@ namespace Client.Crypto
             //secret symmetricKey generated
             return generator.GenerateKey();
         }
-        public static byte[] IVGen()
-        {
-            SecureRandom random = new SecureRandom();
-            return random.GenerateSeed(16);
-        }
     }
 }
