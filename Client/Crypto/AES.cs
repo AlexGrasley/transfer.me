@@ -38,21 +38,16 @@ namespace Client.Crypto
         //CipherUtilities in Security. Check out IBufferedCipher
         //create  cipher
 
-        public static ParametersWithIV GenerateKeyWithIV()
+        public static ParametersWithIV GenerateKeyWithIV(byte[] symmetricKey)
         {
             SecureRandom random = new SecureRandom();
             byte[] iv = random.GenerateSeed(16);
             //Creates KeyGenerator for AES with 128 bit key size
-            CipherKeyGenerator generator = GeneratorUtilities.GetKeyGenerator("AES128");
+            //CipherKeyGenerator generator = GeneratorUtilities.GetKeyGenerator("AES128");
             //secret symmetricKey generated
-            byte[] symmetricKey = generator.GenerateKey();
+            //byte[] symmetricKey = generator.GenerateKey();
             KeyParameter keyParam = new KeyParameter(symmetricKey);
             return new ParametersWithIV(keyParam, iv);
-        }
-
-        public static byte[] Packer(byte[] iv, byte[] cipherText)
-        {
-            return iv.Concat(cipherText).ToArray();
         }
         public static byte[] KeyGen()
         {
@@ -65,7 +60,5 @@ namespace Client.Crypto
             SecureRandom random = new SecureRandom();
             return random.GenerateSeed(16);
         }
-
-
     }
 }
