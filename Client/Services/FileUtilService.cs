@@ -25,13 +25,20 @@ namespace Client.Models
                 {
                     var buffer = new byte[rawFile.Size];
                     EncFile file = new EncFile();
+
                     byte[] key = AES.KeyGen();
                     string keystring = Convert.ToBase64String(key);
                     Console.WriteLine(keystring);
                     ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV(key);             
                     rawFile.OpenReadStream().ReadAsync(buffer);
+                    
                     file.Description = rawFile.Name;
                     file.RawBytes = AES.Encrypt(buffer, keyParamsWithIV);
+
+                    byte[] ogbytes = buffer;
+                    byte[] decrypted = AES.Decrypt(file.RawBytes, keystring);
+                    string a = Convert.ToBase64String(ogbytes);
+                    string b = Convert.ToBase64String(decrypted);
                     return file;
                  })
                 .ToList();

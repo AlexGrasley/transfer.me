@@ -24,14 +24,19 @@ namespace Client.Crypto
         //Decrypt method accepts cipher text and key
         //unpacks ciphertext to get IV and encrypted data
         //decrypts ciphertext and returns plaintext
-        public static byte[] Decrypt(byte[] cipherText, ParametersWithIV keyParameters)
+        public static byte[] Decrypt(byte[] cipherText, string key)
         {
+            byte[] symmetricKey = Convert.FromBase64String(key);
+            KeyParameter kp = new KeyParameter(symmetricKey);
+            byte[] iv = new byte[16];
+            byte[] UnpackedCipherText = new byte[cipherText.Length-16];
+            Array.Copy(cipherText, 0, iv, 0, 16);
+            Array.Copy(cipherText, 16, UnpackedCipherText, 0, cipherText.Length - 16);
+            ParametersWithIV keyParameters = new ParametersWithIV(kp, iv);
             //Initialize cipher in decryption mode by entering false in the mode field
             IBufferedCipher cipher = CipherUtilities.GetCipher(ENCRYPTION_MODE);
             cipher.Init(false, keyParameters);
-
-            byte[] decrypted = cipher.DoFinal(cipherText);
-            //return decrypted plaintext
+            byte[] decrypted = cipher.DoFinal(UnpackedCipherText);
             return decrypted;
         }
 
