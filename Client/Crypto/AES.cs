@@ -16,7 +16,9 @@ namespace Client.Crypto
             cipher.Init(true, keyParams);
             //plainText encrypted
             byte[] cipherText = cipher.DoFinal(plaintText);
-            return cipherText;
+            byte[] iv = keyParams.GetIV();
+            //return cipherText;
+            return iv.Concat(cipherText).ToArray();
         }
 
         //Decrypt method accepts cipher text and key
@@ -47,5 +49,23 @@ namespace Client.Crypto
             KeyParameter keyParam = new KeyParameter(symmetricKey);
             return new ParametersWithIV(keyParam, iv);
         }
+
+        public static byte[] Packer(byte[] iv, byte[] cipherText)
+        {
+            return iv.Concat(cipherText).ToArray();
+        }
+        public static byte[] KeyGen()
+        {
+            CipherKeyGenerator generator = GeneratorUtilities.GetKeyGenerator("AES128");
+            //secret symmetricKey generated
+            return generator.GenerateKey();
+        }
+        public static byte[] IVGen()
+        {
+            SecureRandom random = new SecureRandom();
+            return random.GenerateSeed(16);
+        }
+
+
     }
 }

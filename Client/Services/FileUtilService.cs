@@ -25,7 +25,13 @@ namespace Client.Models
                 {
                     var buffer = new byte[rawFile.Size];
                     EncFile file = new EncFile();
-                    ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV();             
+                    byte[] key = AES.KeyGen();
+                    byte[] iv = AES.IVGen();
+                    string keystring = Convert.ToBase64String(key);
+                    Console.WriteLine(keystring);
+                    KeyParameter kp = new KeyParameter(key);
+                    ParametersWithIV keyParamsWithIV = new ParametersWithIV(kp, iv);
+                    //ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV();             
                     rawFile.OpenReadStream().ReadAsync(buffer);
                     file.Description = rawFile.Name;
                     file.RawBytes = AES.Encrypt(buffer, keyParamsWithIV);
