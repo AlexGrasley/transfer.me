@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using Client.Components
 @inject ISnackbar Snackbar
+@inject IDialogService DiaglogService
 
 <PageTitle>TransferMe - Home</PageTitle>
 
@@ -23,6 +24,15 @@
 
 <MainLayout>
     <Body>
+        <MudDialog>
+            <DialogContent>
+                This information will be necessary to download the file, please provide these to whomever needs access to this file.
+            </DialogContent>
+            <DialogContent>
+                File ID: @fileDescriptor.FileID
+                Key: @fileDescriptor.Key.ToString()
+            </DialogContent>
+        </MudDialog>
         @if (fileTooLarge)
         {
             <MudAlert 

@@ -18,20 +18,21 @@ namespace Client.Models
 
         public static string DragEnterStyle { get => dragEnterStyle?? "drag-enter"; set => dragEnterStyle = value; }
 
-        public static void GetFiles(InputFileChangeEventArgs e)
+        public static FileDescriptor GetFiles(InputFileChangeEventArgs e)
         {
+            ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV();
             Pages.Index.fileList = e.GetMultipleFiles()
                 .Select(rawFile =>
                 {
                     var buffer = new byte[rawFile.Size];
                     EncFile file = new EncFile();
-                    ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV();             
                     rawFile.OpenReadStream().ReadAsync(buffer);
                     file.Description = rawFile.Name;
                     file.RawBytes = AES.Encrypt(buffer, keyParamsWithIV);
                     return file;
                  })
                 .ToList();
+            return new FileDescriptor() { FileID = Pages.Index.fileList.FirstOrDefault().FileID, Key = keyParamsWithIV };
         }
 
         public static bool FileSizeIsOK()
