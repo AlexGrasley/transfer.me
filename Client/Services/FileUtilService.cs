@@ -18,20 +18,21 @@ namespace Client.Models
 
         public static string DragEnterStyle { get => dragEnterStyle?? "drag-enter"; set => dragEnterStyle = value; }
 
-        public static void GetFiles(InputFileChangeEventArgs e)
+        public static async Task<FileDescriptor> GetFiles(InputFileChangeEventArgs e)
         {
-            Pages.Index.fileList = e.GetMultipleFiles()
-                .Select(rawFile =>
-                {
-                    var buffer = new byte[rawFile.Size];
-                    EncFile file = new EncFile();
-                    ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV();             
-                    rawFile.OpenReadStream().ReadAsync(buffer);
-                    file.Description = rawFile.Name;
-                    file.RawBytes = AES.Encrypt(buffer, keyParamsWithIV);
-                    return file;
-                 })
-                .ToList();
+            EncFile file = new EncFile();
+            ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV();
+            if (e.File != null)
+            {
+                var buffer = new byte[e.File.Size];
+                await e.File.OpenReadStream().ReadAsync(buffer, 0, buffer.Length);
+                Console.WriteLine($"Buffer Contents: {buffer.Length}");
+                file.Description = e.File.Name;
+                file.RawBytes = AES.Encrypt(buffer, keyParamsWithIV);
+                Pages.Index.fileList.Add(file);
+            }
+            FileDescriptor fileDescriptor = new FileDescriptor() { FileID = file.FileID, Key = keyParamsWithIV };
+            return fileDescriptor;
         }
 
         public static bool FileSizeIsOK()
@@ -47,14 +48,17 @@ namespace Client.Models
         public static async Task<HttpResponseMessage> Upload()        {
             try
             {
-                return await HttpService.PostAsync("/api/FileInterface/Upload", Pages.Index.fileList);
-                
+                return await HttpService.PostAsync("/api/FileInterface/Upload", Pages.Index.fileList); ;    
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
                 HttpResponseMessage error = new HttpResponseMessage(HttpStatusCode.MethodNotAllowed);
                 return await new Task<HttpResponseMessage>( () => error);
+            }
+            finally
+            {
+                Clear();  
             }
         }
 
