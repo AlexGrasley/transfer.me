@@ -14,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //Adding this service fixed the error of Dependency Injection error
 builder.Services.AddTransient<ICosmosDbService, CosmosDbService>();
+builder.Services.AddTransient<IDownloadService, DownloadService>();
 builder.Services.AddSingleton<CosmosClient>(ServiceProvider =>
 {
     return new CosmosClient($"AccountEndpoint={CosmosConnectionString};AccountKey={CosmosDBAPIKey}");

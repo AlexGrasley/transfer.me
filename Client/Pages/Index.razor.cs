@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Client.Services;
 using Client.Models;
+using MudBlazor;
+using MudBlazor.Dialog;
 
 namespace Client.Pages
 {
@@ -11,19 +13,28 @@ namespace Client.Pages
         private bool isLoading = false;
         public static IList<EncFile> fileList = new List<EncFile>();
         private bool fileTooLarge = false;
+        public static FileDescriptor? fileDescriptor;
 
-        private void OnInputFileChanged(InputFileChangeEventArgs e)
+        private async void OnInputFileChanged(InputFileChangeEventArgs e)
         {
-            isLoading = true;
-            StateHasChanged();
-            FileUtilService.GetFiles(e);
-            isLoading = false;
-            StateHasChanged();
+            fileDescriptor = await FileUtilService.GetFiles(e);
             if (!FileUtilService.FileSizeIsOK())
             {
                 fileTooLarge = true;
                 StateHasChanged();
             }
+        }
+
+        private async void Upload()
+        {
+            await FileUtilService.Upload();
+            OpenDialog();
+        }
+
+        private void OpenDialog()
+        {
+            var options = new DialogOptions { CloseOnEscapeKey = true };
+            DialogService.Show<Client.Components.FileInfoDialog>("File Information", options);
         }
 
         private void Clear()
