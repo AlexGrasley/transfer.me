@@ -7,6 +7,7 @@ using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Security;
 using Client.Pages;
 using System.Net;
+using System.Text;
 
 namespace Client.Models
 {
@@ -21,7 +22,10 @@ namespace Client.Models
         public static async Task<FileDescriptor> GetFiles(InputFileChangeEventArgs e)
         {
             EncFile file = new EncFile();
-            ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV();
+            byte[] key = AES.KeyGen();
+            ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV(key);
+            string keystring = Convert.ToBase64String(key);
+
             if (e.File != null)
             {
                 var buffer = new byte[e.File.Size];
@@ -31,7 +35,11 @@ namespace Client.Models
                 file.RawBytes = AES.Encrypt(buffer, keyParamsWithIV);
                 Pages.Index.fileList.Add(file);
             }
-            FileDescriptor fileDescriptor = new FileDescriptor() { FileID = file.FileID, Key = keyParamsWithIV };
+            //Console lines for testing
+            Console.WriteLine(keystring);
+            Console.WriteLine(file.FileID);
+
+            FileDescriptor fileDescriptor = new FileDescriptor() { FileID = file.FileID, Key = keyParamsWithIV, KeyString = keystring };
             return fileDescriptor;
         }
 
