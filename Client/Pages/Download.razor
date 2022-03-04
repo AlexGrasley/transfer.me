@@ -1,5 +1,6 @@
 ﻿@page "/download"
 @using System.ComponentModel.DataAnnotations
+@using Client.Crypto
 @inject ISnackbar Snackbar
 @inject IJSRuntime JS
 
@@ -34,7 +35,7 @@
         string filename = file.Description;
 
         //converting bytes into stream for JS blob
-        var fileStream = new MemoryStream(file.RawBytes);
+        var fileStream = new MemoryStream(AES.Decrypt(file.RawBytes,FileObj.Key));
         using var streamRef = new DotNetStreamReference(stream: fileStream);
 
         // Send the data to JS to actually download the file

@@ -1,8 +1,8 @@
-﻿ <MudDialog>
+﻿ <MudDialog Style="width=60%">
     <DialogContent>
-        File ID: @Pages.Index.fileDescriptor.FileID
+        File ID: <MudTextField @bind-Value=@Pages.Index.fileDescriptor.FileID/>
         <br />
-        Key: @Pages.Index.fileDescriptor.Key.GetIV().ToString();
+        Key: <MudTextField @bind-Value=@Pages.Index.fileDescriptor.Key/>
         </DialogContent>
     <DialogActions>
      <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>

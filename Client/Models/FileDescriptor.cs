@@ -6,7 +6,7 @@ namespace Client.Models
     {
 
         public string? FileID { get; set; }
-        public ParametersWithIV? Key { get; set; }
+        public string? Key { get; set; }
 
     }
 }

@@ -21,17 +21,18 @@ namespace Client.Models
         public static async Task<FileDescriptor> GetFiles(InputFileChangeEventArgs e)
         {
             EncFile file = new EncFile();
-            ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV();
+            byte[] key = AES.KeyGen();
+            string keystring = Convert.ToBase64String(key);
+            ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV(key);
             if (e.File != null)
             {
                 var buffer = new byte[e.File.Size];
                 await e.File.OpenReadStream().ReadAsync(buffer, 0, buffer.Length);
-                Console.WriteLine($"Buffer Contents: {buffer.Length}");
                 file.Description = e.File.Name;
                 file.RawBytes = AES.Encrypt(buffer, keyParamsWithIV);
                 Pages.Index.fileList.Add(file);
             }
-            FileDescriptor fileDescriptor = new FileDescriptor() { FileID = file.FileID, Key = keyParamsWithIV };
+            FileDescriptor fileDescriptor = new FileDescriptor() { FileID = file.FileID, Key = keystring };
             return fileDescriptor;
         }
 
