@@ -25,6 +25,18 @@ namespace Client.Pages
             }
         }
 
+        private async void Upload()
+        {
+            await FileUtilService.Upload();
+            OpenDialog();
+        }
+
+        private void OpenDialog()
+        {
+            var options = new DialogOptions { CloseOnEscapeKey = true };
+            DialogService.Show<Client.Components.FileInfoDialog>("File Information", options);
+        }
+
         private void Clear()
         {
             fileTooLarge = false;

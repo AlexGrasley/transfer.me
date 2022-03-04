@@ -29,7 +29,7 @@ namespace Client.Crypto
             byte[] symmetricKey = Convert.FromBase64String(key);
             KeyParameter kp = new KeyParameter(symmetricKey);
             byte[] iv = new byte[16];
-            byte[] UnpackedCipherText = new byte[cipherText.Length-16];
+            byte[] UnpackedCipherText = new byte[cipherText.Length - 16];
             Array.Copy(cipherText, 0, iv, 0, 16);
             Array.Copy(cipherText, 16, UnpackedCipherText, 0, cipherText.Length - 16);
             ParametersWithIV keyParameters = new ParametersWithIV(kp, iv);
@@ -54,6 +54,7 @@ namespace Client.Crypto
             KeyParameter keyParam = new KeyParameter(symmetricKey);
             return new ParametersWithIV(keyParam, iv);
         }
+
         public static byte[] KeyGen()
         {
             CipherKeyGenerator generator = GeneratorUtilities.GetKeyGenerator("AES128");

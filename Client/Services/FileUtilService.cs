@@ -23,23 +23,17 @@ namespace Client.Models
         {
             EncFile file = new EncFile();
             byte[] key = AES.KeyGen();
-            ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV(key);
             string keystring = Convert.ToBase64String(key);
-
+            ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV(key);
             if (e.File != null)
             {
                 var buffer = new byte[e.File.Size];
                 await e.File.OpenReadStream().ReadAsync(buffer, 0, buffer.Length);
-                Console.WriteLine($"Buffer Contents: {buffer.Length}");
                 file.Description = e.File.Name;
                 file.RawBytes = AES.Encrypt(buffer, keyParamsWithIV);
                 Pages.Index.fileList.Add(file);
             }
-            //Console lines for testing
-            Console.WriteLine(keystring);
-            Console.WriteLine(file.FileID);
-
-            FileDescriptor fileDescriptor = new FileDescriptor() { FileID = file.FileID, Key = keyParamsWithIV, KeyString = keystring };
+            FileDescriptor fileDescriptor = new FileDescriptor() { FileID = file.FileID, Key = keystring };
             return fileDescriptor;
         }
 
