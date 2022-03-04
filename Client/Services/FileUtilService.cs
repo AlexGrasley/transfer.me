@@ -22,7 +22,10 @@ namespace Client.Models
         public static async Task<FileDescriptor> GetFiles(InputFileChangeEventArgs e)
         {
             EncFile file = new EncFile();
-            ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV();
+            byte[] key = AES.KeyGen();
+            ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV(key);
+            string keystring = Convert.ToBase64String(key);
+
             if (e.File != null)
             {
                 var buffer = new byte[e.File.Size];
@@ -32,7 +35,11 @@ namespace Client.Models
                 file.RawBytes = AES.Encrypt(buffer, keyParamsWithIV);
                 Pages.Index.fileList.Add(file);
             }
-            FileDescriptor fileDescriptor = new FileDescriptor() { FileID = file.FileID, Key = keyParamsWithIV };
+            //Console lines for testing
+            Console.WriteLine(keystring);
+            Console.WriteLine(file.FileID);
+
+            FileDescriptor fileDescriptor = new FileDescriptor() { FileID = file.FileID, Key = keyParamsWithIV, KeyString = keystring };
             return fileDescriptor;
         }
 
@@ -82,26 +89,6 @@ namespace Client.Models
         public static void Clear()
         {
             Pages.Index.fileList.Clear();
-        }
-
-        //Test function because file upload has a bug
-        public static void TestCrypto(string test)
-        {
-            byte[] testbytes = Encoding.Default.GetBytes(test);
-            EncFile file = new EncFile
-            {
-                Description = "file.test",
-                RawBytes = testbytes
-            };
-            byte[] key = AES.KeyGen();
-            string keystring = Convert.ToBase64String(key);
-            Console.WriteLine(keystring);
-            ParametersWithIV keyParamsWithIV = AES.GenerateKeyWithIV(key);
-            byte[] cipherText = AES.Encrypt(testbytes, keyParamsWithIV);
-            byte[] plainText = AES.Decrypt(cipherText, keystring);
-            string decrypted = Encoding.Default.GetString(plainText);
-            bool result = test.Equals(decrypted);
-            Console.WriteLine($"String comparison: <{test}> and <{decrypted}> are {(result ? "equal." : "not equal.")}");
         }
     }
 }
