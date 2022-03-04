@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using Client.Services;
 using Client.Models;
 using Microsoft.JSInterop;
+using Client.Crypto;
 
 namespace Client.Pages
 {
@@ -17,12 +18,17 @@ namespace Client.Pages
             isLoading = true;
             StateHasChanged();
             encFile = await HttpService.GetFileAsync(FileObj.FileGUID);
+            //byte[] jk = encFile.RawBytes;
+            //byte[] RawBytes = AES.Decrypt(encFile.RawBytes, FileObj.Key);
+            //string jjk = Convert.ToBase64String(jk);
+            //string RB = Convert.ToBase64String(RawBytes);
             isLoading = false;
             StateHasChanged();
             string filename = encFile.Description;
 
             //converting bytes into stream for JS blob
-            var fileStream = new MemoryStream(encFile.RawBytes);
+            //var fileStream = new MemoryStream(encFile.RawBytes);
+            var fileStream = new MemoryStream(AES.Decrypt(encFile.RawBytes, FileObj.Key));
             using var streamRef = new DotNetStreamReference(stream: fileStream);
 
             // Send the data to JS to actually download the file
