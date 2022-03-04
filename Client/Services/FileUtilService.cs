@@ -7,6 +7,7 @@ using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Security;
 using Client.Pages;
 using System.Net;
+using System.Text;
 
 namespace Client.Models
 {

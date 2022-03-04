@@ -33,13 +33,5 @@ namespace Server
                 }
             }
         }
-
-        [HttpPost]
-        [Route("Download")]
-        public async Task Get()
-        {
-            string id = await HttpContext.Request.ReadFromJsonAsync<string>() ?? new string("");
-            await _cosmosDbService.GetEncFileAsync(id);
-        }
     }
 }

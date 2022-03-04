@@ -16,7 +16,9 @@ namespace Client.Crypto
             cipher.Init(true, keyParams);
             //plainText encrypted
             byte[] cipherText = cipher.DoFinal(plaintText);
-            return cipherText;
+            byte[] iv = keyParams.GetIV();
+            //return cipherText;
+            return iv.Concat(cipherText).ToArray();
         }
 
         //Decrypt method accepts cipher text and key

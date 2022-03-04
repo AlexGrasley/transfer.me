@@ -2,7 +2,7 @@
 
 namespace Client.ViewModels
 {
-    public class FileDownloadInputVM
+    public class DownloadVM
     {
         [Required]
         public string? FileGUID { get; set; }
