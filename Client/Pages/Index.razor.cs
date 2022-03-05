@@ -23,6 +23,7 @@ namespace Client.Pages
                 fileTooLarge = true;
                 StateHasChanged();
             }
+            StateHasChanged();
         }
 
         private async void Upload()
