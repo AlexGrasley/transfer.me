@@ -3,6 +3,12 @@
     "apis1": {
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/TransferMeServerAPI/apis/Server",
       "type": "apis.azure"
+    },
+    "cosmosdb1": {
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.DocumentDB/databaseAccounts/transfermecosmosdb",
+      "type": "cosmosdb.azure",
+      "connectionId": "CosmosDb:ConnectionString"
     }
   }
 }
