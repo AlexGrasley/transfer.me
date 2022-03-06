@@ -30,6 +30,7 @@ namespace Client.Pages
         {
             await FileUtilService.Upload();
             OpenDialog();
+            StateHasChanged();
         }
 
         private void OpenDialog()
