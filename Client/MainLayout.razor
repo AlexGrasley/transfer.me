@@ -1,18 +1,19 @@
-﻿@inherits LayoutComponentBase
+﻿@using MudBlazor.Services
+@inherits LayoutComponentBase
 
+<MudThemeProvider Theme="@MyTheme.CurrentTheme"/>
 <MudLayout Style="padding-bottom:10%"> 
     @* This is a base layout that includes the Appbar, and the navigation menu *@
     <MudAppBar Elevation="1">
         <MudText Typo="Typo.h5" Class="ml-3">Transfer.Me</MudText>
-        @*IF I remove this, the icons are on the left for some reason. Don't understand. TODO*@
         <MudContainer />
-        @if (userSignedIn) //Some logic to check if a user is signed in.Make profile icon direct to sign in if not signed in
+        @if (MyTheme.IsDarkTheme) //Some logic to check if a user is signed in.Make profile icon direct to sign in if not signed in
         {
-            <MudIconButton Style="color: #B0B3B8" Size="Size.Large" Icon="@Icons.Material.Filled.Person" Edge="Edge.Start" Link="/profile" />    
+            <MudIconButton Style="color: #FFFFFF" OnClick="@MyTheme.ToggleDarkTheme" Size="Size.Large" Icon="@Icons.Material.Filled.DarkMode" Edge="Edge.Start"/>
         }
         else
         {
-            <MudIconButton Style="color: #B0B3B8" Size="Size.Large" Icon="@Icons.Material.Filled.Person" Edge="Edge.Start" Link="/signin" />
+            <MudIconButton Style="color: #FFFFFF" OnClick="@MyTheme.ToggleDarkTheme" Size="Size.Large" Icon="@Icons.Material.Filled.LightMode" Edge="Edge.Start"/>
         }
         
     </MudAppBar>
@@ -31,5 +32,5 @@
 
 
 @code {
-    bool userSignedIn = false; //eventually change this into some actual logic
+    Themes MyTheme = new Themes();
 }
