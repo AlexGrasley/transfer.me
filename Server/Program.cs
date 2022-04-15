@@ -15,6 +15,7 @@ builder.Services.AddSwaggerGen();
 //Adding this service fixed the error of Dependency Injection error
 builder.Services.AddTransient<ICosmosDbService, CosmosDbService>();
 builder.Services.AddTransient<IDownloadService, DownloadService>();
+builder.Services.AddTransient<Server.Logger.ILogger, Server.Logger.Logger>();
 builder.Services.AddSingleton<CosmosClient>(ServiceProvider =>
 {
     return new CosmosClient($"AccountEndpoint={CosmosConnectionString};AccountKey={CosmosDBAPIKey}");
@@ -35,11 +36,11 @@ var app = builder.Build();
 app.UseCors("DevCorsPolicy");
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+app.UseSwagger();
+app.UseSwaggerUI();
+//}
 
 app.UseHttpsRedirection();
 

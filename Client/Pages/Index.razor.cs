@@ -23,12 +23,14 @@ namespace Client.Pages
                 fileTooLarge = true;
                 StateHasChanged();
             }
+            StateHasChanged();
         }
 
         private async void Upload()
         {
             await FileUtilService.Upload();
             OpenDialog();
+            StateHasChanged();
         }
 
         private void OpenDialog()
