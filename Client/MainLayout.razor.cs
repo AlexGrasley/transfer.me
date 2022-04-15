@@ -4,9 +4,9 @@ namespace Client
 {
     public partial class MainLayout
     {
-        public Theme ?MyTheme { get; set; }
+        public Theme? MyTheme { get; set; }
 
-        protected override void OnInitialized()
+        protected async override Task OnInitializedAsync()
         {
             MyTheme = new Theme();
         }

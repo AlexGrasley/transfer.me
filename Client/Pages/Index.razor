@@ -4,13 +4,14 @@
 @inject IDialogService DialogService
 
 <PageTitle>TransferMe - Home</PageTitle>
+
 <style>
     .drag-drop-zone {
         display: flex;align-items: center;justify-content: center;transition: all .4s;min-height: 370px;
-        background-color: @Color.Primary;
+        background-color: #DC4405;
     }
     .drag-drop-input {
-        position: absolute;width: 62%;height: 60%;opacity: 0;cursor:pointer;
+        position: absolute;width: 95%;height: 56%;opacity: 0;cursor:pointer;
         z-index:2
     }
     .drag-enter {
@@ -31,7 +32,7 @@
                 File too large. Please upload a smaller file or try compressing the file before upload.
             </MudAlert>
         }
-        <div style="padding-top: 8%">
+        <div style="padding-top: 20%">
            <MudPaper @ondragenter="@(()=>FileUtilService.DragEnterStyle="drag-enter")"
               @ondragleave="@(()=>FileUtilService.DragEnterStyle=String.Empty)"
               @ondragend="@(()=>FileUtilService.DragEnterStyle=String.Empty)"
@@ -58,10 +59,14 @@
 
             <MudGrid Justify="Justify.Center" Spacing="4">
                 <MudItem>
-                    <MudButton OnClick="Upload" StartIcon="@Icons.Material.Filled.Upload" Disabled="@(!fileList.Any())" Color="Color.Primary" Variant="Variant.Filled"><MudText Color="Color.Primary">Upload</MudText></MudButton>
+                    <MudButton OnClick="Upload" StartIcon="@Icons.Material.Filled.Upload" Disabled="@(!fileList.Any())" Color="Color.Success" Variant="Variant.Filled">
+                        <MudText Color="Color.Tertiary">Upload</MudText>
+                    </MudButton>
                 </MudItem>
                 <MudItem>
-                    <MudButton OnClick="Clear" StartIcon="@Icons.Material.Filled.Delete" Disabled="@(!fileList.Any())" Color="Color.Error" Variant="Variant.Filled"><MudText Color="Color.Primary">Clear</MudText></MudButton>
+                    <MudButton OnClick="Clear" StartIcon="@Icons.Material.Filled.Delete" Disabled="@(!fileList.Any())" Color="Color.Error" Variant="Variant.Filled">
+                        <MudText Color="Color.Tertiary">Clear</MudText>
+                    </MudButton>
                 </MudItem>
             </MudGrid>
         </div>

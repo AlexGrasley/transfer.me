@@ -7,7 +7,7 @@
 <MudLayout Style="padding-bottom:10%"> 
     @* This is a base layout that includes the Appbar, and the navigation menu *@
     <MudAppBar Color="Color.Primary" Elevation="1">
-        <MudText Typo="Typo.h5" Class="ml-3">Transfer.Me</MudText>
+        <MudLink Href="/" Color="Color.Secondary" Typo="Typo.h5" Class="ml-3">Transfer.Me</MudLink>
         <MudContainer />
         @if (MyTheme.IsDarkTheme)
         {
@@ -19,13 +19,8 @@
         }
         
     </MudAppBar>
-    <MudDrawer Color="Color.Secondary" Height="37.5%" Open ClipMode="DrawerClipMode.Always" Elevation="0">
-        @*<Client.Components.Navbar/>*@
-    </MudDrawer>
-    <MudMainContent Style="padding-right:15%">
-        <MudContainer MaxWidth="MaxWidth.Large">
+        <MudContainer MaxWidth="MaxWidth.Medium">
             @Body
         </MudContainer>
-    </MudMainContent>  
     <Client.Components.Footer />
 </MudLayout>
