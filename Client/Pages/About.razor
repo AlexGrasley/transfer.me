@@ -2,25 +2,21 @@
 @inject ISnackbar Snackbar
 
 <PageTitle>TransferMe - About</PageTitle>
-
 <MudLayout>
-    <MudMainContent>
-        <h1 style="color: #5c34e8">About Transfer.Me</h1>
+    <MudMainContent Style="padding-top: 15%">
+        <MudText Typo="Typo.h3" Color="Color.Primary">About Transfer.Me</MudText>
         <p>Transfer.Me is a project done by 3 seniors at Oregon State University with a goal to implement end-to-end encryption for securely sending files to others.
             This project uses Blazor Web Assembly and the .NET 6. Transfer.Me also uses the BouncyCastle Cryptography Library for encryption.
-            The project will have its first beta release on March 7th, 2022.
+            The project will have its final release in June, 2022.
         </p>
-        <h2 style="color: #5c34e8; padding-top:1%">Requirements Satisfied by March 7th</h2>
+        <MudText Typo="Typo.h6" Color="Color.Primary">Requirements Satisfied by June, 2022</MudText>
         <li>Upload an encrypted file</li>
-        <li>User gets provided file ID and decryption key</li>
-        <li>Provide the file ID and decryption key to intended recipient</li>
-        <li>Recipient can unlock and download the file utilizing the downloads page. Knowing end-to-end encryption was implemented.</li>
-        <h2 style="color: #5c34e8; padding-top:1%">Additional Requirements Satisfied by June, 2022</h2>
-        <li>Account creation</li>
-        <li>Send files to other accounts</li>
-        <li>Ability to manage account and view profile details</li>
+        <li>User gets provided URL and decryption key</li>
+        <li>Provide the URL and decryption key to intended recipient</li>
+        <li>Recipient can access URL and use key to unlock. Knowing end-to-end encryption was implemented.</li>
 
         <h4 style="padding-top:2%">Visit the Github Repository to see the source code -- <a href="https://github.com/AlexGrasley/transfer.me">TransferMe Source Code</a></h4>
     </MudMainContent>
+    
 </MudLayout>
 
