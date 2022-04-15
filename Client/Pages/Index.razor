@@ -4,11 +4,10 @@
 @inject IDialogService DialogService
 
 <PageTitle>TransferMe - Home</PageTitle>
-
 <style>
     .drag-drop-zone {
         display: flex;align-items: center;justify-content: center;transition: all .4s;min-height: 370px;
-        background-color: #B0B3B8;
+        background-color: @Color.Primary;
     }
     .drag-drop-input {
         position: absolute;width: 62%;height: 60%;opacity: 0;cursor:pointer;
@@ -40,7 +39,7 @@
                 <InputFile id="fileInput" OnChange="OnInputFileChanged" class="drag-drop-input"/>
                 @if (fileList.Count() == 0)
                 {
-                    <center><MudText Color="Color.Primary" Style="padding:2em;width:75% " Typo="Typo.h4">Click to browse or drag and drop file here</MudText></center>
+                    <center><MudText Color="Color.Secondary" Style="padding:2em;width:75% " Typo="Typo.h4">Click to browse or drag and drop file here</MudText></center>
                 }else
                 {
                     <MudList Style="padding:2em;width:75%;" Dense="true" >
@@ -59,10 +58,10 @@
 
             <MudGrid Justify="Justify.Center" Spacing="4">
                 <MudItem>
-                    <MudButton OnClick="Upload" Disabled="@(!fileList.Any())" Color="Color.Primary" Variant="Variant.Filled"><MudText Style="color:#000000">Upload</MudText></MudButton>
+                    <MudButton OnClick="Upload" StartIcon="@Icons.Material.Filled.Upload" Disabled="@(!fileList.Any())" Color="Color.Primary" Variant="Variant.Filled"><MudText Color="Color.Primary">Upload</MudText></MudButton>
                 </MudItem>
                 <MudItem>
-                    <MudButton OnClick="Clear" Disabled="@(!fileList.Any())" Color="Color.Error" Variant="Variant.Filled"><MudText Style="color:#000000">Clear</MudText></MudButton>
+                    <MudButton OnClick="Clear" StartIcon="@Icons.Material.Filled.Delete" Disabled="@(!fileList.Any())" Color="Color.Error" Variant="Variant.Filled"><MudText Color="Color.Primary">Clear</MudText></MudButton>
                 </MudItem>
             </MudGrid>
         </div>
