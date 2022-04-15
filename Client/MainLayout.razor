@@ -1,26 +1,26 @@
 ﻿@using MudBlazor.Services
 @inherits LayoutComponentBase
 
+<MudThemeProvider Theme="@MyTheme.CurrentTheme"/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
-<MudThemeProvider Theme="@MyTheme.CurrentTheme"/>
 <MudLayout Style="padding-bottom:10%"> 
     @* This is a base layout that includes the Appbar, and the navigation menu *@
-    <MudAppBar Elevation="1">
+    <MudAppBar Color="Color.Primary" Elevation="1">
         <MudText Typo="Typo.h5" Class="ml-3">Transfer.Me</MudText>
         <MudContainer />
         @if (MyTheme.IsDarkTheme)
         {
-            <MudIconButton Style="color: #FFFFFF" OnClick="@MyTheme.ToggleDarkTheme" Size="Size.Large" Icon="@Icons.Material.Filled.DarkMode" Edge="Edge.Start"/>
+            <MudIconButton Style="color: #FFFFFF" OnClick="@MyTheme.ToggleDarkTheme" Size="Size.Large" Icon="@Icons.Material.Filled.LightMode" Edge="Edge.Start"/>
         }
         else
         {
-            <MudIconButton Style="color: #FFFFFF" OnClick="@MyTheme.ToggleDarkTheme" Size="Size.Large" Icon="@Icons.Material.Filled.LightMode" Edge="Edge.Start"/>
+            <MudIconButton Style="color: #FFFFFF" OnClick="@MyTheme.ToggleDarkTheme" Size="Size.Large" Icon="@Icons.Material.Filled.DarkMode" Edge="Edge.Start"/>
         }
         
     </MudAppBar>
-    <MudDrawer Height="37.5%" Open ClipMode="DrawerClipMode.Always" Elevation="0">
-        <Client.Components.Navbar/>
+    <MudDrawer Color="Color.Secondary" Height="37.5%" Open ClipMode="DrawerClipMode.Always" Elevation="0">
+        @*<Client.Components.Navbar/>*@
     </MudDrawer>
     <MudMainContent Style="padding-right:15%">
         <MudContainer MaxWidth="MaxWidth.Large">

@@ -10,14 +10,9 @@ namespace Client.Themes
         public void ToggleDarkTheme()
         {
             IsDarkTheme = !IsDarkTheme;
-            if (IsDarkTheme)
-            {
-                CurrentTheme = GenerateDarkTheme();
-            }
-            else
-            {
-                CurrentTheme = GenerateLightTheme();
-            }
+            CurrentTheme = IsDarkTheme
+                ? GenerateDarkTheme()
+                : GenerateLightTheme();
         }
 
         private MudTheme GenerateDarkTheme()
@@ -27,10 +22,10 @@ namespace Client.Themes
                 Palette = new Palette()
                 {
                     Black = "#27272f",
-                    Background = "#32333d",
+                    Background = "#181818",
                     BackgroundGrey = "#27272f",
                     Primary = "#DC4405",
-                    Secondary = "#000000",
+                    Secondary = "#181818",
                     Surface = "#373740",
                     TextPrimary = "#FFFFFF",
                     TextSecondary = "rgba(255,255,255, 0.50)"
@@ -46,6 +41,7 @@ namespace Client.Themes
                 Palette = new Palette()
                 {
                     Primary = "#DC4405",
+                    Background = "#FFFFFF",
                     Secondary = "#FFFFFF",
                     Surface = "#373740",
                     TextPrimary = "#000000",
