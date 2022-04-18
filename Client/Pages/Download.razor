@@ -1,4 +1,4 @@
-﻿@page "/download"
+﻿@page "/download/{FileID}"
 @using System.ComponentModel.DataAnnotations
 @using Client.Crypto
 @inject ISnackbar Snackbar
@@ -26,6 +26,8 @@
 </div>
 
 @code{
+    [Parameter]
+    public string? FileID { get; set; }
     private async Task DownloadFile()
     {
         // Retrieve a file
