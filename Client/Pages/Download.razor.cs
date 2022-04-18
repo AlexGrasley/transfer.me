@@ -10,6 +10,8 @@ namespace Client.Pages
 {
     public partial class Download : ComponentBase
     {
+        [Parameter]
+        public string? FileID { get; set; }
         public static DownloadVM FileObj { get; set; } = new DownloadVM();
         EncFile? encFile { get; set; } = null;
         bool isLoading = false;
@@ -17,7 +19,7 @@ namespace Client.Pages
         {
             isLoading = true;
             StateHasChanged();
-            encFile = await HttpService.GetFileAsync(FileObj.FileGUID);
+            encFile = await HttpService.GetFileAsync(FileID);
             isLoading = false;
             StateHasChanged();
             string filename = encFile.Description;
