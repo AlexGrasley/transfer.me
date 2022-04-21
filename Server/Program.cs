@@ -3,8 +3,8 @@ using Server;
 
 var builder = WebApplication.CreateBuilder(args); //this line enumerates the secrets.json file stored in appdata
 
-var CosmosDBAPIKey = builder.Configuration["CosmosDb:Key"]; 
-var CosmosConnectionString = builder.Configuration["CosmosDb:AccountEndpoint"];
+var CosmosDBAPIKey = builder.Configuration["C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="];
+var CosmosConnectionString = builder.Configuration["https://localhost:8081"];
 
 
 // Add services to the container.
@@ -18,7 +18,7 @@ builder.Services.AddTransient<IDownloadService, DownloadService>();
 builder.Services.AddTransient<Server.Logger.ILogger, Server.Logger.Logger>();
 builder.Services.AddSingleton<CosmosClient>(ServiceProvider =>
 {
-    return new CosmosClient($"AccountEndpoint={CosmosConnectionString};AccountKey={CosmosDBAPIKey}");
+    return new CosmosClient("AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==");
 });
 
 builder.Services.AddCors(options =>

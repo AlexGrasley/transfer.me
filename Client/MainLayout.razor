@@ -2,8 +2,8 @@
 @inherits LayoutComponentBase
 
 <MudThemeProvider Theme="@MyTheme.CurrentTheme"/>
-<MudDialogProvider/>
-<MudSnackbarProvider/>
+@*<MudDialogProvider/>Moved this line to Index.razor*@
+<MudSnackbarProvider/> 
 <MudLayout Style="padding-bottom:10%"> 
     @* This is a base layout that includes the Appbar, and the navigation menu *@
     <MudAppBar Color="Color.Primary" Elevation="1">

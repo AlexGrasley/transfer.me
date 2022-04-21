@@ -4,7 +4,7 @@ namespace Client.Services
 {
     public class HttpService : HttpClient
     {
-        static Uri _baseAddress =  new Uri("https://transfermeserver.azurewebsites.net"); // this is a local address for debugging, needs to be set to the correct URI for production
+        static Uri _baseAddress =  new Uri("https://localhost:44346/"); // this is a local address for debugging, needs to be set to the correct URI for production
         static HttpClient _client;
 
         static HttpService()
