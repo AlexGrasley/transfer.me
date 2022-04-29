@@ -36,17 +36,20 @@ namespace Client.Themes
                 Palette = new Palette()
                 {
                     Black = "#27272f",
-                    Background = "#3A3B3C",
+                    Background = "#181818",
                     BackgroundGrey = "#000000",
                     Primary = "#DC4405",
                     Secondary = "#181818",
                     Tertiary = "#FFFFFF",
                     Surface = "#373740",
                     TextPrimary = "#FFFFFF",
-                    TextSecondary = "rgba(255,255,255, 0.50)"
+                    TextSecondary = "rgba(255,255,255, 0.50)",
+                    ActionDisabledBackground = "#4A4A4A",
+                    ActionDisabled = "#DC4405",
+                    
+
                 }
             };
-            //
             return DTheme;
         }
 
@@ -62,7 +65,9 @@ namespace Client.Themes
                     Surface = "#373740",
                     Tertiary = "#181818",
                     TextPrimary = "#000000",
-                    TextSecondary = "rgba(255,255,255, 0.50)"
+                    TextSecondary = "rgba(255,255,255, 0.50)",
+                    ActionDisabledBackground = "#BEBEBE",
+                    ActionDisabled = "#DC4405"
                 }
             };
             return LTheme;

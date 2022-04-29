@@ -22,7 +22,7 @@
     }
 </style>
 
-<MainLayout>
+<MudLayout>
     <Body>
         @if (fileTooLarge)
         {
@@ -60,15 +60,15 @@
             <MudGrid Justify="Justify.Center" Spacing="4">
                 <MudItem>
                     <MudButton OnClick="Upload" StartIcon="@Icons.Material.Filled.Upload" Disabled="@(!fileList.Any())" Color="Color.Success" Variant="Variant.Filled">
-                        <MudText Color="Color.Tertiary">Upload</MudText>
+                        <MudText Disabled="@(!fileList.Any())" Color="Color.Tertiary">Upload</MudText>
                     </MudButton>
                 </MudItem>
                 <MudItem>
                     <MudButton OnClick="Clear" StartIcon="@Icons.Material.Filled.Delete" Disabled="@(!fileList.Any())" Color="Color.Error" Variant="Variant.Filled">
-                        <MudText Color="Color.Tertiary">Clear</MudText>
+                        <MudText Disabled="@(!fileList.Any())" Color="Color.Tertiary">Clear</MudText>
                     </MudButton>
                 </MudItem>
             </MudGrid>
         </div>
     </Body>
-</MainLayout>
+</MudLayout>
