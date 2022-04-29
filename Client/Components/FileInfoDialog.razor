@@ -1,6 +1,6 @@
 ﻿ <MudDialog Style="width=60%">
     <DialogContent>
-        Download Link: <MudTextField @bind-Value=@url/>
+        Download Link: <MudLink Href=@url> @url </MudLink> 
         <br />
         Key: <MudTextField @bind-Value=@Pages.Index.fileDescriptor.KeyString/>
         </DialogContent>
@@ -10,7 +10,7 @@
 </MudDialog>
 
 @code{
-    string url = "/Download" + Pages.Index.fileDescriptor.FileID;
+    string url = "/download/" + Pages.Index.fileDescriptor.FileID;
      [CascadingParameter] MudDialogInstance MudDialog { get; set; }
     void Submit() => MudDialog.Close(DialogResult.Ok(true));
 }
