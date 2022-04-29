@@ -1,24 +1,14 @@
-﻿namespace Client
+﻿using Client.Themes;
+
+namespace Client
 {
-    public class Drawer
+    public partial class MainLayout
     {
-        private bool _drawerOpen;
+        public Theme? MyTheme { get; set; }
 
-        public bool DrawerOpen
+        protected async override Task OnInitializedAsync()
         {
-            get => _drawerOpen;
-            set => _drawerOpen = value;
-        }
-
-        public Drawer()
-        {
-            _drawerOpen = true;
-        }
-
-
-        public void DrawerToggle()
-        {
-            DrawerOpen = !DrawerOpen;
+            MyTheme = new Theme();
         }
     }
 }

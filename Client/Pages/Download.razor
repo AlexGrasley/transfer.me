@@ -1,4 +1,4 @@
-﻿@page "/download"
+﻿@page "/download/{FileID}"
 @using System.ComponentModel.DataAnnotations
 @using Client.Crypto
 @inject ISnackbar Snackbar
@@ -11,8 +11,7 @@
             <MudItem xs="12" sm="7">
                 <MudCard Style="background-color:#FAF9F6">
                     <MudCardContent>
-                        <MudTextField Label="File ID" HelperText="Enter the File ID to download"
-                                        @bind-Value="FileObj.FileGUID" For="@(() => FileObj.FileGUID)"/>
+                        <MudText>File Name: @FileName</MudText>
                         <MudTextField Label="Decryption Key" HelperText="Enter the key needed to decrypt the file"
                                         @bind-Value="FileObj.Key" For="@(() => FileObj.Key)"/>
                     </MudCardContent>
@@ -26,19 +25,5 @@
 </div>
 
 @code{
-    private async Task DownloadFile()
-    {
-        // Retrieve a file
-        EncFile file = await HttpService.GetFileAsync(FileObj.FileGUID);
 
-        byte[] data = file.RawBytes;
-        string filename = file.Description;
-
-        //converting bytes into stream for JS blob
-        var fileStream = new MemoryStream(AES.Decrypt(file.RawBytes,FileObj.Key));
-        using var streamRef = new DotNetStreamReference(stream: fileStream);
-
-        // Send the data to JS to actually download the file
-        await JS.InvokeVoidAsync("SaveFile", filename, streamRef);
-    }
 }
