@@ -12,6 +12,7 @@
                 <MudCard Style="background-color:#FAF9F6">
                     <MudCardContent>
                         <MudText>File Name: @FileName</MudText>
+                        <MudText>File Size: @FileSize Bytes</MudText>
                         <MudTextField Label="Decryption Key" HelperText="Enter the key needed to decrypt the file"
                                         @bind-Value="FileObj.Key" For="@(() => FileObj.Key)"/>
                     </MudCardContent>

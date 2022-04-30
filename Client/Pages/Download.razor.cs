@@ -13,6 +13,7 @@ namespace Client.Pages
         [Parameter]
         public string? FileID { get; set; }
         public string? FileName { get; set; }
+        public int? FileSize { get; set; }
         public static DownloadVM FileObj { get; set; } = new DownloadVM();
         EncFile? encFile { get; set; } = null;
         bool isLoading = false;
@@ -20,6 +21,7 @@ namespace Client.Pages
         {
             EncFile currFile = await HttpService.GetFileAsync(FileID);
             FileName = currFile.Description;
+            FileSize = currFile.RawBytes.Length;
         }
         public async void OnValidSubmit(EditContext Context)
         {
