@@ -9,10 +9,10 @@
     <EditForm Model="@FileObj" OnValidSubmit="OnValidSubmit">
         <DataAnnotationsValidator />
             <MudItem xs="12" sm="7">
-                <MudCard Style="background-color:#FAF9F6">
+                <MudCard>
                     <MudCardContent>
-                        <MudText>File Name: @FileName</MudText>
-                        <MudText>File Size: @FileSize Bytes</MudText>
+                        <MudText Color = "Color.Tertiary">File Name: @FileName</MudText>
+                        <MudText Color = "Color.Tertiary">File Size: @FileSize Bytes</MudText>
                         <MudTextField Label="Decryption Key" HelperText="Enter the key needed to decrypt the file"
                                         @bind-Value="FileObj.Key" For="@(() => FileObj.Key)"/>
                     </MudCardContent>
