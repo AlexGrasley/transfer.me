@@ -35,7 +35,7 @@ namespace Client.Pages
 
         private void OpenDialog()
         {
-            var options = new DialogOptions { CloseOnEscapeKey = true, MaxWidth = MaxWidth.Medium, FullWidth = true };
+            var options = new DialogOptions { CloseOnEscapeKey = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true, CloseButton = true };
             DialogService.Show<Client.Components.FileInfoDialog>("File Successfully Uploaded", options);
         }
 
