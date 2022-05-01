@@ -21,7 +21,7 @@ namespace Client.Pages
         {
             EncFile currFile = await HttpService.GetFileAsync(FileID);
             FileName = currFile.Description;
-            FileSize = currFile.RawBytes.Length;
+            FileSize = 128;// currFile.RawBytes.Length;
         }
         public async void OnValidSubmit(EditContext Context)
         {

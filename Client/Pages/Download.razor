@@ -7,12 +7,14 @@
 <PageTitle>TransferMe - Download File</PageTitle>
 <div style="padding-left:32%; padding-top: 10%">
     <EditForm Model="@FileObj" OnValidSubmit="OnValidSubmit">
-        <DataAnnotationsValidator />
+        @*<DataAnnotationsValidator /> Prevents downloads when FileID is autofilled*@
             <MudItem xs="12" sm="7">
                 <MudCard>
                     <MudCardContent>
                         <MudText Color = "Color.Tertiary">File Name: @FileName</MudText>
                         <MudText Color = "Color.Tertiary">File Size: @FileSize Bytes</MudText>
+                        <MudTextField Label="File ID"
+                                        @bind-Value="FileID" ReadOnly="true"/>
                         <MudTextField Label="Decryption Key" HelperText="Enter the key needed to decrypt the file"
                                         @bind-Value="FileObj.Key" For="@(() => FileObj.Key)"/>
                     </MudCardContent>
