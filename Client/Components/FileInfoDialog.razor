@@ -1,8 +1,8 @@
-﻿ <MudDialog Style="width=60%">
+﻿<MudDialog Style="width=60%">
     <DialogContent>
-        File ID: <MudTextField @bind-Value=@Pages.Index.fileDescriptor.FileID/>
-        <br />
-        Key: <MudTextField @bind-Value=@Pages.Index.fileDescriptor.KeyString/>
+        <MudLink Href=@url> Download Link </MudLink>
+        <MudTextField Value="@copyURL" Label="Download URL" ReadOnly="true"/>
+        <MudTextField Value="@Pages.Index.fileDescriptor.KeyString" Label="Key" ReadOnly="true"/>
         </DialogContent>
     <DialogActions>
      <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
@@ -10,7 +10,8 @@
 </MudDialog>
 
 @code{
-    
-     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    string url = "/download/" + Pages.Index.fileDescriptor.FileID;
+    string copyURL = "http://transferme.azurewebsites.net" + "/download/" + Pages.Index.fileDescriptor.FileID;
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
     void Submit() => MudDialog.Close(DialogResult.Ok(true));
-}
+}	
