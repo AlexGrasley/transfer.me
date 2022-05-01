@@ -1,9 +1,8 @@
 ﻿<MudDialog Style="width=60%">
     <DialogContent>
-        Download Link: <MudLink Href=@url> Download </MudLink> 
-        <br />
-        Download URL: <MudTextField @bind-Value=@copyURL/>
-        Key: <MudTextField @bind-Value=@Pages.Index.fileDescriptor.KeyString/>
+        <MudLink Href=@url> Download Link </MudLink>
+        <MudTextField Value="@copyURL" Label="Download URL" ReadOnly="true"/>
+        <MudTextField Value="@Pages.Index.fileDescriptor.KeyString" Label="Key" ReadOnly="true"/>
         </DialogContent>
     <DialogActions>
      <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
