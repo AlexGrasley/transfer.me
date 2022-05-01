@@ -1,17 +1,34 @@
-﻿<MudDialog Style="width=60%">
+﻿@inject IJSRuntime JSRuntime
+
+<MudDialog Style="width=60%">
     <DialogContent>
         <MudLink Href=@url> Download Link </MudLink>
-        <MudTextField Value="@copyURL" Label="Download URL" ReadOnly="true"/>
-        <MudTextField Value="@Pages.Index.fileDescriptor.KeyString" Label="Key" ReadOnly="true"/>
+        <MudTextField Value="@copyURL" Label="Download URL" ReadOnly="true" 
+        Adornment="Adornment.End" AdornmentIcon="@Icons.Filled.ContentCopy" AdornmentColor="Color.Primary"
+        OnAdornmentClick="CopyURLToClipboard"/>
+        <MudTextField Value="@Pages.Index.fileDescriptor.KeyString" Label="Key" ReadOnly="true" 
+        Adornment="Adornment.End" AdornmentIcon="@Icons.Filled.ContentCopy" AdornmentColor="Color.Primary"
+        OnAdornmentClick="CopyKeyToClipboard"/>
         </DialogContent>
     <DialogActions>
-     <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+     <MudButton Color="Color.Primary" OnClick="Submit"></MudButton>
     </DialogActions>
 </MudDialog>
 
 @code{
+    //string Text;
     string url = "/download/" + Pages.Index.fileDescriptor.FileID;
     string copyURL = "http://transferme.azurewebsites.net" + "/download/" + Pages.Index.fileDescriptor.FileID;
+    string Key = Pages.Index.fileDescriptor.KeyString;
+    private async Task CopyURLToClipboard()
+    {
+        await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", copyURL);
+    }
+    private async Task CopyKeyToClipboard()
+    {
+        await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", Key);
+    }
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
     void Submit() => MudDialog.Close(DialogResult.Ok(true));
+
 }	
