@@ -12,7 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransferMeTests", "TransferMeTests\TransferMeTests.csproj", "{06A4DD87-5698-46F1-AD24-D5007DD92AA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransferMeTests", "TransferMeTests\TransferMeTests.csproj", "{06A4DD87-5698-46F1-AD24-D5007DD92AA1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F7E1C498-1D00-455E-B733-A8B9B6DC3F50} = {F7E1C498-1D00-455E-B733-A8B9B6DC3F50}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
